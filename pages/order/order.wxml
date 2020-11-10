@@ -17,7 +17,7 @@
       </view>
       <view class="order-detail app-flex app-flex-between app-flex-center">
         <view class="order-info app-flex app-flex-column">
-          <view> {{item.orderTime}} </view>
+          <view class="order-time"> {{item.orderTime}} </view>
           <view> {{item.orderAddress}} </view>
         </view>
         <view class="order-action app-flex " wx:if="{{item.status===2 || item.status===4}}">

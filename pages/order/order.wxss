@@ -67,3 +67,6 @@
    align-items: space-around;
    min-height: 176rpx;
 }
+.order-time{
+    margin-bottom: 10rpx;
+}
