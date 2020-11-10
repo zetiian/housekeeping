@@ -1,13 +1,14 @@
 .container{
     margin-top: 10vh;
 }
+
 .img-container{
+    position: relative;
     margin-left: 32rpx;
     margin-bottom: 40rpx;
     width: 686rpx;
     height: 276rpx;
     color: #727484;
-    position: relative;
     font-size: 48rpx;
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 500;
@@ -25,4 +26,19 @@
     top: 50%;
     transform: translateY(-50%);
     left: 50rpx;
+}
+.register-btn{
+    position: absolute;
+    width: 686rpx;
+    height: 276rpx;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    
+}
+.register-btn button{
+    width: 686rpx;
+    height: 276rpx;
+    opacity: 0;
+    z-index: 10;
 }

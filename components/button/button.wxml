@@ -1,0 +1,8 @@
+<view wx:if="{{!login}}" class="base-button {{type}} {{size}}" >
+  <slot />
+</view>
+<view wx:if="{{login}}">
+  <button  class="base-button {{type}} {{size}}" open-type="getPhoneNumber" bindgetphonenumber="wxRegist">
+    <slot />
+  </button>
+</view>

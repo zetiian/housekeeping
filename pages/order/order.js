@@ -1,11 +1,14 @@
-// pages/order/order.js
+
+var app = getApp();
+const util = require('../../utils/util.js')
+const API = require('../../api/interface.js')
+import localStorage from "../../libs/localStorage";
+var checkLogin = require('../../libs/checkLogin').checkLogin
+let timeTool = require('../../utils/common.js').timeTool
+var userRegister = {}
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    isIPX: app.globalData.isIPX,
   },
 
   /**
@@ -30,7 +33,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    userRegister = localStorage.get().userRegister
+    console.log(1111,userRegister);
+    if(!userRegister || !userRegister.type){
+      wx.showToast({
+        title: '请先进行注册',
+        icon: 'none',
+        duration: 1500,
+        mask: false,
+      });
+      setTimeout(() => {
+        wx.reLaunch({
+          url: '/pages/my/my',
+        });
+      }, 1500);
+    
+    }
   },
 
   /**

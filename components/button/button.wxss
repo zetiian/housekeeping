@@ -1,0 +1,56 @@
+.base-button{
+    width:360rpx;
+    height:80rpx;
+    border-radius:40rpx;
+    background: none;
+    color: #000;
+    font-size:36rpx;
+    font-family:PingFangSC-Medium,PingFang SC;
+    line-height:80rpx;
+    text-align: center;
+    box-sizing: content-box;
+}
+.base-button.primary{
+    background:linear-gradient(90deg,rgba(252,219,0,1) 0%,rgba(247,181,0,1) 100%);
+    color:#fff;
+}
+.base-button.error{
+    background: linear-gradient(90deg, #FA6400 0%, #E02020 100%);
+    color:#fff;
+}
+
+.base-button.plain{
+    background: none;
+    border: 2rpx solid #1D7FC9;
+    color: #1D7FC9;
+}
+.base-button.disable{
+    background: none;
+    background: rgb(175, 185, 198);
+    color:#fff;
+}
+.base-button.plain.primary{
+    background: none;
+    border: 2rpx solid #F7B500;
+    color:#F7B500;
+}
+
+.base-button.big{
+    width:160rpx;
+    height: 32rpx;
+    border-radius: 16rpx;
+}
+.base-button.small{
+    width:160rpx;
+    height: 64rpx;
+    line-height: 64rpx;
+    font-size: 36rpx;
+    border-radius: 32rpx;
+}
+.base-button.mini{
+    width:114rpx;
+    height: 36rpx;
+    line-height: 36rpx;
+    font-size: 24rpx;
+    border-radius: 18rpx;
+}

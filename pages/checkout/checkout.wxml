@@ -6,14 +6,12 @@
     案例
   </view>
     
-  <van-button catchtap="onClick"> 默认按钮 </van-button>
-  <van-button catchtap="onClick1" type="primary"> 主要按钮 </van-button>
-  <van-button catchtap="onClick2" type="info"> 信息按钮 </van-button>
-  <van-button catchtap="onClick3" type="warning">警告按钮 </van-button>
-  <van-button catchtap="onClick4" type="danger">危险按钮 </van-button>
-
-  <van-button plain hairline type="primary">细边框按钮</van-button>
-  <van-button loading type="info" loading-text="加载中..." />
+ 
 
 </view>
-<van-toast id="van-toast" />
+
+<view class="app-bottom-btn {{isIPX?'ipx':''}}" >
+  <van-button round  catchtap="confirm" custom-class="app-btn" >
+    <view class="btn-text"> 确认预约 </view>
+  </van-button>
+ </view>
