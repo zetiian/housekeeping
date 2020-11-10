@@ -5,7 +5,6 @@
        <view class="btn-text">
          登录
        </view>
-         
      </van-button>
      <view class="my-warning app-flex ">  
        <view> 登陆即代表你同意 </view>

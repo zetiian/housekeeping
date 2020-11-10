@@ -87,6 +87,13 @@
           "id": -1,
           "name": "详情介绍页",
           "pathName": "pages/service-detail/service-detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的地址",
+          "pathName": "pages/my-address/my-address",
           "scene": null
         }
       ]

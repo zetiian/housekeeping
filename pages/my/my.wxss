@@ -6,11 +6,8 @@
 }
 .app-btn{
   width: 460rpx;
-  
 }
-.btn-text{
-  font-size: 40rpx;
-}
+
 .my-warning{
   margin-top: 40rpx;
 }

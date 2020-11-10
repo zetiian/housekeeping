@@ -1,0 +1,34 @@
+
+<nav title="我的地址"></nav>
+
+<scroll-view class="container app-flex app-flex-column my-address" height="90vh">
+ 
+  <van-swipe-cell right-width="{{ 180 }}" left-width="{{ 180 }}" wx:for="{{list}}" wx:key="index">
+  
+  <van-cell-group >
+    <van-cell title="1" value="2" >
+      <view slot="left">
+        <view class="address-list-item">
+              <view class="address-list-text-con" bindtap="addressClick" data-item="{{item}}">
+                  <view class="address-list-text-1">
+                    <view class="address-list-text-11">{{item.second}}{{item.detailAddress}}</view>
+                    <view wx:if="{{item.isDefault}}" class="address-list-sptext">默认</view>
+                  </view>
+                  <view  class="address-list-text-2">{{item.name}} {{item.phone}}</view>
+              </view>
+              <view class="address-list-icon-con" catchtap="toEdit" data-item="{{item}}">
+                  <view class="address-list-icon"></view>
+              </view>
+            </view>
+  </view>
+    </van-cell>
+  </van-cell-group>
+  <view slot="right" class="app-flex">
+    <view class="address-right-default" data-id="{{item.id}}" bindtap="defaultClick">设为默认</view>
+    <view class="address-right-remove" data-id="{{item.id}}" bindtap="removeClick">删除</view>
+  </view>
+   
+</van-swipe-cell>
+    
+
+</scroll-view>

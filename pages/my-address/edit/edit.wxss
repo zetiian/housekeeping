@@ -1,0 +1,72 @@
+.address-edit-save{
+    width:690rpx;
+    height: 88rpx;
+    background:rgba(44,204,211,1);
+    box-shadow:0px 10rpx 10rpx 0px rgba(44,204,211,0.11);
+    border-radius:44rpx;
+    color: #fff;
+}
+.address-edit-item{
+    height: 109rpx;
+    display: flex;
+    align-items: center;
+}
+
+.address-edit-item .wux-cell{
+    border-bottom: 0.5px solid rgba(221,221,221,1);
+    font-size:30rpx;
+    font-family:MicrosoftYaHei;
+    font-weight:400;
+    color:rgba(66,85,99,1);
+    position: relative;
+    line-height:50rpx;
+
+}
+.address-edit-item.no-border .wux-cell{
+    border-bottom: 0.5px solid transparent;
+}
+.address-edit-item2{
+    display: flex;
+}
+.address-edit-area{
+    width: 420rpx;
+}
+.address-edit-label{
+    margin-left:0;
+    margin-right:10rpx;
+    text-align:left;
+    white-space:nowrap;
+    overflow:hidden;
+    width:210rpx;
+
+}
+.address-edit-select{
+  height:30rpx;
+  font-size:30rpx;
+  font-family:MicrosoftYaHei;
+  font-weight:400;
+  color:rgba(44,204,211,1);
+  line-height:18rpx;
+  margin-top: 34rpx;
+  margin-bottom: 57rpx;
+  display: block;
+  margin-left: 30rpx;
+}
+.address-edit-rarrow{
+    position: absolute;
+    right: 5rpx;
+    top: 0;
+    height: 109rpx;
+    line-height: 109rpx;
+    color: #747A86;
+    font-size: 30rpx;
+
+}
+.van-field__label{
+    font-size:30rpx;
+    font-family:MicrosoftYaHei;
+    font-weight:400;
+    color:rgba(66,85,99,1);
+    position: relative;
+    line-height:50rpx;
+}

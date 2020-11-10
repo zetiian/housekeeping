@@ -1,0 +1,31 @@
+<!-- <wux-cascader visible="{{ showCascader }}" default-field-names="{{defaultFieldNames}}"  title="所在地区" options="{{ areaData }}" bind:close="cascaderClose" bind:change="cascaderChange" />-->
+<view class="profile-root"> 
+  <nav title="{{title}}" backgroundColor="#fff"></nav>
+
+  <view>
+      <view style='margin-top:10rpx;'>
+          <van-cell-group>
+                <van-field value="{{ form.name }}" clearable label="联系人" placeholder="请输入姓名" />
+                <van-field value="{{ form.phone }}" type="number" clearable label="联系电话" placeholder="请输入联系电话" />
+                <van-field value="{{ form.second }}"   label="地址" placeholder="请选择地址" readonly icon="arrow" bind:click-icon="onClickIcon"/>
+                <van-field value="{{ form.detailAddress }}" clearable label="门牌号" placeholder="门牌号" />
+                <view class="app-flex app-flex-between" style="padding:40rpx 30rpx 0;">
+                    <view class="van-field__label"> 是否默认 </view>
+                    <van-switch checked="{{ form.isDefault }}" active-color="#F7B500" inactive-color="#7B736B" />
+                </view>
+               
+        </van-cell-group>
+          
+      </view>
+    
+     
+  </view>
+</view>
+  <view class="app-bottom-btn {{isIPX?'ipx':''}}" >
+      <van-button round  catchtap="save" custom-class="app-btn" >
+       <view class="btn-text">
+         保存
+       </view>
+     </van-button>
+ </view>
+   

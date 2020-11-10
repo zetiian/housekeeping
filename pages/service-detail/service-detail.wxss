@@ -1,1 +1,8 @@
 @import "../../plugins/wxParser/wxParse.wxss";
+.index-swiper-item {
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  
+  }

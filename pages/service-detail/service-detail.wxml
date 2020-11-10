@@ -1,7 +1,15 @@
 
 <import src="../../plugins/wxParser/wxParse.wxml" />
-<nav leftBtnType="none" title="{{title}}"></nav>
+<nav  title="{{title}}"></nav>
 <swiper class="app-swiper " autoplay="{{false}}" indicator-dots="{{false}}" snap-to-edge="{{true}}" circular="{{true}}">
   <swiper-item class="app-swiper-item index-swiper-item item-1" wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerLink" data-item="{{item}}" style="background-image: url({{item}});"></swiper-item>
 </swiper>
  <template is="wxParse" data="{{wxParseData:htmlContent.nodes}}"></template>
+ <view class="app-bottom-btn {{isIPX?'ipx':''}}">
+      <van-button round  catchtap="goBuyNow" custom-class="app-btn" >
+       <view class="btn-text">
+         立即预约
+       </view>
+     </van-button>
+ </view>
+   

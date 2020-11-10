@@ -1,11 +1,11 @@
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
-const app = getApp();
+
 
 
 //Page Object
 Page({
   data: {
-    isIPX: app.globalData.isIPX,
+    
   },
   //options(Object)
   onLoad: function(options) {

@@ -7,6 +7,9 @@
     "pages/rich-text/rich-text",
     "pages/webview/webview",
     "pages/feedback/feedback",
+    "pages/checkout/checkout",
+    "pages/my-address/my-address",
+    "pages/my-address/edit/edit",
     "pages/service-detail/service-detail",
 
     "pages/demo/demo"
@@ -23,6 +26,10 @@
     "van-button": "./miniprogram_npm/@vant/weapp/button/index",
     "van-skeleton": "./miniprogram_npm/@vant/weapp/skeleton/index",
     "van-toast": "./miniprogram_npm/@vant/weapp/toast/index",
+    "van-swipe-cell": "./miniprogram_npm/@vant/weapp/swipe-cell/index",
+    "van-field": "./miniprogram_npm/@vant/weapp/field/index",
+    "van-switch": "./miniprogram_npm/@vant/weapp/switch/index",
+
     "van-nav-bar": "./miniprogram_npm/@vant/weapp/nav-bar/index"
   },
   "tabBar": {

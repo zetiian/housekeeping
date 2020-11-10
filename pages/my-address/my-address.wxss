@@ -1,0 +1,131 @@
+.my-address{
+    width: 100%;
+    box-shadow: 0px 0px 6px 0px rgba(123, 115, 107, 0.24);
+}
+.my-address-item{
+    height: 200rpx;
+    width: 686rpx;
+    margin-left: 32rpx;
+    border-bottom: 1rpx solid;
+
+}
+.my-address-item:last-of-type{
+    border:none;
+}
+
+.address-list-right-con{
+    display:flex;
+    flex-direction: row;
+  }
+  .address-right-default{
+      width:160rpx;
+      height:140rpx;
+      background-color:#F7B500;
+      color:#fff;
+      text-align:center;
+      line-height:140rpx;
+  }
+  .address-right-remove{
+      width:160rpx;
+      height:140rpx;
+      background-color:#EB4B4B;
+      color:#fff;
+      text-align:center;
+      line-height:140rpx;
+  }
+  .address-list-item{
+      height:140rpx;
+      line-height:140rpx;
+      display: flex;
+      align-items:  center;
+      margin: 0 30rpx;
+      padding: 29rpx 0;
+      box-sizing:  border-box;
+      border-bottom: 1px solid #EEEEEE;
+  }
+  .address-list-text-con{
+      width:592rpx;
+      font-size: 28rpx;
+  }
+  .address-list-text-1{
+      height: 40rpx;
+      line-height: 40rpx;
+      display: flex;
+      /* margin-left: 31rpx; */
+  }
+  .address-list-text-11{
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      max-width:520rpx;
+  }
+  .address-list-text-2{
+      height: 40rpx;
+      line-height: 40rpx;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      /* margin-left: 31rpx; */
+  }
+  .address-list-sptext{
+      background-color: #F7B500;
+      color: #fff;
+      border-radius:18rpx;
+      width:72rpx;
+      height:36rpx;
+      /* padding:3rpx 13rpx; */
+      font-size: 24rpx;
+      margin-left: 21rpx;
+      line-height: 36rpx;
+      text-align: center;
+  }
+  .address-list-icon-con{
+    width: 108rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .address-btn-con{
+      margin:40rpx 30rpx;
+      display:flex;
+      height:88rpx;
+      justify-content:  space-between;
+  }
+  .address-btn-con-wx{
+      background-color:#07C160;
+      color:#fff;
+      width:335rpx;
+      font-size:32rpx;
+      border-radius:44rpx;
+      height: 88rpx;
+      line-height: 88rpx;
+      border: 0;
+      text-align: center;
+  }
+  .address-btn-con-new{
+      background-color:#2CCCD3;
+      color:#fff;
+      width:335rpx;
+      font-size:32rpx;
+      border-radius:44rpx;
+      height: 88rpx;
+      line-height: 88rpx;
+      border: 0;
+      text-align: center;
+  }
+  .address-list-icon{
+  
+      width: 34rpx;
+      height: 34rpx;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAADqADAAQAAAABAAAAEAAAAABiIBAZAAAB6ElEQVQoFX2Tz2sTQRTH35udBUlRrHhIPXguRMQ1owm0SQ+tBwUvHhWlFT0K/gvePXlWWlrwJvSeXvKjddNsjC0E7wretKlpCjHuPL9Tm3RLMXOZt+/7Pvt9b3aWacxqhOV7kF8TyRQJf0hduPwyk8kcOIT/x0X18kNrZRW6N6xh4s3zk97d6enZrhomk3tzu/zoBOL3nvLuw6MrJDO/OvG6iPAZx0ZYfUxkVyAqqGsmN7fIzLYZ1vKW/myI0IRiXTjl2KiXn5xAvDqEXDeiz30Rou6/zuLUCGx+rCyS0LJzwuQrJldcck6usNVqXZRBrwQ9jTm/kp6oaSdsh9UlS/btcXvLcHqWhAb9/RLKDFrvKFIPssYcchTWZoXiCiDk+Z3JF58DQldEu7vVyf6hLUHLQttTrO5k84Wm07SQTTsI7bXR3mmoZzdwkjcdxD4vZE3hk4PccjMevZ2Fe0OndnvrUv8Ywmf4SZrmjSmOIAdquB2BiNNRvfLCJXvd30+x3XCQ7+n54NbMZ5dPLu0pkRhnh5auipU3I5Hph6/0QnD7LORqtFjvO3O8PgIQYGTRrF4B2knmkzFHUeQr1b+STI6LmVP7QRB0GH/ADsa8Pq44qeEAB7j2OXcBvuHhWlIcF+Mo9/yYDv4CWv3ZCcapszkAAAAASUVORK5CYII=);
+  }
+  
