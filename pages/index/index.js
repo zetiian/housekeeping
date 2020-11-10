@@ -48,9 +48,13 @@ Page({
       });
   },
   onClick(){
-    
     wx.navigateTo({ url: '/pages/demo/demo', });
-      
+  },
+  goDetail(e){
+    let title = e.currentTarget.dataset.title;
+    wx.navigateTo({
+      url: `/pages/service-detail/service-detail?title=${title}`
+    });
   },
   goRegist() {
     wx.navigateTo({

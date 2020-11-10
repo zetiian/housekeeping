@@ -53,14 +53,15 @@ Page({
     console.log(2222,e);
     
   },
-  goRegister(){
-
-  },
-  goRule() {
+  goRegister(e){
     wx.navigateTo({
       url: `/pages/rich-text/rich-text?pageTitle=用户协议&detail=asdasdasdaf`,
     });
-
+  },
+  goRule() {
+    wx.navigateTo({
+      url: `/pages/rich-text/rich-text?pageTitle=用户协议&detail=我是用户协议`,
+    });
   },
   goMyAccount() {
     wx.navigateTo({
@@ -70,7 +71,7 @@ Page({
   },
   goAboutUs() {
     wx.navigateTo({
-      url: '/pages/about-us/about-us',
+      url: '/pages/rich-text/rich-text?pageTitle=关于我们&detail=我是关于我们的正文',
     });
   },
   goFeedback() {

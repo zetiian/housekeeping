@@ -96,7 +96,11 @@
 .wxParse-video-video{
     width:100%;
 }
+.wxParse-p{
+    width: 690rpx;
+    margin: 10rpx auto;
 
+}
 .wxParse-img{
    display: block;
    width: 100%;

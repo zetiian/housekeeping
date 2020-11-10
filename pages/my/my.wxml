@@ -15,9 +15,10 @@
   </view>
   <!-- 菜单 -->
   <view class="app-contanier app-flex app-flex-column my-ticket">
-    <view class="app-flex app-flex-between my-ticket-item" catchtap="goMyTickets" >
-      <view class="my-ticket-item-name app-flex">
-        <view class="my-ticket-left-icon my-tickets"></view>
+    <view class="app-flex app-flex-between my-ticket-item"  >
+      <button open-type="contact"></button>
+      <view class="my-ticket-item-name app-flex" >
+        <view class="my-ticket-left-icon contact"></view>
         <view>在线客服</view>
       </view>
       <view class="app-arrow-right"></view>

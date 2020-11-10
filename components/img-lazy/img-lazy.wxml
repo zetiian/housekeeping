@@ -1,0 +1,1 @@
+<view class="component-base-img{{isShow?'':' default-img'}}{{inAni?' has-ani':''}} classname" style="{{outputSrc?('background-image:url('+outputSrc+');'):''}}{{height?('height:'+height+'px;'):''}}{{styleText||''}}"></view>
