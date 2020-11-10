@@ -15,7 +15,7 @@
   <view class="app-contanier app-flex app-flex-column my-card-1" wx:if="{{userRegister.type}}">
     <open-data type="userAvatarUrl" class="my-avatar"></open-data>
     <open-data type="userNickName" class="my-nickname"></open-data>
-    <base-button size="mini" type="plain primary" wx:if="{{userRegister.type}}">{{userRegister.type===1?'雇主':'服务人员'}}</base-button>
+    <base-button size="mini" type="plain primary" wx:if="{{userRegister.type}}">{{userRegister.type===1?'雇主':'服务'}}</base-button>
   </view>
   <!-- 菜单 -->
   <view class="app-contanier app-flex app-flex-column my-ticket">

@@ -1,12 +1,17 @@
 const app = getApp();
+import localStorage from "../libs/localStorage";
+var userRegister  = {}
 Component({
   lifetimes: {
-    attached: function() {},
+    attached: function() {
+   
+    },
     detached: function() {
       // 在组件实例被从页面节点树移除时执行
     }
   },
   data: {
+    isService: false,
     trainingFlag: false,
     myUnread: false,
     flage: false,
@@ -17,9 +22,16 @@ Component({
   },
   observers: {
     _active(v) {
+      userRegister = localStorage.get().userRegister
+      let page = getCurrentPages()[0]
+      console.log(1111,page.route);
+      if(userRegister.type===2 && page.route ==="pages/index/index" ){
+        wx.switchTab({ url:'/pages/order/order' });
+      }
       setTimeout(_ => {
         this.setData({
-          flage: !this.data.flage
+          flage: !this.data.flage,
+          isService: (userRegister.type===2||false)
         });
         // this.getTabRedPointDisp();
       }, 100);

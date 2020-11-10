@@ -1,6 +1,6 @@
 <view class="foot-fix{{hideTabBar?' hide':''}}{{hasAni?' ani':''}}">
     <view class="foot-nav">
-        <view class="foot-nav__item {{_active == 'index' ? 'foot-nav__item-active' : ''}}" data-tag="index" catchtap="goto" data-url="/pages/index/index">
+        <view wx:if="{{!isService}}" class="foot-nav__item {{_active == 'index' ? 'foot-nav__item-active' : ''}}" data-tag="index" catchtap="goto" data-url="/pages/index/index">
             <view class="foot-nav__icon foot-nav__icon-road"></view>
             <text class="foot-nav__icon-text">首页</text>
         </view>
