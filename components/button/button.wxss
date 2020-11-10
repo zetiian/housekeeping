@@ -44,7 +44,7 @@
     width:160rpx;
     height: 64rpx;
     line-height: 64rpx;
-    font-size: 36rpx;
+    font-size: 28rpx;
     border-radius: 32rpx;
 }
 .base-button.mini{

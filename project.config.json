@@ -94,6 +94,13 @@
           "id": -1,
           "name": "我的地址",
           "pathName": "pages/my-address/my-address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "订单列表",
+          "pathName": "pages/order/order",
           "scene": null
         }
       ]

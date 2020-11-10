@@ -9,6 +9,74 @@ var userRegister = {}
 Page({
   data: {
     isIPX: app.globalData.isIPX,
+    nav:0,
+    list:[
+      // 1:派单中 2:待支付 3:待服务 4:服务人员已到达 5:待评价 6:服务已完成 7:预约成功 8:预约已取消
+      {
+        orderTime:'2020.09.10 周日 08:00～10:00',
+        orderAddress:'香江国际金融中心606室',
+        orderName:'清洁服务',
+        orderStatus:'派单中',
+        status:1,
+      },
+      {
+        orderTime:'2020.09.10 周日 08:00～10:00',
+        orderAddress:'香江国际金融中心606室',
+        orderName:'保洁服务',
+        orderStatus:'派单中',
+        status:1,
+      },
+      {
+        orderTime:'2020.09.10 周日 08:00～10:00',
+        orderAddress:'香江国际金融中心606室',
+        orderName:'保洁服务',
+        orderStatus:'待支付',
+        status:2,
+      },
+      {
+        orderTime:'2020.09.10 周日 08:00～10:00',
+        orderAddress:'香江国际金融中心606室',
+        orderName:'保洁服务',
+        orderStatus:'待服务',
+        status:3,
+      },
+      {
+        orderTime:'2020.09.10 周日 08:00～10:00',
+        orderAddress:'香江国际金融中心606室',
+        orderName:'保洁服务',
+        orderStatus:'服务人员已到达',
+        status:4,
+      },
+      {
+        orderTime:'2020.09.10 周日 08:00～10:00',
+        orderAddress:'香江国际金融中心606室',
+        orderName:'保洁服务',
+        orderStatus:'待评价',
+        status:5,
+      },
+      {
+        orderTime:'2020.09.10 周日 08:00～10:00',
+        orderAddress:'香江国际金融中心606室',
+        orderName:'保洁服务',
+        orderStatus:'服务已完成',
+        status:6,
+      },
+      {
+        orderTime:'2020.09.10 周日 08:00～10:00',
+        orderAddress:'香江国际金融中心606室',
+        orderName:'保洁服务',
+        orderStatus:'预约成功',
+        status:7,
+      },
+      {
+        orderTime:'2020.09.10 周日 08:00～10:00',
+        orderAddress:'香江国际金融中心606室',
+        orderName:'保洁服务',
+        orderStatus:'预约已取消',
+        status:8,
+      },
+    ],
+    newList:[]
   },
 
   /**
@@ -34,7 +102,6 @@ Page({
    */
   onShow: function () {
     userRegister = localStorage.get().userRegister
-    console.log(1111,userRegister);
     if(!userRegister || !userRegister.type){
       wx.showToast({
         title: '请先进行注册',
@@ -49,13 +116,19 @@ Page({
       }, 1500);
     
     }
+    this.setData({newList:this.data.list})
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+  select(e){
+    let nav = e.currentTarget.dataset.nav
 
+    let newList = this.data.list.filter(el=>el.status===nav)
+    if(nav===0){
+      newList = this.data.list
+    }
+    console.log(1111,newList,nav);
+    
+    this.setData({ nav,newList })
   },
 
   /**

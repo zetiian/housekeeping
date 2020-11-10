@@ -32,6 +32,7 @@
     "van-switch": "./miniprogram_npm/@vant/weapp/switch/index",
     "van-row": "./miniprogram_npm/@vant/weapp/row/index",
     "van-col": "./miniprogram_npm/@vant/weapp/col/index",
+    "van-icon": "./miniprogram_npm/@vant/weapp/icon/index",
 
     "van-nav-bar": "./miniprogram_npm/@vant/weapp/nav-bar/index"
   },
