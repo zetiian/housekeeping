@@ -1,0 +1,90 @@
+<nav title="订单详情"></nav>
+<van-row custom-class="nav-row">
+  <van-col span="12" custom-class="nav-item app-flex app-flex-center " >
+    <view class="nav-item-icon"> </view>
+    <view> {{detail.orderStatus}} </view>
+  </van-col>
+</van-row>
+
+<scroll-view class="order-box app-flex app-flex-column" height="100vh" scroll-x="false" scroll-y upper-threshold="50" lower-threshold="50" scroll-top="0"  scroll-with-animation="{{true}}" >
+  <view class="order-item app-flex app-flex-column" >
+      <view class="order-top app-flex app-flex-between">
+         <view class="order-name">订单信息</view>
+      </view>
+      <view class="order-detail app-flex app-flex-between app-flex-center">
+        <view class="order-info app-flex app-flex-column">
+          <view class="order-time">
+            <text style="color:#A3A19D;margin-right:20rpx;"> 服务类型 </text>
+             {{detail.orderStatus}} 
+          </view>
+          <view class="order-time">
+            <text style="color:#A3A19D;margin-right:20rpx;"> 服务时间 </text>
+             {{detail.orderTime}} 
+          </view>
+          <view class="order-time">
+            <text style="color:#A3A19D;margin-right:20rpx;"> 服务地址 </text>
+             {{detail.orderAddress}} 
+          </view>
+          <view class="order-time">
+            <text style="color:#A3A19D;margin-right:20rpx;"> 联系电话 </text>
+             {{detail.phone}} 
+          </view>
+        </view>
+      </view>
+  </view>
+  <view class="order-item app-flex app-flex-column" >
+      <view class="order-top app-flex app-flex-between">
+         <view class="order-name">服务人员</view>
+      </view>
+      <view class="order-detail app-flex  app-flex-center">
+        <view class="order-info app-flex app-flex-column">
+          <image class="order-avatar" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3579293472,3519035658&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false"  />
+        </view>
+        <view class="order-server app-flex app-flex-column">
+           <view class="app-flex " style="margin-bottom:10rpx;">
+            <view class="order-server-name">刘阿姨</view>
+             <base-button size="mini" type="plain disable">保洁</base-button>
+          </view>
+           <view class="app-flex ">
+            <view class="order-server-age">46岁丨从业16年</view>
+          </view>
+           <view class="app-flex ">
+            <star count="{{4}}" bindchange="starChange" data-pi="{{1}}" ></star>
+          </view>
+        </view>
+      </view>
+  </view>
+  <view class="order-item app-flex app-flex-column" >
+      <view class="order-top app-flex app-flex-between">
+         <view class="order-name">订单明细</view>
+      </view>
+      <view class="order-detail app-flex app-flex-between app-flex-center">
+        <view class="order-info app-flex app-flex-column">
+          <view class="app-flex app-flex-between">
+           <view class="order-time">
+              <text style="color:#A3A19D;margin-right:20rpx;"> 服务价格 </text>
+             2小时 
+           </view>
+            <view> 100元 </view>
+          </view>
+          <view class="app-flex app-flex-between">
+           <view class="order-time">
+              <text style="color:#A3A19D;margin-right:20rpx;"> 订单总价 </text>
+           </view>
+            <view> 200元 </view>
+          </view>
+       
+        </view>
+      </view>
+  </view>
+    
+</scroll-view>
+   <view class="app-bottom-btn {{isIPX?'ipx':''}}" wx:if="{{detail.status===2 || detail.status===4}}" >
+      <van-button round  catchtap="toConfirm" custom-class="app-btn" wx:if="{{detail.status===2}}">
+       <view class="btn-text"> 支付 </view>
+     </van-button>
+      <van-button round  catchtap="toConfirm" custom-class="app-btn"  wx:if="{{detail.status===4}}">
+       <view class="btn-text"> 确认人员已到达 </view>
+     </van-button>
+ </view>
+  

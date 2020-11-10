@@ -26,8 +26,8 @@
 }
 .base-button.disable{
     background: none;
-    background: rgb(175, 185, 198);
-    color:#fff;
+    border-color: rgb(175, 185, 198);
+    color:rgb(175, 185, 198);
 }
 .base-button.plain.primary{
     background: none;
@@ -48,7 +48,7 @@
     border-radius: 32rpx;
 }
 .base-button.mini{
-    width:114rpx;
+    width:80rpx;
     height: 36rpx;
     line-height: 36rpx;
     font-size: 24rpx;

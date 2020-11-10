@@ -121,7 +121,6 @@ Page({
 
   select(e){
     let nav = e.currentTarget.dataset.nav
-
     let newList = this.data.list.filter(el=>el.status===nav)
     if(nav===0){
       newList = this.data.list
@@ -130,12 +129,12 @@ Page({
     
     this.setData({ nav,newList })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  goDetail(e){
+    let item = e.currentTarget.dataset.item
+    wx.navigateTo({
+      url: `/pages/order-detail/order-detail?detail=${encodeURIComponent(JSON.stringify(item))}`,
+    });
+    
   },
 
   /**

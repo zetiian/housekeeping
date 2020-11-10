@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/my/my",
     "pages/order/order",
+    "pages/order-detail/order-detail",
     "pages/register/register",
     "pages/rich-text/rich-text",
     "pages/webview/webview",
@@ -22,6 +23,7 @@
   },
   "usingComponents": {
     "nav":"./components/nav/common",
+    "star":"./components/star/star",
     "base-button":"./components/button/button",
     "img-lazy":"./components/img-lazy/img-lazy",
     "van-button": "./miniprogram_npm/@vant/weapp/button/index",

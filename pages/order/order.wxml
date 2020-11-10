@@ -1,5 +1,5 @@
 <nav leftBtnType="none" title="订单"></nav>
-<van-row>
+<van-row  custom-class="nav-row">
   <van-col span="6" custom-class="nav-item app-flex app-flex-center {{nav===2?'active':''}}" catchtap="select" data-nav="{{2}}">待支付</van-col>
   <van-col span="6" custom-class="nav-item app-flex app-flex-center {{nav===3?'active':''}}" catchtap="select" data-nav="{{3}}">待服务</van-col>
   <van-col span="6" custom-class="nav-item app-flex app-flex-center {{nav===5?'active':''}}" catchtap="select" data-nav="{{5}}">待评价</van-col>
@@ -7,7 +7,7 @@
 </van-row>
 <scroll-view class="order-box app-flex app-flex-column" height="100vh" scroll-x="false" scroll-y upper-threshold="50" lower-threshold="50" 
   scroll-top="0"  scroll-with-animation="{{true}}" >
-  <view class="order-item app-flex app-flex-column" wx:for="{{newList}}" wx:key="index">
+  <view class="order-item app-flex app-flex-column" wx:for="{{newList}}" wx:key="index" catchtap="goDetail" data-item="{{item}}">
       <view class="order-top app-flex app-flex-between">
          <view class="order-name">{{item.orderName}}</view>
          <view class="app-flex app-flex-center"> 

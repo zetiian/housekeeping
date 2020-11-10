@@ -1,0 +1,3 @@
+<view class="com-star-con">
+    <view catchtap="starChange" data-index="{{index}}" wx:key="index" wx:for="{{list}}" class="com-star {{item.value === true?'com-star-bingo':''}} " style="margin:0 {{offset?offset:15}}rpx;"></view>
+</view>
