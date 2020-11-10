@@ -1,0 +1,10 @@
+web-view{
+    padding:0px;
+    margin:0px;
+}
+.webview-post {
+    position: fixed;
+    top: 50rpx;
+    left: 50rpx;
+    color: red;
+}

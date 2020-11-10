@@ -1,0 +1,19 @@
+<view class="foot-fix{{hideTabBar?' hide':''}}{{hasAni?' ani':''}}">
+    <view class="foot-nav">
+        <view class="foot-nav__item {{_active == 'index' ? 'foot-nav__item-active' : ''}}" data-tag="index" catchtap="goto" data-url="/pages/index/index">
+            <view class="foot-nav__icon foot-nav__icon-road"></view>
+            <text class="foot-nav__icon-text">首页</text>
+        </view>
+        <view class="foot-nav__item {{_active == 'order' ? 'foot-nav__item-active' : ''}}" data-tag="order" catchtap="goto" data-url="/pages/order/order">
+            <view class="foot-nav__icon foot-nav__icon-order"></view>
+            <text class="foot-nav__icon-text">订单</text>
+            <view class="redpoint" wx:if="{{trainingFlag}}"></view>
+        </view>
+        <view class="foot-nav__item {{_active == 'my' ? 'foot-nav__item-active' : ''}}" data-tag="my-index" catchtap="goto" data-url="/pages/my/my">
+            <view class="foot-nav__icon foot-nav__icon-mine"></view>
+            <text class="foot-nav__icon-text">我的</text>
+        </view>
+    </view>
+    <view wx:if="{{isIPX}}" class="foot-nav-ipx-hr"></view>
+        <view class="mask{{showMask?' show':''}}"></view>
+</view>

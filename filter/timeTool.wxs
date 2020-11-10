@@ -1,0 +1,14 @@
+var toolT = {
+
+  getTime1: function(str) {
+    return str.substring(0, 4) + '-' + str.substring(4, 6) + '-' + str.substring(6, 8)
+  },
+  getTime2: function(str) {
+    return str.substring(0, 4) + '-' + str.substring(4, 6) + '-' + str.substring(6, 8) + '  ' + str.substring(8, 10) + ':' + str.substring(10, 12)
+  }
+}
+
+module.exports = {
+  getTimestr: toolT.getTime1,
+  getTimestr2: toolT.getTime2,
+}

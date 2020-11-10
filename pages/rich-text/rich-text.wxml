@@ -1,0 +1,4 @@
+<nav title="{{pageTitle}}" ></nav>
+<view class="app-contanier text-item-detail">
+  <rich-text  class="text-item-content" nodes="{{detail}}"></rich-text>
+</view>

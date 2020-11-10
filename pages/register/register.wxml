@@ -1,0 +1,12 @@
+
+<nav leftBtnType="none" title="注册"></nav>
+
+<view class="container app-flex app-flex-column" >
+  <view class="img-container service" catchtap="registerBefore" data-type="{{1}}"> 
+      <view class="title"> 我是雇主 </view>  
+  </view>
+  <view class="img-container "  catchtap="registerBefore" data-type="{{2}}"> 
+    <view class="title"> 我是服务人员 </view>
+  </view>
+</view>
+<van-toast id="van-toast" />

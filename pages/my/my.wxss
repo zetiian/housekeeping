@@ -1,0 +1,88 @@
+
+.my-card{
+  height: 324px;
+  justify-content: center;
+  box-shadow: 0px 0px 6px 0px rgba(123, 115, 107, 0.24);
+}
+.app-btn{
+  width: 460rpx;
+  
+}
+.btn-text{
+  font-size: 40rpx;
+}
+.my-warning{
+  margin-top: 40rpx;
+}
+.my-avatar{
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 64rpx;
+  overflow: hidden;
+}
+.my-nickname{
+  font-size:36rpx;
+  font-weight:500;
+  color:rgba(53,52,52,0.85);
+  margin: 16rpx 0;
+}
+.my-account{
+  height: 192rpx;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20rpx;
+  margin-top: 32rpx;
+}
+.my-account-box{
+  width: 100%;
+  margin-top: 20rpx;
+}
+.my-account-money{
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.my-account-num{
+  color: #0C324E;
+  font-size: 48rpx;
+  font-weight: 500;
+  line-height: 48rpx;
+}
+.my-ticket{
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0 20rpx;
+  margin-top: 32rpx;
+}
+.my-ticket-item{
+  height: 100rpx;
+  width: 100%;
+  font-size:32rpx;
+  font-weight:400;
+  color:rgba(107,114,123,1);
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+.app-arrow-right{
+  margin-bottom: -2rpx;
+  margin-left: 10rpx;
+}
+.my-ticket-item:nth-last-of-type(1){
+  border-bottom: none;
+}
+.my-ticket-left-icon{
+  width: 40rpx;
+  height: 40rpx;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-right: 30rpx;
+}
+.my-ticket-left-icon.my-tickets{
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAeCAYAAABe3VzdAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAKKADAAQAAAABAAAAHgAAAABUhyuKAAAED0lEQVRYCc1YXWhUVxCeOffGhviT0OYlpChIMVbRomK1FIJa8an6JHnwQZGKUcxGm+wmxeyWSzeRGHdbzcYiRVCwFFoQ8UXB1h+CPiilkojGp+KTRTe0NWsa7b33jHN2vdft5mb3mt1uPJCcOTNzZr47c37mLMLLRkTYGorsIgk7AGkxEFQ5sjL1Y4AwLFA73h/76rzjExVx4GBPnfV84nsGucERzGSPgD9UiurdsVhoXFeRawmGz3DEMuAQLgPiz4x8tKwgJbzLEdzMeFYR0LYJ+STF/vcocJ+RpJMKDCIeGIh3HysrsCxnhmGI5Jj5DbNaFVtoYp0AteYy7epMglMQGKBc3jA/yOTvaiyl3C4IoUENBMIvqp/p1tzcbHKqBxUOJGzQEWg2pUeYzAeOv05PPrVCGsJQ/5HuC/l0i5cpLIwKoUr3a2w0JT8BokM2whOeU+N3XrF6wrcBsjOgCKrVzvc9r0hF/wCLdDTd6b5TXMhBoMNYS5bVy+tm3iRdogdaZdXeY4e6Hk2S5TA+/8JY+K9pNabZBGO+AZLgfS5ljrlXQwYX4wP2Y7W2PdoK6/mzu8yPeMhcVqAt3GuaVojXeiazCOd8pxil9HbtmqfbLulBCKAhD7bLCgTDIQnUyeubI4F/8r+uRCza7zuCrqUpiNp5FftHn1pnBYjqXBXS6EHicHRKgHyEVSZTZpeahwgXa+fqW5n3TyLeAyUDqG4Btn9NOXnd9vc4qOop82G66FTgHBu+U+xM+D96KW3NtWtppksz8UYAfHuuNsKpHc8Asw53dva6y+SNAJhOKWJMAeRNsmXcTI3wjt6rxr7XYKFjprXjy/XSsvmo8TgHlSenIT6s0GDP0b7uEYel+sYPl0cHbw7VEcFutlHHR9a3+9ojpm+A2ca8aGnLHja80kv2Hx7Re6YNHczbmc1vamqyedwcaIucYHCn+O8DILmtdClGvJHtMB/NhfH1qeSJr6O3+aa/pOSsV1OyCA7EoqGWDuNHkNbkqy4bDekPB2LG/WxWPto3QHWTFLhKYKDP+DWfs+nIBDtNX7BcQb06izwsIVbc4ZBLLgaGuS+E1cOCf5bAl1jUvccneLqSJpLv5zORiBv3UNMXzKp/Z20+vVLIXCwISWxpD59moPxYx8eVoC+Nx43yPjdzvijQbiwhMn/jFL3FRUNYW/3RhntcR+1ivRob5MY1jetu3roxWLBuy7Fb9JCDhH9N0HoprZ/YWC2X7H/MmTVnZ7p0DwQjLfzESzhemJnktZb3EeXolqrniNW7BQOArWm4RT3O0gCVk31t4U/5hfcdK9aVyul07PCdfB+1ih2JPuOWmu8CVINg8MjsCUht4o3N5Q+W9ccjgTTGe3Z42aL6K+m3sQLE7QV+dngruAsREgAAAABJRU5ErkJggg==);
+}
+.my-ticket-left-icon.question-feedback{
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkCAYAAAD7PHgWAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAKKADAAQAAAABAAAAJAAAAAC/FoutAAAEUklEQVRYCe1YX4hUVRg/53TH3RVnH3Khhyg1FhESC6VUFgRFtMxMH1oKCbOURfdPrbNUtLPjdWclcHdGZHYetl7SXhasDJF6EKRNlqQCaTHILSi0BcEZo9l9ae7cc/p993rc63hndnbWiXmYA3e+e77zfd/5nd/5c883nKGYprk4NW0fZUzuYoyvVEoJ0leicM5ziqlr6ODs0mDgBPrOFevH6I7HG25Ppb9niq1xDVUx+wW3YfAGgjwr8aSmc5tR3wbQBTs1slN/h2fBMYtz9gcCwL8yRTHewJRaRtEBbmtnT+QgXj8u1BtGI3foRmEENiVOmFd0vVKyvSeyh0n7Sze+egmyIEDBFF9JhqD5r/8DHPU1PHjsK4i706qc/knvVwwOhGSJx/YzqISO1lz7kV4d2tmQ2CxLUjP2bsBJ86AYT5hmhgwqtlt176VKbJh+JeVnStlfq4w12RGKvFhVAL1kYTYfY8o+1/1+39NVw+Cm9WtCnPFXMP2XiDmArLMseZTOpKoora2ttAfOj4yMfDNx/eYdQFyCrbu+ahjULLW1tVkA9w/VweKjVQdQA9WyBlAzUa6sMVguc9qvxqBmolxZY7Bc5rRfjUHNRLlSKM7crMpNZsqNMy8/XE7r4cDJSSmOb2/hInCd/uVu8+Ndod434FzRGw7FT01bXRoSkrRr+t1PGkhGRjGMDdRoK3bmdsY6fe86zvkNGLx6Khb9UTt3hno/QWb2FjIyhwGtL1Ui/v1+Qpwt5iuagkYCl8QLHiMK4D5ID22l3tVt7aG+A1KxAwBHm2vWbn7vOhyFGBke7P/Co2DEMC6uQdKB3YwzGmKjKxTZr5jcCXZWoaEeuhWuEb8wHBt4ufsD86lsNveze5F0Qv6JCP86b/P5UVjzHMuKi9HkUP85cu3oCW/B5W8XYtchadqIfx6eIT2IO+8ApIq3AExzNmv9RjpiF9fx3d9dmRiDY4ujY3ysqdHYgtEuOMHvNM1GJEm3cDlt8GJAv1mu+IaSNsTYDxPvYXQuOM7Sgfr6vaYZ9gXX1WOulszex5TEld23SMXF5eRQdNRpnck9/yA4NgmWDyVi0atzAsRUrwL923VXWA1vnjwentL1fClV7lP4rMvX31dX8nBHKLwN6/9wekbW6ZQca+/yIqb2xmPHb2r7Ur4kzTAOkANoP5WMD3g3lI7jlb97K4XeMYj9qYw1LqVcrm2whO7E47PgSF8KQMcf4K5ixJjq4iUxFH2dG4HnuOCb/R4mRDcWvrO5MLVrsXQSxSLOOcWuM5/Bh+Y1bIpssWDUhoGgX/ZTEbtv3wn1jeP4+hyMPUkuRWz9GczZ+I/RU8QjvD0ZNyc9qgW90sGv6havxXF2ca5AvlO8uvmJG6DiFjmDkdOJweiZuQLNtz350YfppmDgBZyHA/B1CBGM/5ofxxcgJc+LAkYLwO3BGfh2vtPDqtM5moxF+7AuW4QQnUsbjUh+7P8A8deCJaLyfL4AAAAASUVORK5CYII=);
+}
+.my-ticket-left-icon.about-us{
+  background-image: url(data:image/png;base64,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);
+}

@@ -1,0 +1,11 @@
+{
+    "navigationBarTitleText": "我的",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false,
+    "disableScroll":true,
+    "backgroundTextStyle": "dark",
+    "usingComponents": {
+   
+    }
+
+}

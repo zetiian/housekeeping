@@ -1,0 +1,40 @@
+<page>
+  <nav leftBtnType="none" title="我的"></nav>
+  <view class="app-flex app-flex-column  app-flex-center my-card">
+     <van-button round  catchtap="goRegister" custom-class="app-btn" open-type="getPhoneNumber" bind:getphonenumber="getphonenumber">
+       <view class="btn-text">
+         登录
+       </view>
+         
+     </van-button>
+     <view class="my-warning app-flex ">  
+       <view> 登陆即代表你同意 </view>
+       <view class="main-font-color"  catchtap="goRule"> 《用户协议》 </view>
+     </view>
+       
+  </view>
+  <!-- 菜单 -->
+  <view class="app-contanier app-flex app-flex-column my-ticket">
+    <view class="app-flex app-flex-between my-ticket-item" catchtap="goMyTickets" >
+      <view class="my-ticket-item-name app-flex">
+        <view class="my-ticket-left-icon my-tickets"></view>
+        <view>在线客服</view>
+      </view>
+      <view class="app-arrow-right"></view>
+    </view>
+    <view class="app-flex app-flex-between my-ticket-item" catchtap="goFeedback" >
+      <view class="my-ticket-item-name app-flex">
+        <view class="my-ticket-left-icon question-feedback"></view>
+        <view>问题反馈</view>
+      </view>
+      <view class="app-arrow-right"></view>
+    </view>
+    <view class="app-flex app-flex-between my-ticket-item" catchtap="goAboutUs">
+      <view class="my-ticket-item-name app-flex">
+        <view class="my-ticket-left-icon about-us"></view>
+        <view>关于我们</view>
+      </view>
+      <view class="app-arrow-right"></view>
+    </view>
+  </view>
+</page>

@@ -1,0 +1,33 @@
+.my-account {
+  height: 1040rpx;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20rpx;
+  margin-top: 32rpx;
+}
+
+.my-account-box {
+  width: 100%;
+  height: 100%;
+  margin-top: 20rpx;
+  justify-content: space-around;
+}
+
+.question-item {
+  height: 108rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #AFB9C6;
+}
+
+
+.question-item-name {
+  margin-left: 30rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #6B727B;
+}
+.my-account-btn{
+  width: 100%;
+  justify-content: center;
+}

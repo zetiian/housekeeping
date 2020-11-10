@@ -1,0 +1,21 @@
+<view class="app-main-bg"></view>
+<nav color="#fff" title="问题反馈" icon-color="white"></nav>
+<view class="app-content {{isIPX?'ipx':''}}">
+  <!-- 问题反馈 -->
+  <view class="app-contanier app-flex app-flex-column my-account">
+    <view>请选择想要反馈的问题（多选）</view>
+    <view class="app-flex app-flex-column my-account-box">
+      <view class="app-flex app-flex-column question-list">
+        <view class="question-item app-flex app-flex-center" wx:for="{{resultList}}" wx:key="index" catchtap="choose" data-item="{{item}}">
+          <view  class="app-choose-icon {{currentType===item.typeValue?'active':''}}"></view>
+          <view class="question-item-name"> {{item.typeName}} </view>
+        </view>
+      </view>
+      <view class="my-account-btn app-flex app-flex-center">
+        <base-button catchtap="ensureRefund">提交反馈</base-button>
+      </view>
+      
+    </view>
+  </view>
+</view>
+<wux-dialog id="wux-dialog" />

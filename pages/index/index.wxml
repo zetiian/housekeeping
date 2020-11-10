@@ -1,0 +1,33 @@
+<!-- <view class="app-main-bg"></view> -->
+<nav leftBtnType="none" title="家政平台"></nav>
+<swiper class="app-swiper " autoplay="{{true}}" indicator-dots="{{false}}" snap-to-edge="{{true}}" circular="{{true}}">
+  <swiper-item class="app-swiper-item index-swiper-item item-1" wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerLink" data-item="{{item}}" style="background-image: url({{item}});"></swiper-item>
+</swiper>
+<view class="app-flex service-box">
+  <view class="service-item">
+    <view class="service-name">保洁服务</view>
+    <view class="service-img"></view>
+  </view>
+  <view class="service-item">
+    <view class="service-name">保姆服务</view>
+    <view class="service-img"></view>
+  </view>
+</view>
+<view class="app-flex service-box">
+  <view class="service-item">
+    <view class="service-name">月嫂服务</view>
+    <view class="service-img"></view>
+  </view>
+  <view class="service-item">
+    <view class="service-name">病患照顾</view>
+    <view class="service-img"></view>
+  </view>
+</view>
+
+
+
+
+
+<!-- <view class="container" style="position:fixed;bottom:100px;left:175px;">
+  <van-button catchtap="onClick" type="primary">去案例</van-button>
+</view> -->

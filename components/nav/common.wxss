@@ -1,0 +1,79 @@
+
+.nav-view{
+  box-sizing:content-box;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+}
+.header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.header-main {
+  position: relative;
+  height: 88rpx;
+  z-index: 10;
+}
+.ip5 .header-main {
+  height: 105rpx;
+}
+.header-left {
+  position: absolute;
+  top: 50%;
+  left: 30rpx;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.left-home {
+  width: 44rpx;
+  height: 44rpx;
+  background-repeat: no-repeat;
+  background-position: center;
+  background: url(https://azure-shop.obs.cn-south-1.myhuaweicloud.com/3333.png);
+  background-size: contain;
+}
+.left-home.white {
+  background-image: url(https://azure-shop.obs.cn-south-1.myhuaweicloud.com/20190930101249955-topbar_icon_white_home%403x.png);
+}
+.left-back {
+  /* font-size: 50rpx;
+  width: 50rpx;
+  text-align: left;
+  display: block;
+  color: #747a86; */
+  width: 44rpx;
+  height: 44rpx;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url(https://azure-upms.obs.cn-south-1.myhuaweicloud.com/hycan-huaweicloud/backendUpload/20200724113241092-icon_nva_return_44_gray@3x.png);
+}
+.left-back.white{
+  background-image: url(https://azure-upms.obs.cn-south-1.myhuaweicloud.com/hycan-huaweicloud/backendUpload/20200724113241096-icon_nva_return_44_white@3x.png);
+}
+.left-back.black{
+  background-image: url(https://azure-upms.obs.cn-south-1.myhuaweicloud.com/hycan-huaweicloud/backendUpload/20200724113241092-icon_nva_return_44_gray@3x.png);
+}
+.header-title {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  color:#181A24;
+  line-height: 88rpx;
+}
+.ip5 .header-title{
+  line-height: 105rpx;
+}
+.header-placeholder {
+  height: 88rpx;
+}
+.header-placeholder.ip5 {
+  height: 105rpx;
+}

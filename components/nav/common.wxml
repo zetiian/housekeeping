@@ -1,0 +1,13 @@
+<view class="nav-view header{{isIP5?' ip5':''}}" style="padding-top:{{paddingTop}}px;{{headerStyle}}">
+  <view class="nav-view header-bg" style="{{backgroundColor?('background-color:'+backgroundColor+';'):''}}{{opacity?('opacity:'+opacity+';'):''}}"></view>
+  <view class="nav-view header-main" >
+    <view wx:if="{{leftBtnType!=='none'}}" class="nav-view header-left">
+      <slot wx:if="{{leftBtnType==='slot'}}" name="left"></slot>
+      <view class="nav-view left-back {{iconColor}}" wx:if="{{leftBtnType?leftBtnType==='back':leftBtn==='back'}}" catchtap="goback" type="ios-arrow-back" ></view>
+      <view class="nav-view left-home{{iconColor&&iconColor==='white'?' white':''}}" wx:if="{{leftBtnType?leftBtnType==='home':leftBtn==='home'}}" catchtap="goHome"></view>
+    </view>
+    <view class="nav-view header-title" wx:if="{{title}}" style="{{opacity?('opacity:'+opacity+';'):''}}{{color?('color:'+color+';'):''}}{{titleStyle}}">{{title||''}}</view>
+    <slot name="title"></slot>
+  </view>
+</view>
+<view class="nav-view header-placeholder{{isIP5?' ip5':''}}" wx:if="{{mode !== 'fixed'}}" style="padding-top:{{paddingTop}}px;"></view>
