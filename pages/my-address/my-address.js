@@ -1,10 +1,11 @@
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
-
+const app = getApp();
 
 
 //Page Object
 Page({
   data: {
+    isIPX: app.globalData.isIPX,
     list:[
       {
         id:1,
@@ -52,8 +53,13 @@ Page({
     wx.navigateTo({
       url: './edit/edit?params='+params,
     });
-      
-      
+  },
+  toCreate(){
+    let item = { phone:'', name:'', second:'', detailAddress:'', isDefault:false, }
+    let params = encodeURIComponent(JSON.stringify(item))
+    wx.navigateTo({
+      url: './edit/edit',
+    });
   },
 });
   

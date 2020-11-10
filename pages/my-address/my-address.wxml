@@ -32,3 +32,10 @@
     
 
 </scroll-view>
+<view class="app-bottom-btn {{isIPX?'ipx':''}}" >
+      <van-button round  catchtap="toCreate" custom-class="app-btn" >
+       <view class="btn-text">
+         新增地址
+       </view>
+     </van-button>
+ </view>

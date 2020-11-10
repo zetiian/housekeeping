@@ -1,15 +1,16 @@
 // var upsertAddressList = require("../../../../api/address").upsertAddressList;
-
+const app = getApp();
 Page({
   data: {
+    isIPX: app.globalData.isIPX,
     title: "编辑地址",
     disabled:true,
     form: {
-      id:1,
-      name:'Jerry',
-      phone:'13311111111',
-      second:'广东省 广州市',
-      detailAddress:'海珠大厦',
+      id:'',
+      name:'',
+      phone:'',
+      second:'',
+      detailAddress:'',
       isDefault:false,
     },
    

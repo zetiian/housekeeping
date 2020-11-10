@@ -21,7 +21,7 @@
      
   </view>
 </view>
-  <view class="app-bottom-btn {{isIPX?'ipx':''}}" >
+<view class="app-bottom-btn {{isIPX?'ipx':''}}" >
       <van-button round  catchtap="save" custom-class="app-btn" >
        <view class="btn-text">
          保存
