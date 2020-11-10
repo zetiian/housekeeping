@@ -22,7 +22,7 @@ Component({
   },
   observers: {
     _active(v) {
-      userRegister = localStorage.get().userRegister
+      userRegister = localStorage.get().userRegister||{}
       let page = getCurrentPages()[0]
       console.log(1111,page.route);
       if(userRegister.type===2 && page.route ==="pages/index/index" ){

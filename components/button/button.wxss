@@ -29,6 +29,11 @@
     border-color: rgb(175, 185, 198);
     color:rgb(175, 185, 198);
 }
+.base-button.tag{
+    background: #fff;
+    border-color: #A3A19D;
+    color:#A3A19D;
+}
 .base-button.plain.primary{
     background: none;
     border: 2rpx solid #F7B500;

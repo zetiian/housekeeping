@@ -101,3 +101,35 @@
 .my-ticket-left-icon.about-us{
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAACaqbJVAAADhUlEQVQ4EU1Ub2iVVRh/nnPfu6u7uMQ5K5EIpvZJEaqFXhUi6sM+GGEs+hSbwoX85LxX3aZ5KvfHXRbRIpr/ir6IF5SY4KfKqDBdfTMUdIzBjAVt4nSbU/eep9/v3S7twMt73nN+z+88z+/3nFcFo1DoygcN+zCtF9MpURnCfHDd88vPtba2PiLG+4Hq6dnJ981sl4g1mEiNig5jq7+v1HFaExIJXyP4lphcFdXVYrYDgFV47pmkelIuuBDsML5Xquok3r9yD4Q5M3nJObc3WszkVk02t9n71+cBkHK5nLr+5/DbAH2iFveGIKLO3cBW82uvrL/U1NQUEzcwMJC+fWfiLwthn8M3ypGrFRICCNQgtSphg6rM8bFgG1HWqgoJcfl8/imy+h1l1rsFTVDOklE42OmDhJMmelci93LkogaUPo6Szxwodh1ZAsVUV6vIlEuEhSYsh4CEJNgxbP6cibShr7v95okTh29oNvMq1n4xC59WyFga4reb6pC2FjtbeBI02M1ymAlJNm6oe4up22WpA39GG+Wu9+WqBzN3fqAZELhF1GZCbOdTqh84WgzgPQprGr6EayNVafcuSR5flvbHJv/MmYxhfsb7pifIcjcwo8jsKwnmcehENru2jLfI/kJ3USXupajUhOUwE5JASBqSjJTK1qpGuXboUM+m+TA/hMOXRWnZ39t95PMExD6pgKPgEq3wnVlKwn14Xr2Io0lJEnGsCV7ZsQ+m//0bGo3RYrpDYft8YYLlBJMWBiPqSqZR3ix+XKoNM0/+ULE1cHUE68+uyK5d59j2wK3E8xHQH0LIF2V67gKFReAeloP1N0jS3/9FBJKLwLwAu/Po8mPordqHs+PvOd4dtj079rNSx1lVdxQl7aQ7bW1dddRkeaP8xExGxx7+CJIcMG2lUsd3K6q3fo8E7kP0XXqgeHwciV/DxXsHi8lgn7Bf6E7apXBJxT0N8SAzIUlfqb1nESqIv4T4LQ6n12ARF/D/AeBx9gl0eI7uzMfxdWrCfllKwgjohNaxGrfwK7Bc0qWLXAsdazNwZpQWmxgc1JGgOuv9lahyJHUE0zZkPozSOveC8RQIb/MC8u5A3O1YewaOTKTS0plYbNKGtVqQ3Ifxv4FgEuQ5xKwHUXPSC4WDXXv4K0CZ9ViY4t1BcwyyY71vnmMG3n+zjO5QWBzUwHKYCbb6YdK3/wG0FblDm9EbkAAAAABJRU5ErkJggg==);
 }
+.my-item {
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #727484;
+  margin-bottom: 16rpx;
+  height: 196px ;
+  margin: 8px 0;
+  padding:16px;
+  box-shadow: 0px 0px 6px 0px rgba(123, 115, 107, 0.24);
+}
+.order-box {
+  margin-bottom: 200rpx;
+}
+.sercice-data{
+  width: 50%;
+  font-size: 40rpx;
+  height: 120rpx;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 70rpx;
+
+}
+.sercice-data:nth-last-of-type(1){
+  border-left: 1rpx solid #F0EDE3;
+}
+.tag{
+  margin-top: -130rpx;
+}
+.tag .base-button{
+  background-color: #fff!important;
+}

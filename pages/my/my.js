@@ -17,7 +17,7 @@ Page({
   },
   onUnload(e) {},
   onLoad(options) {
-    userRegister = localStorage.get().userRegister
+    userRegister = localStorage.get().userRegister||{}
     this.setData({userRegister})
     //   wx.hideShareMenu();
     //   checkLogin(_=>{

@@ -1,6 +1,7 @@
 <page>
   <nav leftBtnType="none" title="我的"></nav>
-  <view class="app-flex app-flex-column  app-flex-center my-card" wx:if="{{!userRegister.type}}">
+  <scroll-view class="order-box app-flex app-flex-column" height="100vh" scroll-x="false" scroll-y upper-threshold="50" lower-threshold="50" scroll-top="0"  scroll-with-animation="{{true}}" >
+  <view class="app-flex app-flex-column  app-flex-center my-card" wx:if="{{!userRegister || !userRegister.type}}">
      <van-button round  catchtap="goRegister" custom-class="app-btn" >
        <view class="btn-text">
          登录
@@ -12,13 +13,29 @@
        <view class="main-font-color"  catchtap="goRule"> 《用户协议》 </view>
      </view>  
   </view>
-  <view class="app-contanier app-flex app-flex-column my-card-1" wx:if="{{userRegister.type}}">
+  <view class=" app-flex app-flex-column my-card-1" wx:if="{{userRegister && userRegister.type}}">
     <open-data type="userAvatarUrl" class="my-avatar"></open-data>
     <open-data type="userNickName" class="my-nickname"></open-data>
-    <base-button size="mini" type="plain primary" wx:if="{{userRegister.type}}">{{userRegister.type===1?'雇主':'服务'}}</base-button>
+     <base-button class="tag" size="mini" type="plain tag" wx:if="{{userRegister && userRegister.type}}">{{userRegister.type===1?'雇主':'服务'}}</base-button>
+
+   
+  </view>
+  <view class="my-item app-flex app-flex-column" wx:if="{{userRegister && userRegister.type===2}}">
+    <view > 本月数据 </view>
+    <view class="app-flex app-flex-between">
+       <view class="app-flex app-flex-column sercice-data">
+         <view>20</view>
+         <view>待服务</view>
+       </view>
+       <view class="app-flex app-flex-column sercice-data">
+          <view>30</view>
+         <view>已完成</view>
+       </view>
+    </view>
+      
   </view>
   <!-- 菜单 -->
-  <view class="app-contanier app-flex app-flex-column my-ticket">
+  <view class=" app-flex app-flex-column my-ticket">
      <view class="app-flex app-flex-between my-ticket-item" catchtap="goAddress" wx:if="{{userRegister.type}}">
       <view class="my-ticket-item-name app-flex">
         <view class="my-ticket-left-icon my-address"></view>
@@ -49,4 +66,5 @@
       <view class="app-arrow-right"></view>
     </view>
   </view>
+  </scroll-view>
 </page>
