@@ -1,0 +1,44 @@
+.my-account {
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20rpx;
+  margin-top: 32rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #727484;
+}
+
+.my-account-box {
+  width: 100%;
+  height: 100%;
+  margin-top: 20rpx;
+  justify-content: space-around;
+}
+
+.question-item {
+  height: 108rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #AFB9C6;
+}
+
+
+.question-item-name {
+  margin-left: 30rpx;
+
+}
+.my-account-btn{
+  width: 100%;
+  justify-content: center;
+}
+.app-contanier{
+  box-shadow: none;
+}
+.app-choose-icon {
+    opacity: 0;
+    border-radius: none;
+}
+.app-choose-icon.active {
+  opacity: 1;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAACaqbJVAAABa0lEQVQ4Ea2UMUoDURCG/9mNhKClOYFWuUDwAoKmVSwUC68QUWIVLQyKKS1tRHMDE7GxsfEAegE7tc66kHWcf9cXQpLFJ2Rgmbfz5v923mNnBGb1g9a2anIIlQqgIWN/myQQfRUJz9rnjVtJId/JDUQ+BPqssAQPs9zQcqtQLUsQ7hTSSgiZL1bazf1PD8YwpdE4LccDvJAR8Dis5L8Q0lqto/QUZAS8E9/jDEsZWWRaDQ3kb/qIQtTFnpp6XOUNIiSO0IHiKu7h0gtkXwxNuOCSHcTim4yZf3d7zhfcwnlCvnq4ti8vaRerKKHPShzE8o5LNTRdvvMToME9VkSxpTCg4kEivBlk41cwFcK9iTuaW8OT3eSuPfwxqz6QqSAGizV0RmAM5VbCTdrE0bJwBovvYJ2D5eI6Tlw8z+eCKGBlecLxuN2RJGzA8Q3f90wrScBRwC6uNy8WfcUuj01LbTpOZjVG0p6ZxWD7AcBiqa2cRIofAAAAAElFTkSuQmCC) no-repeat center center/ 100% 100%;
+}

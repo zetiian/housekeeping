@@ -50,6 +50,11 @@ Page({
     console.log(111);
     
   },
+  goCancel(){
+    wx.navigateTo({
+      url: '/pages/order-detail/cancel',
+    });
+  },
   onReachBottom: function () {
 
   },

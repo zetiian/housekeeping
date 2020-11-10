@@ -1,0 +1,19 @@
+<nav  title="取消预约" ></nav>
+  <view class="app-contanier app-flex app-flex-column my-account">
+    <view>取消原因</view>
+    <view class="app-flex app-flex-column my-account-box">
+      <view class="app-flex app-flex-column question-list">
+        <view class="question-item app-flex app-flex-between" wx:for="{{resultList}}" wx:key="index" catchtap="choose" data-item="{{item}}">
+          <view class="question-item-name"> {{item.typeName}} </view>
+          <view  class="app-choose-icon {{currentType===item.typeValue?'active':''}}"></view>
+        </view>
+      </view>
+      
+    </view>
+  </view>
+  <view class="app-bottom-btn {{isIPX?'ipx':''}}"  >
+      <van-button round  catchtap="ensureRefund" custom-class="app-btn" >
+       <view class="btn-text"> 提交 </view>
+     </van-button>
+    
+ </view>
