@@ -1,5 +1,6 @@
-  <nav leftBtnType="none" title="我的"></nav>
+ <nav leftBtnType="none" title="我的"></nav>
   <scroll-view class="order-box app-flex app-flex-column"   style="min-height:100vh;" scroll-y upper-threshold="50" lower-threshold="50" scroll-top="0"  scroll-with-animation="{{true}}" >
+   
   <view class="app-flex app-flex-column  app-flex-center my-card" wx:if="{{!userRegister || !userRegister.type}}">
      <van-button round  catchtap="goRegister" custom-class="app-btn" >
        <view class="btn-text">

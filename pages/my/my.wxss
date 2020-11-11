@@ -114,9 +114,7 @@ page{
   padding:16px;
   box-shadow: 0px 0px 6px 0px rgba(123, 115, 107, 0.24);
 }
-.order-box {
-  padding-bottom: 300rpx;
-}
+
 .sercice-data{
   width: 50%;
   font-size: 40rpx;
@@ -134,4 +132,7 @@ page{
 }
 .tag .base-button{
   background-color: #fff!important;
+}
+.order-box {
+  padding-bottom: 300rpx!important;
 }
