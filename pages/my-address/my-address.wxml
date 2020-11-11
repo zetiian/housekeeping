@@ -3,7 +3,7 @@
 
 <scroll-view class="container app-flex app-flex-column my-address" height="90vh">
  
-  <van-swipe-cell right-width="{{ 180 }}" left-width="{{ 180 }}" wx:for="{{list}}" wx:key="index">
+  <van-swipe-cell right-width="{{ 160 }}" left-width="{{ 0 }}" wx:for="{{list}}" wx:key="index">
   
   <van-cell-group >
     <van-cell title="1" value="2" >

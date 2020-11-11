@@ -6,3 +6,6 @@
     background-position: center;
   
   }
+  .detail{
+    margin-bottom: 200rpx;
+  }

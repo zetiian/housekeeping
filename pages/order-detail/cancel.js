@@ -5,28 +5,45 @@ import localStorage from "../../libs/localStorage";
 var  userInfo  = {}
 Page({
   data: {
-    resultList:[],
+    resultList:[
+      {
+        typeName:'时间、地址填写错误',
+        typeValue:1,
+      },
+      {
+        typeName:'不满所分配服务人员',
+        typeValue:2,
+      },
+      {
+        typeName:'不需要服务了',
+        typeValue:3,
+      },
+      {
+        typeName:'其他原因',
+        typeValue:4,
+      },
+    ],
     currentType:'',
     isIPX:app.globalData.isIPX,
   },
   onShow(e) {
-    userInfo = localStorage.get().userInfo
-    API.serviceList({ typeCode:'App_Question_Type' }).then(res=>{
-      if(res.respCode==="000000"){
-        this.setData({resultList:res.resultList})
-      }else{
-        wx.showToast({
-          title: '服务出现了点问题，等会再试试吧~',
-          icon: 'none',
-          success: (result) => {
-            wx.navigateBack({ delta: 1 });
-          },
+    // userInfo = localStorage.get().userInfo
+    // API.serviceList({ typeCode:'App_Question_Type' }).then(res=>{
+    //   if(res.respCode==="000000"){
+    //     this.setData({resultList:res.resultList})
+    //   }else{
+    //     wx.showToast({
+    //       title: '服务出现了点问题，等会再试试吧~',
+    //       icon: 'none',
+    //       success: (result) => {
+    //         wx.navigateBack({ delta: 1 });
+    //       },
          
-        });
+    //     });
           
-      }
+    //   }
       
-    })
+    // })
   },
   onLoad(options) {
     wx.hideShareMenu();

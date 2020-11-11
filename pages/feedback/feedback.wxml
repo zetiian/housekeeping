@@ -1,5 +1,4 @@
-<view class="app-main-bg"></view>
-<nav color="#fff" title="问题反馈" icon-color="white"></nav>
+<nav title="问题反馈" ></nav>
 <view class="app-content {{isIPX?'ipx':''}}">
   <!-- 问题反馈 -->
   <view class="app-contanier app-flex app-flex-column my-account">

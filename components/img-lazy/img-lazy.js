@@ -10,7 +10,7 @@ Component({
     defaultSrc: {
       //默认显示图片
       type: String,
-      value: "https://azure-shop.obs.cn-south-1.myhuaweicloud.com/20191114153817312-find_bg_pgc_logo%403x.png"
+      value: ""
     },
     src: {
       type: String,
