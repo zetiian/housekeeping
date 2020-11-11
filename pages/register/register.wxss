@@ -34,11 +34,6 @@
     top: 0;
     left: 0;
     opacity: 0;
+    z-index: 100;
     
-}
-.register-btn button{
-    width: 686rpx;
-    height: 276rpx;
-    opacity: 0;
-    z-index: 10;
 }

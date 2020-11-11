@@ -40,6 +40,9 @@ function wxLogin(cb,err) {
   });
 }
 function serverLogin(cb,err) {
+  // TODO: 
+  cb()
+  return
   //发起网络请求
   loginFunmin({
     loginType: "01",
