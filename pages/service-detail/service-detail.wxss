@@ -7,5 +7,5 @@
   
   }
   .detail{
-    margin-bottom: 200rpx;
+    padding-bottom: 200rpx;
   }

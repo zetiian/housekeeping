@@ -38,7 +38,7 @@
 }
 
 .order-box {
-    margin-bottom: 200rpx;
+    padding-bottom: 200rpx;
 }
 
 .order-item {

@@ -1,4 +1,6 @@
-
+page{
+  overflow-y: scroll!important;
+}
 .my-card{
   height: 324px;
   justify-content: center;
@@ -113,7 +115,7 @@
   box-shadow: 0px 0px 6px 0px rgba(123, 115, 107, 0.24);
 }
 .order-box {
-  margin-bottom: 200rpx;
+  padding-bottom: 300rpx;
 }
 .sercice-data{
   width: 50%;
