@@ -33,17 +33,7 @@ Page({
   },
 
   goBuyNow(){
-    wx.showToast({
-      title: '购买流程正在开发中，即将前往订单页',
-      icon: 'none',
-    });
-    setTimeout(() => {
-      wx.reLaunch({
-        url: '/pages/order/order',
-      });
-        
-    }, 2000);
-    return
+  
     wx.navigateTo({
       url: '/pages/order-checkout/checkout',
     });
