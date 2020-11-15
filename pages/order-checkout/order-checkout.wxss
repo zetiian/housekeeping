@@ -56,7 +56,21 @@
     border-bottom: 1rpx solid #eee;
     padding: 28rpx 0;
 }
-
+.order-item.no-border {
+    border-bottom:none;
+}
+.agree{
+    width: 40rpx;
+    height: 40rpx;
+    margin: 0 30rpx;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAACaqbJVAAABs0lEQVQ4EaVUvU7DQAw+X1pVCGXo3IEFHoCJiYJKZxgZ0koEiTfozgv0DSpRpCYDI8yA1DLxDLAwdO4QMaAqNf6OXHQN/VEhUnI++/Nn+84OqQVPFN2eqFl6Lqa6vLUMMpZ1pLR312pdPGW6fKFcEiGO+3uzlHuK+cjV/5KJhtqjqyAI36xNW2Ew6B9yyq8ZSUJE17qk9ytbvo8XMnSCT4ABFj7W32SETGBg5qoietZe5TIIgg8Lctc4jndm6deNkDWEeEIeHSCzEkBZOYak1Q6bAmDX2ZURQAI2o0H/UdYGp6on9mNtDvbnTBJksorEEgIDrOxNmeDQ2e1IRdRdVo4lcFdg4WN0csM4bFyxklofjHKDj+NTB5Hpk3J5+30DDgN1fGr59W9KUsSDCB2rptPP3aJx3d7xGYNoBAfpo9N1jkW74zPSmB1DxNxBsxXBy/bASh91jF04tBlAmR1R+OhYMc7N3yIiYEx3i4/0zRAc5rAxgNITE7Q9OnZVZrABY0cEvgiWR8cAEvO9RKuKHkPbRZ/YK8bB4kyycnwEZqKzdjt8mSPC5j+/kTwjENnnLz+2b5hW3WCQTk2QAAAAAElFTkSuQmCC);
+}
+.agree.active{
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEqADAAQAAAABAAAAEgAAAACaqbJVAAAB30lEQVQ4Ea1UMS9EQRD+9p2XeyRX0AmJhlJEpXIEERSUopX4B6LVi38g0YqSxBG5E06lFCWNhOgoFPcu56z5xtvN3lEdL9nbb2fm+3Z2Z/YMfvlqp5g1FqviKsoYyEKeZa5ag8PuRVQym5+MRwLSc4zYD+zBYiq0/8AGV6YLG8k87p0vcqBxhkk0cEMRUX+PDLZzMcaTHhQ4iGmjTzeSWOVkApoRM6GIBXqNwUU+j3Uzi0e3STjbCobqdexbixkhvyHGhM+sVsJl7QQ2LaEiASoektsxYxhLDrn0G14sPlEW9ns+wajLxJYwmFrsiOw0A+U4l4nBllnCky6ZWYo7OUUBEeairDqQI+22iAC3QlgTgX4dglOxcQMKMZYcxVJhXjZLDKnCMWd+molF3/cq+BWb+jJTwClSSPskjvHgKe443hCAwBdwBnz5g9COIIXYsWg0MOwV5GI9bgeBL+A8U6jKWOnoZcdhdaRar27tZ7GpLzMEnGrEt0O79MYmm42YJU6AMYEHIviiQzBtYfnJYbzTwH80pF42HyDbXXaYqZ+i7DLjbu2fPhHGZE+EXMb458AH2GziSN+bdLk2qPSWKzEvlneiVyDdzI1zOazEC7huEeLiL38jPiMKua+TP7YvWrvaVXFa50cAAAAASUVORK5CYII=);
+}
 .order-status {
    margin-right: 14rpx;
 
@@ -84,19 +98,49 @@
 
 
 .select-weeks{
-    padding: 0 28rpx;
+    padding: 0 24rpx;
     margin: 30rpx 0;
 }
 .select-weeks-item{
-    width: 50rpx;
-    height: 50rpx;
-    line-height: 50rpx;
+    width: 60rpx;
+    height: 60rpx;
+    line-height: 60rpx;
     border-radius: 50%;
     text-align: center;
-    font-size: 36rpx;
+    font-size: 32rpx;
     color: #A3A19D;
 }
 .select-weeks-item.active{
     background-color: #F7B500;
     color: #fff;
+}
+.time-list{
+    width: 100%;
+    padding: 0 22rpx;
+    flex-wrap: wrap;
+    margin-left: 10rpx;
+}
+.time-list-item{
+    flex-shrink: 1;
+    width: 160rpx;
+    height: 72rpx;
+    border-radius: 36rpx;
+    line-height: 72rpx;
+    text-align: center;
+    margin-bottom: 48rpx;
+    margin-right: 16rpx;
+    border: 2rpx solid #A3A19D;
+    color: #A3A19D;
+
+
+}
+.time-list-item.active{
+    border: 2rpx solid #F7B500;
+    color: #F7B500;
+
+}
+.time-list-item.disable{
+    border: 2rpx solid #F0EDE3;
+    background-color: #F0EDE3;
+
 }

@@ -1,12 +1,17 @@
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
-
+var app = getApp();
 
 
 //Page Object
 Page({
   data: {
+    isIPX: app.globalData.isIPX,
     detail:{},
-    showTimeSelect:true
+    selectTime:{
+      showDateSelect:false,
+      showTimeSelect:false,
+    },
+    message:''
   },
   //options(Object)
   onLoad: function(options) {
@@ -34,9 +39,29 @@ Page({
     wx.navigateTo({ url: '/pages/my-address/my-address', });
       
   },
+  onConfirmDate(){
+    this.setData({
+      'selectTime.showDateSelect':false,
+      'selectTime.showTimeSelect':true,
+    })
+  },
+  onCloseDate(){
+    this.setData({
+      'selectTime.showDateSelect':false,
+      'selectTime.showTimeSelect':false,
+    })
+  },
+  clickOverlay(){
+    this.setData({
+      selectTime:{
+        showDateSelect:false,
+        showTimeSelect:false,
+      }
+    })
+  },
   popTimeSelect(){
     this.setData({
-      showTimeSelect:true
+      'selectTime.showDateSelect':true
     })
   },
 });

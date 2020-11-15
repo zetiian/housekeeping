@@ -80,7 +80,9 @@
   .app-is-fixed {
     position: fixed;
   }
-  
+  .app-link{
+    color: #F7B500;
+  }
   /* app button */
   .app-button {
     width: 160rpx;

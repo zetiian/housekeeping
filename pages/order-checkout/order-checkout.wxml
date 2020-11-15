@@ -21,25 +21,39 @@
       </view>
       <view class="order-item app-flex app-flex-between" catchtap="popTimeSelect">
         <view> 请选择开始时间 </view>
-        <van-icon name="arrow" />
+         <view class="app-flex app-flex-center"> 
+           <view> 请选择 </view>
+           <van-icon name="arrow" />
+         </view>
       </view>
-        
+      <view class="order-item app-flex app-flex-between no-border" >
+        <view> 留言 </view>
+      </view>
+       <van-cell-group>
+        <van-field
+          value="{{ message }}"
+          autosize
+          type="textarea"
+          placeholder="请输入留言"
+          border="{{ false }}"
+        />
+      </van-cell-group>
+    
      
   </view>
-    
+  <view class="order-item app-flex   no-border" >
+    <view class="agree active"> </view>
+    <view> 我了解并同意 </view>
+     <view class="app-link"> 《用户协议》 </view>
+      
+  </view>
 </scroll-view>
   
   
-<van-action-sheet
-  show="{{  }}"
-  actions="{{ actions }}"
-  bind:close="onClose"
-  bind:select="onSelect"
-/>
-<van-action-sheet show="{{ showTimeSelect }}"   title="选择开始时间" >
-
+<van-calendar show="{{ selectTime.showDateSelect }}" color="#F7B500" bind:close="onCloseDate" bind:confirm="onConfirmDate" />
+<van-action-sheet show="{{ selectTime.showTimeSelect }}" title="选择开始时间" bind:click-overlay="clickOverlay">
   <view class="app-flex app-flex-column">
-    <view class="select-weeks app-flex app-flex-between">
+    <!-- <view class="select-weeks app-flex app-flex-between">
       <view class="select-weeks-item">日</view>
       <view class="select-weeks-item">一</view>
       <view class="select-weeks-item">二</view>
@@ -47,11 +61,30 @@
       <view class="select-weeks-item active">四</view>
       <view class="select-weeks-item">五</view>
       <view class="select-weeks-item">六</view>
-    </view>
-    <view>
-      jsjsjj
+    </view> -->
+    <view class="time-list app-flex ">
+      <view class="time-list-item "> 8:00 </view>
+      <view class="time-list-item"> 8:00 </view>
+      <view class="time-list-item active"> 8:00 </view>
+      <view class="time-list-item"> 8:00 </view>
+      <view class="time-list-item "> 8:00 </view>
+      <view class="time-list-item disable"> 8:00 </view>
+      <view class="time-list-item "> 8:00 </view>
+      <view class="time-list-item "> 8:00 </view>
+      <view class="time-list-item "> 8:00 </view>
+      <view class="time-list-item "> 8:00 </view>
+      <view class="time-list-item "> 8:00 </view>
+        
     </view>
       
   </view>
     
 </van-action-sheet>
+
+ <view class="app-bottom-btn {{isIPX?'ipx':''}}">
+      <van-button round  catchtap="goBuyNow" custom-class="app-btn" >
+       <view class="btn-text">
+         立即预约
+       </view>
+     </van-button>
+ </view>

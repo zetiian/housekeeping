@@ -1,8 +1,9 @@
 
 import localStorage from "../../libs/localStorage";
+var app = getApp();
 Page({
   data: {
-    
+    isIPX: app.globalData.isIPX,
   },
   //options(Object)
   onLoad: function(options) {

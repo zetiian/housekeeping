@@ -13,11 +13,11 @@
 >
   <view wx:if="{{ title }}" class="van-hairline--bottom van-action-sheet__header">
     {{ title }}
-    <van-icon
+    <!-- <van-icon
       name="close"
       custom-class="van-action-sheet__close"
       bind:click="onClose"
-    />
+    /> -->
   </view>
   <view wx:if="{{ description }}" class="van-action-sheet__description">
     {{ description }}

@@ -4,6 +4,7 @@ var app = getApp();
 var systemInfo = app.globalData.systemInfo;
 Page({
   data: {
+    isIPX: app.globalData.isIPX,
     src: "",
     sharePath: "",
     loadUrl: ""
