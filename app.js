@@ -12,7 +12,17 @@ import getCtx from "./libs/ctx.js";
 import localStorage from "./libs/localStorage";
 var checkLogin = require("./libs/checkLogin").checkLogin;
 var userInfo = {}
+var showToast = (msg, type, duration) =>{
+  wx.showToast({
+    title: msg,
+    icon: type ? type : "none",
+    image: "",
+    duration: duration ? duration : 1500,
+    mask: true
+  });
+}
 App({
+  
   $popupText: (selector = "#text-popup", ctx) =>
     getCtx(selector, ctx) || {
       show() {},
@@ -43,6 +53,7 @@ App({
     });
   },
   onLaunch: function () {
+    wx.$showToast = showToast
     let mobile = this.globalData.systemInfo.model;
     let system = this.globalData.systemInfo.system;
     this.globalData.isIP = mobile.search(/iphone/i) != -1;
@@ -83,14 +94,6 @@ App({
     }
    
   },
-  showToast(msg, type, duration) {
-    wx.showToast({
-      title: msg,
-      icon: type ? type : "none",
-      image: "",
-      duration: duration ? duration : 1500,
-      mask: true
-    });
-  },
+
 
 });

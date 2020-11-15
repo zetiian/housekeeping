@@ -6,6 +6,7 @@
     "pages/order-detail/order-detail",
     "pages/order-detail/cancel",
     "pages/register/register",
+    "pages/apply/apply",
     "pages/rich-text/rich-text",
     "pages/webview/webview",
     "pages/feedback/feedback",
@@ -31,6 +32,7 @@
   "usingComponents": {
     "nav":"./components/nav/common",
     "star":"./components/star/star",
+    "upload":"./components/upload/upload",
     "base-button":"./components/button/button",
     "img-lazy":"./components/img-lazy/img-lazy",
     "van-button": "./miniprogram_npm/@vant/weapp/button/index",

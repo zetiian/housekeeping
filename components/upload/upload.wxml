@@ -1,0 +1,9 @@
+<view class="publish-images">
+  <view wx:for="{{files}}" wx:key="index" data-type="{{item.type}}" data-index="{{index}}" bindtap="previewFile" class="publish-images__item {{ item.type }}">
+    <!-- <view class="publish-images__item-close-con" catchtap="removeImage" data-index="{{index}}">
+      <view class="publish-images__item-close"></view>
+    </view> -->
+    <image wx:if="{{item.type == 'image'}}" class="image" src="{{item.src.path}}" mode="aspectFill"></image>
+  </view>
+  <view wx:if="{{files.length < max}}" class="publish-images__add" bindtap="chooseFile"></view>
+</view>
