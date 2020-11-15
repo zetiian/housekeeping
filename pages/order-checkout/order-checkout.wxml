@@ -17,7 +17,11 @@
       </view>
       <view class="order-item app-flex app-flex-between">
         <view> 请选择服务时长 </view>
-        <view> 请选择服务时长 </view>
+        <view class="app-flex app-flex-center app-flex-between" style="width:200rpx; font-size:28rpx;"> 
+          <van-icon name="https://azure-shop.obs.cn-south-1.myhuaweicloud.com/20201115145017079-icon_jianshao.png" size="22"/>
+          <view> 2小时 </view>
+          <van-icon name="https://azure-shop.obs.cn-south-1.myhuaweicloud.com/20201115145017079-icon_zengjia.png" size="22"/>  
+        </view>
       </view>
       <view class="order-item app-flex app-flex-between" catchtap="popTimeSelect">
         <view> 请选择开始时间 </view>
@@ -34,6 +38,8 @@
           value="{{ message }}"
           autosize
           type="textarea"
+          maxlength="50"
+          show-word-limit
           placeholder="请输入留言"
           border="{{ false }}"
         />
@@ -53,15 +59,6 @@
 <van-calendar show="{{ selectTime.showDateSelect }}" color="#F7B500" bind:close="onCloseDate" bind:confirm="onConfirmDate" />
 <van-action-sheet show="{{ selectTime.showTimeSelect }}" title="选择开始时间" bind:click-overlay="clickOverlay">
   <view class="app-flex app-flex-column">
-    <!-- <view class="select-weeks app-flex app-flex-between">
-      <view class="select-weeks-item">日</view>
-      <view class="select-weeks-item">一</view>
-      <view class="select-weeks-item">二</view>
-      <view class="select-weeks-item">三</view>
-      <view class="select-weeks-item active">四</view>
-      <view class="select-weeks-item">五</view>
-      <view class="select-weeks-item">六</view>
-    </view> -->
     <view class="time-list app-flex ">
       <view class="time-list-item "> 8:00 </view>
       <view class="time-list-item"> 8:00 </view>
@@ -82,7 +79,7 @@
 </van-action-sheet>
 
  <view class="app-bottom-btn {{isIPX?'ipx':''}}">
-      <van-button round  catchtap="goBuyNow" custom-class="app-btn" >
+      <van-button round  catchtap="buyNow" custom-class="app-btn" >
        <view class="btn-text">
          立即预约
        </view>

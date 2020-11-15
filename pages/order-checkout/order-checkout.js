@@ -32,7 +32,7 @@ Page({
     
   },
  
-  confirm(){
+  onTimeLengthChange(){
     
   },
   goAddress(){
@@ -63,6 +63,9 @@ Page({
     this.setData({
       'selectTime.showDateSelect':true
     })
+  },
+  buyNow(){
+    
   },
 });
   
