@@ -21,6 +21,10 @@ Component({
             type:Boolean,
             value:false
         },
+        showClose:{
+            type:Boolean,
+            value:false
+        },
         max:{
             type:Number,
             value:9

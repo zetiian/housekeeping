@@ -1,6 +1,6 @@
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 const app = getApp();
-
+var baseConfig = require("../../config").baseConfig
 
 //Page Object
 Page({
@@ -34,7 +34,7 @@ Page({
   selectType(){
     this.setData({ showSelect:true })
   },
-  filesChange(){
+  filesChange(e){
     let dataset = e.currentTarget.dataset
     let img = e.detail.files[0]
     let resultUrl = ''
@@ -44,17 +44,37 @@ Page({
     this.uploadImgFile(img.src.path).then(res=>{
       console.log(777,res);
       resultUrl = res
-      
+       // if(dataset.name==='one'){
+      //   this.data.idCard.push({photoType:'01',photoPath: resultUrl,id:util.randomString(16)})
+      // }else if(dataset.name==='two'){
+      //   this.data.idCard.push({photoType:'02',photoPath: resultUrl,id:util.randomString(16)})
+      // }else if(dataset.name==='cert'){
+      //   this.data.idCard.push({photoType:'99',photoPath: resultUrl,id:util.randomString(16)})
+      // }
     }).catch(_=>{
      return wx.$showToast('网络不好，重新试试');  
     })
-    if(dataset.name==='one'){
-      this.data.idCard.push({photoType:'01',photoPath: resultUrl,id:util.randomString(16)})
-    }else if(dataset.name==='two'){
-      this.data.idCard.push({photoType:'02',photoPath: resultUrl,id:util.randomString(16)})
-    }else if(dataset.name==='cert'){
-      this.data.idCard.push({photoType:'99',photoPath: resultUrl,id:util.randomString(16)})
-    }
+   
+  },
+
+  uploadImgFile(src){
+    return new Promise((res,rej)=>{
+      wx.uploadFile({
+        url: 'https://mobileqrsmallprog.gz-sanjie.com/uploadImg',
+        filePath: src,
+        name: 'file',
+        success: result=>{
+          console.log(666,result);
+          // result.data
+          let remoteUrl = JSON.parse(result.data).url
+          res(remoteUrl)
+        },
+        fail:err=>{
+          rej(err)
+        }
+      })
+    })
+  
   },
 });
   
