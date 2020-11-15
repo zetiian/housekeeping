@@ -3,12 +3,19 @@ let getSignParameter = require('../utils/common.js').getSignParameter
 let fetch = require('../utils/promise.js').fetch
 var baseConfig = require('../config.js').baseConfig
 
-var formatParams = function (parameter) {
+var formatParams = function (parameter,url) {
   let parameters = {};
   parameters = Object.assign(parameters, baseConfig.baseParams, parameter);
   parameters = getSignParameter(parameters);
-  return fetch(parameters)
+  
+  return fetch(parameters,url)
 }
+
+//小程序登录/注册接口
+exports.loginFunmin = function (parameter) {
+  return formatParams(parameter,'/acc/wxLogin')
+}
+
 //短信接口
 exports.sendMessage = function (parameter) {
   parameter.apiName = 'api_action_000014';
@@ -30,16 +37,6 @@ exports.checkState = function (parameter) {
   return formatParams(parameter)
 }
 
-//登录接口
-exports.loginFun = function (parameter) {
-  parameter.apiName = 'api_action_000003';
-  return formatParams(parameter)
-}
-//小程序登录接口
-exports.loginFunmin = function (parameter) {
-  parameter.apiName = 'api_action_000024';
-  return formatParams(parameter)
-}
 //微信绑定操作
 exports.bindwxFun = function (parameter) {
   parameter.apiName = 'api_action_000006';

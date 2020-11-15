@@ -23,9 +23,31 @@ Page({
     if(detail.errMsg==='getPhoneNumber:ok'){
       let userRegister = { type, }
       localStorage.set({userRegister})
-      wx.reLaunch({
-        url: '/pages/my/my',
-      });
+
+      API.loginFunmin({
+        loginType: '02',
+        encryptedData: detail.encryptedData,
+        encryptedIv:detail.iv,
+        sessionKey:wxInfo.session_key,
+        openId:wxInfo.openid,
+      }).then(res=>{
+        console.warn('注册成功！');
+        let userInfo = {
+          customerId:res.customerId,
+          token:res.token,
+        }
+        localStorage.set({ userInfo,isRegister:'yes' });
+        setTimeout(() => {
+          util.getUserInfo()
+        }, 0);
+        // localStorage.delete('wxInfo')
+        setTimeout(() => {
+          wx.reLaunch({
+            url: '/pages/index/index',
+          });
+            
+        }, 1000);
+      })
         
     }
     

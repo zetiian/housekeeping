@@ -2,18 +2,18 @@ var baseConfig = require("../config").baseConfig
 
 const http = ({
   param = {},
-  ...other
+  url
 } = {}) => {
   let timeStart = Date.now();
   wx.showLoading({ title: '加载中...', mask: true, });
   return new Promise((resolve, reject) => {
     wx.request({
-      url: baseConfig.baseUrl+'/api/service',
+      url: baseConfig.baseUrl+url,
       data: param,
       header: {
         'content-type': 'application/json' // 默认值 ,另一种是 "content-type": "application/x-www-form-urlencoded"
       },
-      ...other,
+      method: 'POST',
       complete: (res) => {
         wx.hideLoading();
         //  console.log(`耗时${Date.now() - timeStart}`);
@@ -48,45 +48,11 @@ const http = ({
     })
   })
 }
-const fetch = (param = {}) => {
-  return http({
-    param,
-    method: 'POST'
-  })
+const fetch = (param = {},url) => {
+  return http({ param, url })
 }
-// const getUrl = (url) => {
-//   if (url.indexOf('://') == -1) {
-//     url = baseConfig.baseUrl + url;
-//   }
-//   return url
-// }
 
-// // get方法
-// const _get = (url, param = {}) => {
-//   return http({
-//     url,
-//     param
-//   })
-// }
-
-// const _put = (url, param = {}) => {
-//   return http({
-//     url,
-//     param,
-//     method: 'put'
-//   })
-// }
-
-// const _delete = (url, param = {}) => {
-//   return http({
-//     url,
-//     param,
-//     method: 'delete'
-//   })
-// }
 module.exports = {
   fetch,
-  // _get,
-  // _put,
-  // _delete
+  
 }

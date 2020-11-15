@@ -41,11 +41,11 @@ function wxLogin(cb,err) {
 }
 function serverLogin(cb,err) {
   // TODO: 
-  cb()
-  return
+
   //发起网络请求
   loginFunmin({
     loginType: "01",
+    userType: "0",
     authCode: localStorage.get().wxCode
   }).then(res => {
     if (res.respCode === "300022") {
