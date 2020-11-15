@@ -1,5 +1,6 @@
 
 import localStorage from "../../libs/localStorage";
+const API = require('../../api/interface')
 var app = getApp();
 Page({
   data: {

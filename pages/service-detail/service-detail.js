@@ -24,7 +24,7 @@ Page({
 
 
   onShow: function () {
-    let detail = '<p margin="0" style="margin:0;"> 以下为服务内容介绍 </p> <p margin="0" style="margin:0;"> <img src="https://test-azure-community.obs.cn-south-1.myhuaweicloud.com/20190415152600_07d54726d6bc4b03a983ef38a93a0e2a.png"/><img src="https://test-azure-community.obs.cn-south-1.myhuaweicloud.com/20190415152611_b8dba2f764a449319c838599e6a75076.png"/> </p>'
+    let detail = '<p margin="0" style="margin:0;"> 以下为服务内容介绍 </p> <p margin="0" style="margin:0;"> <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1605475487523&di=401564298cc67ab6273249c9ae004af1&imgtype=0&src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201604%2F10%2F20160410182350_nJPky.thumb.400_0.jpeg"/><img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2116924201,3735371786&fm=15&gp=0.jpg"/> </p>'
     let bannerList = [
       'https://azure-upms.obs.cn-south-1.myhuaweicloud.com/hycan-huaweicloud%2FbackendUpload%2F20200608154641356-ac_pic_jrfa%403x.png',
     ]

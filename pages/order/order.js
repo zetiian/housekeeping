@@ -109,11 +109,11 @@ Page({
         duration: 1500,
         mask: false,
       });
-      setTimeout(() => {
-        wx.reLaunch({
-          url: '/pages/my/my',
-        });
-      }, 1500);
+      // setTimeout(() => {
+      //   wx.reLaunch({
+      //     url: '/pages/my/my',
+      //   });
+      // }, 1500);
     
     }
     this.setData({newList:this.data.list})

@@ -73,3 +73,18 @@
 .order-time{
     margin-bottom: 10rpx;
 }
+.order-blank{
+    margin-top:  200rpx;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 32rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #A3A19D;
+}
+.order-blank-icon{
+    width: 120rpx;
+    height: 120rpx;
+    margin-bottom: 40rpx;
+}
