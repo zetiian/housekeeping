@@ -1,271 +1,526 @@
-// var upsertAddressList = require("../../../../api/address").upsertAddressList;
-const app = getApp();
+var QQMapWX = require('../../../libs/qqmap-wx-jssdk.min.js');
+var qqmapsdk;
 Page({
   data: {
-    isIPX: app.globalData.isIPX,
-    title: "编辑地址",
-    disabled:true,
-    form: {
-      id:'',
-      name:'',
-      phone:'',
-      second:'',
-      detailAddress:'',
-      isDefault:false,
+    addListShow: false,
+    chooseCity: false,
+    regionShow: {
+      province: false,
+      city: false,
+      district: true
     },
-   
+    regionData: {}, 
+    currentRegion: {
+      province: '选择城市',
+      city: '选择城市',
+      district: '选择城市',
+    },
+    currentProvince: '选择城市',
+    currentCity: '选择城市',
+    currentDistrict: '选择城市',
+    latitude: '',
+    longitude: '',
+    centerData: {},
+    nearList: [],
+    suggestion: [],
+    selectedId: 0,
+    defaultKeyword: '房产小区',
+    keyword: ''
   },
-
-  onLoad: function(options) {
-   
-    if (options.params !== undefined) {
-      var _data = JSON.parse(decodeURIComponent(options.params));
-      console.log(112,_data)
-      this.setData({
-        ["form.id"]: _data.id,
-        ["form.phone"]: _data.phone || "",
-        ["form.name"]: _data.name || "",
-        ["form.second"]: _data.second || "",
-        ["form.detailAddress"]: _data.detailAddress || "",
-        ["form.isDefault"]: _data.isDefault,
-      });
-      // 加载地址数据
-    } else {
-      this.setData({
-        title: "新增地址"
-      });
-    }
-    this.updateDisabled();
-  },
-  onClickIcon(){
-    wx.showToast({
-      title: '前往地址选择器，后续完善',
-      icon: 'none',
+  onLoad: function () {
+    let self =this;
+    self.mapCtx = wx.createMapContext('myMap')
+    // 实例化API核心类
+    qqmapsdk = new QQMapWX({
+      key: 'W57BZ-JDB6X-XPA4H-Z76MI-73FF2-24BT4'
     });
-      
-  },
-  fmtAreaData: function(data) {
-    var ret = [];
-    if (data.provinceId) {
-      ret[0] = {
-        nodeCode: data.provinceId,
-        nodeName: data.provinceName
-      };
-      if (data.cityId) {
-        ret[1] = {
-          nodeCode: data.cityId,
-          nodeName: data.cityName
-        };
-        if (data.districtId) {
-          ret[2] = {
-            nodeCode: data.districtId,
-            nodeName: data.districtName
-          };
-          if (data.streetId) {
-            ret[3] = {
-              nodeCode: data.streetId,
-              nodeName: data.streetName
-            };
-          }
-        }
+    wx.showLoading({
+      title: '加载中'
+    });
+    //定位
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        //console.log(res)
+        const latitude = res.latitude
+        const longitude = res.longitude
+        const speed = res.speed
+        const accuracy = res.accuracy
+        //你地址解析
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: latitude,
+            longitude: longitude
+          },
+          success: function (res) {
+            //console.log(res)
+            self.setData({
+              latitude: latitude,
+              longitude: longitude,
+              currentRegion: res.result.address_component,
+              keyword: self.data.defaultKeyword
+            })
+            // 调用接口
+            self.nearby_search();
+          },
+        });
+      },
+      fail(err) {
+        //console.log(err)
+        wx.hideLoading({});
+        wx.showToast({
+          title: '定位失败',
+          icon: 'none',
+          duration: 1500
+        })
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 1500)
       }
-    }
-    console.log(ret);
-    return ret;
+    })
   },
-
-  onShow: function(options) {
-    // 获取url参数
+  onReady: function () {
+    
   },
-  save: function() {
-    wx.showToast({
-      title: '保存成功',
-      image: '',
-      duration: 1500,
-    });
-    setTimeout(() => {
-      wx.navigateBack({ delta: 1 });
-    }, 2000);
-
-    return
-    console.log(this.data.form);
-    if (!this.validInput()) return;
-    var curAreaData = this.data.curAreaData;
-    var obj = {};
-    obj.receiverName = this.data.form.name;
-    obj.receiverMobileNo = this.data.form.mobile;
-    obj.detailAddress = this.data.form.detail;
-    obj.defaultAddress = this.data.form.useDefault ? 0 : 1;
-
-    if (curAreaData[0]) {
-      obj.provinceId = curAreaData[0].nodeCode;
-      obj.provinceName = curAreaData[0].nodeName;
+  //监听拖动地图，拖动结束根据中心点更新页面
+  mapChange: function (e) {
+    let self = this;
+    if (e.type == 'end' && (e.causedBy == 'scale' || e.causedBy == 'drag')){
+      self.mapCtx.getCenterLocation({
+        success: function (res) {
+          //console.log(res)
+          self.setData({
+            nearList:[],
+            latitude: res.latitude,
+            longitude: res.longitude,
+          })
+          self.nearby_search();
+        }
+      })
     }
-    if (curAreaData[1]) {
-      obj.cityId = curAreaData[1].nodeCode;
-      obj.cityName = curAreaData[1].nodeName;
-    }
-    if (curAreaData[2]) {
-      obj.districtId = curAreaData[2].nodeCode;
-      obj.districtName = curAreaData[2].nodeName;
-    }
-    if (curAreaData[3]) {
-      obj.streetId = curAreaData[3].nodeCode;
-      obj.streetName = curAreaData[3].nodeName;
-    }
-    // 如果有id是修改
-    if (this.data.id) {
-      obj.id = this.data.id;
-    }
-    if (!obj.provinceId || !obj.cityId) {
-      wx.showModal({
-        title: "温馨提示",
-        content: "地区错误，请重新选择",
-        showCancel: false
-      });
-      return;
-    }
-    upsertAddressList({
-      data: obj,
-      success: function(res) {
-        console.log(res, "666");
-        // 返回地址列表
-        if (res.code === 0) {
-          var pages = getCurrentPages(); //获取当前页面js里面的pages里的所有信息。
-          var prevPage = pages[pages.length - 2];
-          if (prevPage && prevPage.route.match(/^pages\/shop-package\/address\/list\/list/)) {
-            wx.navigateBack({
-              delta: 1,fail:err=>{ wx.reLaunch({ url: "/pages/index/index" }); },
-            });
-          } else {
-            wx.navigateTo({
-              url: "/pages/shop-package/address/list/list"
-            });
-          }
-          // 再往前一个页面是结算页，如果修改的地址的Id和结算页的地址相同则修改
-          var prevPage2 = pages[pages.length - 3];
-          if (
-            prevPage2 &&
-            prevPage2.route.match(/^pages\/shop-package\/checkout\/checkout/)
-          ) {
-            console.log("同步结算页的地址", prevPage2.data.address, obj);
-            var prevAddress = prevPage2.data.address;
-            var data = res.data.data || res.data;
-            data.first = `${data.receiverName || ""}，${data.receiverMobileNo ||
-              ""}`;
-            data.second = `${data.provinceName || ""}${data.cityName ||
-              ""}${data.districtName || ""}${data.streetName || ""}`;
-            console.log(
-              ">>>>>>>>>",
-              data.first,
-              data.second,
-              prevAddress,
-              this.data.id
-            );
-            data.isDefault = data.defaultAddress == 1 ? false : true;
-            if (prevAddress.id === this.data.id) {
-              prevPage2.setData({
-                address: data
+    
+  },
+  //重新定位
+  reload: function () {
+    this.onLoad();
+  },
+  //整理目前选择省市区的省市区列表
+  getRegionData: function () {
+    let self = this;
+    //调用获取城市列表接口
+    qqmapsdk.getCityList({
+      success: function (res) {//成功后的回调
+        //console.log(res)
+        let provinceArr = res.result[0];
+        let cityArr = [];
+        let districtArr = [];
+        for (var i = 0; i < provinceArr.length; i++) {
+          var name = provinceArr[i].fullname;
+          if (self.data.currentRegion.province == name) {
+            if (name == '北京市' || name == '天津市' || name == '上海市' || name == '重庆市') {
+              cityArr.push(provinceArr[i])
+            } else {
+              qqmapsdk.getDistrictByCityId({
+                // 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
+                id: provinceArr[i].id,
+                success: function (res) {//成功后的回调
+                  //console.log(res);
+                  cityArr = res.result[0];
+                  self.setData({
+                    regionData: {
+                      province: provinceArr,
+                      city: cityArr,
+                      district: districtArr
+                    }
+                  })
+                },
+                fail: function (error) {
+                  //console.error(error);
+                },
+                complete: function (res) {
+                  //console.log(res);
+                }
               });
             }
           }
         }
+        for (var i = 0; i < res.result[1].length; i++) {
+          var name = res.result[1][i].fullname;
+          if (self.data.currentRegion.city == name) {
+            qqmapsdk.getDistrictByCityId({
+              // 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
+              id: res.result[1][i].id,
+              success: function (res) {//成功后的回调
+                //console.log(res);
+                districtArr = res.result[0];
+                self.setData({
+                  regionData: {
+                    province: provinceArr,
+                    city: cityArr,
+                    district: districtArr
+                  }
+                })
+              },
+              fail: function (error) {
+                //console.error(error);
+              },
+              complete: function (res) {
+                //console.log(res);
+              }
+            });
+          }
+        }
+      },
+      fail: function (error) {
+        //console.error(error);
+      },
+      complete: function (res) {
+        //console.log(res);
       }
     });
   },
-  nameInput: function(e) {
-    this.setData({
-      ["form.name"]: e.detail.value
-    });
-    this.updateDisabled();
+  onShow: function () {
+    let self = this;
   },
-  mobileInput: function(e) {
-    this.setData({
-      ["form.mobile"]: e.detail.value
-    });
-    this.updateDisabled();
+  //地图标记点
+  addMarker: function (data) {
+    //console.log(data)
+    //console.log(data.title)
+    var mks = [];
+    mks.push({ // 获取返回结果，放到mks数组中
+      title: data.title,
+      id: data.id, 
+      addr: data.addr,
+      province: data.province,
+      city: data.city,
+      district: data.district,
+      latitude: data.latitude,
+      longitude: data.longitude,
+      iconPath: "/images/my_marker.png", //图标路径
+      width: 25,
+      height: 25
+    })
+    this.setData({ //设置markers属性，将搜索结果显示在地图中
+      markers: mks,
+      currentRegion: {
+        province: data.province,
+        city: data.city,
+        district: data.district,
+      }
+    })
+    wx.hideLoading({});
   },
-  detailInput: function(e) {
-    this.setData({
-      ["form.detail"]: e.detail.value
-    });
-    this.updateDisabled();
+  //点击选择搜索结果
+  backfill: function (e) {
+    var id = e.currentTarget.id;
+    let name = e.currentTarget.dataset.name;
+    for (var i = 0; i < this.data.suggestion.length; i++) {
+      if (i == id) {
+        //console.log(this.data.suggestion[i])
+        this.setData({
+          centerData: this.data.suggestion[i],
+          addListShow: false,
+          latitude: this.data.suggestion[i].latitude,
+          longitude: this.data.suggestion[i].longitude
+        }); 
+        this.nearby_search();
+        return;
+        //console.log(this.data.centerData)
+      }
+    }
   },
-  defaultChange: function() {
-    this.setData({
-      ["form.useDefault"]: !this.data.form.useDefault
-    });
-    this.updateDisabled();
+  //点击选择地图下方列表某项
+  chooseCenter: function (e) {
+    var id = e.currentTarget.id;
+    let name = e.currentTarget.dataset.name;
+    for (var i = 0; i < this.data.nearList.length; i++) {
+      if (i == id) {
+        this.setData({
+          selectedId: id,
+          centerData: this.data.nearList[i],
+          latitude: this.data.nearList[i].latitude,
+          longitude: this.data.nearList[i].longitude,
+        });
+        this.addMarker(this.data.nearList[id]);
+        return;
+        //console.log(this.data.centerData)
+      }
+    }
   },
-  areaFocus: function() {
+  //显示搜索列表
+  showAddList: function () {
     this.setData({
-      showCascader: true
-    });
+      addListShow: true
+    })
   },
-  cascaderChange: function(e) {
-    console.log(e.detail.options);
-    this.setData({
-      curAreaData: e.detail.options,
-      ["form.area"]: e.detail.options
-        .map(item => {
-          return item.nodeName;
+  // 根据关键词搜索附近位置
+  nearby_search: function () {
+    var self = this;
+    wx.hideLoading();
+    wx.showLoading({ title: '地址加载中' });
+    // 调用接口
+    qqmapsdk.search({
+      keyword: self.data.keyword,  //搜索关键词
+      //boundary: 'nearby(' + self.data.latitude + ', ' + self.data.longitude + ', 1000, 16)',
+      location: self.data.latitude + ',' + self.data.longitude,
+      page_size: 20,
+      page_index: 1,
+      success: function (res) { //搜索成功后的回调
+        //console.log(res.data)
+        var sug = [];
+        for (var i = 0; i < res.data.length; i++) {
+          sug.push({ // 获取返回结果，放到sug数组中
+            title: res.data[i].title,
+            id: res.data[i].id,
+            addr: res.data[i].address,
+            province: res.data[i].ad_info.province,
+            city: res.data[i].ad_info.city,
+            district: res.data[i].ad_info.district,
+            latitude: res.data[i].location.lat,
+            longitude: res.data[i].location.lng
+          });
+        }
+        self.setData({
+          selectedId: 0,
+          centerData: sug[0],
+          nearList: sug, 
+          suggestion: sug
         })
-        .join("")
-    });
-    this.updateDisabled();
-  },
-  cascaderClose: function() {
-    this.setData({
-      showCascader: false
-    });
-  },
-
-  updateDisabled: function() {
-    var disabled = true;
-    if (this.data.form) {
-      var form = this.data.form;
-      if (form.name && form.mobile && form.area && form.detail) {
-        disabled = false;
+        self.addMarker(sug[0]);
+      },
+      fail: function (res) {
+        console.log(66666,res);
+      },
+      complete: function (res) {
+        //console.log(res);
       }
-    }
-    this.setData({
-      disabled: disabled
     });
   },
-  // 提交前的输入验证，返回true才能继续提交
-  validInput: function() {
-    var form = this.data.form;
-    // name
-    if (form.name.length > 16) {
-      wx.showModal({
-        title: "提示",
-        content: "收货人不能超过16个字",
-        showCancel: false,
-        cancelColor: "#181A24", //取消文字的颜色
-        confirmColor: "#2CCCD3" //确定文字的颜色
-      });
-      return;
+  //根据关键词搜索匹配位置
+  getsuggest: function (e) {
+    var _this = this;
+    var keyword = e.detail.value;
+    _this.setData({
+      addListShow: true
+    })
+    //调用关键词提示接口
+    qqmapsdk.getSuggestion({
+      //获取输入框值并设置keyword参数
+      keyword: keyword, //用户输入的关键词，可设置固定值,如keyword:'KFC'
+      location: _this.data.latitude + ',' + _this.data.longitude,
+      page_size: 20,
+      page_index: 1,
+      //region:'北京', //设置城市名，限制关键词所示的地域范围，非必填参数
+      success: function (res) {//搜索成功后的回调
+        //console.log(res);
+        var sug = [];
+        for (var i = 0; i < res.data.length; i++) {
+          sug.push({ // 获取返回结果，放到sug数组中
+            title: res.data[i].title,
+            id: res.data[i].id,
+            addr: res.data[i].address,
+            province: res.data[i].province,
+            city: res.data[i].city,
+            district: res.data[i].district,
+            latitude: res.data[i].location.lat,
+            longitude: res.data[i].location.lng
+          });
+        }
+        _this.setData({ //设置suggestion属性，将关键词搜索结果以列表形式展示
+          suggestion: sug,
+          nearList: sug,
+          keyword: keyword
+        });
+      },
+      fail: function (error) {
+        //console.error(error);
+      },
+      complete: function (res) {
+        //console.log(res);
+      }
+    });
+  },
+  //打开选择省市区页面
+  chooseCity: function () {
+    let self = this;
+    self.getRegionData();
+    self.setData({
+      chooseCity: true,
+      regionShow: {
+        province: false,
+        city: false,
+        district: true
+      },
+      currentProvince: self.data.currentRegion.province,
+      currentCity: self.data.currentRegion.city,
+      currentDistrict: self.data.currentRegion.district,
+    })
+  },
+  //选择省
+  showProvince: function () {
+    this.setData({
+      regionShow: {
+        province: true,
+        city: false,
+        district: false
+      }
+    })
+  },
+  //选择城市
+  showCity: function () {
+    this.setData({
+      regionShow: {
+        province: false,
+        city: true,
+        district: false
+      }
+    })
+  },
+  //选择地区
+  showDistrict: function () {
+    this.setData({
+      regionShow: {
+        province: false,
+        city: false,
+        district: true
+      }
+    })
+  },
+  //选择省之后操作
+  selectProvince: function (e) {
+    //console.log(e)
+    let self = this;
+    let id = e.currentTarget.dataset.id;
+    let name = e.currentTarget.dataset.name;
+    self.setData({
+      currentProvince: name,
+      currentCity: '请选择城市',
+    })
+    if (name == '北京市' || name == '天津市' || name == '上海市' || name == '重庆市'){
+      var provinceArr = self.data.regionData.province;
+      var cityArr = [];
+      for (var i = 0; i < provinceArr.length;i++){
+        if(provinceArr[i].fullname == name){
+          cityArr.push(provinceArr[i])
+          self.setData({
+            regionData: {
+              province: self.data.regionData.province,
+              city: cityArr,
+              district: self.data.regionData.district
+            }
+          })
+          self.showCity();
+          return;
+        }
+      }
+    }else{
+      let bj = self.data.regionShow;
+      self.getById(id, name, bj)
     }
-    if (form.mobile.length > 11) {
-      wx.showModal({
-        title: "提示",
-        content: "手机号不能超过11位",
-        showCancel: false,
-        cancelColor: "#181A24", //取消文字的颜色
-        confirmColor: "#2CCCD3" //确定文字的颜色
-      });
-      return;
+  },
+  //选择城市之后操作
+  selectCity: function (e) {
+    let self = this;
+    let id = e.currentTarget.dataset.id;
+    let name = e.currentTarget.dataset.name;
+    self.setData({
+      currentCity: name,
+      currentDistrict: '请选择城市',
+    })
+    let bj = self.data.regionShow;
+    self.getById(id, name, bj)
+  },
+  //选择区县之后操作
+  selectDistrict: function (e) {
+    let self = this;
+    let id = e.currentTarget.dataset.id;
+    let name = e.currentTarget.dataset.name;
+    let latitude = e.currentTarget.dataset.latitude;
+    let longitude = e.currentTarget.dataset.longitude;
+    self.setData({
+      currentDistrict: name,
+      latitude: latitude,
+      longitude: longitude,
+      currentRegion: {
+        province: self.data.currentProvince,
+        city: self.data.currentCity,
+        district: name
+      }, 
+      chooseCity: false,
+      keyword: self.data.defaultKeyword
+    })
+    self.nearby_search();
+  },
+  //根据选择省市加载市区列表
+  getById: function (id,name,bj) {
+    let self = this;
+    qqmapsdk.getDistrictByCityId({
+      // 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
+      id: id, //对应接口getCityList返回数据的Id，如：北京是'110000'
+      success: function (res) {//成功后的回调
+        //console.log(res);
+        if(bj.province){
+          self.setData({
+            regionData: {
+              province: self.data.regionData.province,
+              city: res.result[0],
+              district: self.data.regionData.district
+            }
+          })
+          self.showCity();
+        } else if (bj.city) {
+          self.setData({
+            regionData: {
+              province: self.data.regionData.province,
+              city: self.data.regionData.city,
+              district: res.result[0]
+            }
+          })
+          self.showDistrict();
+        } else {
+          self.setData({
+            chooseCity: false,
+          })
+        }
+      },
+      fail: function (error) {
+        //console.error(error);
+      },
+      complete: function (res) {
+        //console.log(res);
+      }
+    });
+  },
+  //返回上一页或关闭搜索页面
+  back1: function () {
+    if (this.data.addListShow) {
+      this.setData({
+        addListShow: false
+      })
+    }else {
+      wx.navigateBack({
+        delta: 1
+      })
     }
-    if (form.detail.length > 50) {
-      wx.showModal({
-        title: "提示",
-        content: "详细地址不能超过50个字",
-        showCancel: false,
-        cancelColor: "#181A24", //取消文字的颜色
-        confirmColor: "#2CCCD3" //确定文字的颜色
-      });
-      return;
-    }
-    return true;
+  },
+  //关闭选择省市区页面
+  back2: function () {
+    this.setData({
+      chooseCity: false
+    })
+  },
+  //确认选择地址
+  selectedOk: function () {
+    //let pages = getCurrentPages(); //获取当前页面js里面的pages里的所有信息。
+    //let prevPage = pages[pages.length - 2]; 
+    console.log(this.data.centerData)
+    //prevPage.setData({
+      //storeAddress: this.data.centerData.title
+    //})
+    //wx.navigateBack({
+      //delta: 1
+    //})
   }
-});
+})
