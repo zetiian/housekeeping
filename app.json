@@ -11,6 +11,7 @@
     "pages/feedback/feedback",
     "pages/order-checkout/order-checkout",
     "pages/my-address/my-address",
+    "pages/my-address/add/add",
     "pages/my-address/edit/edit",
     "pages/service-detail/service-detail",
 
