@@ -1,8 +1,8 @@
 /*
  * @Author: Jericho Ding 
  * @Date: 2020-07-23 15:31:49 
- * @Last Modified by: Jericho Ding
- * @Last Modified time: 2020-09-10 17:42:56
+ * @Last Modified by: 丁希虎
+ * @Last Modified time: 2020-11-16 18:34:25
  */
 import localStorage from "../libs/localStorage";
 const API = require('../api/interface.js')
@@ -66,11 +66,11 @@ exports.getUserInfo = function() {  // 获取用户信息
   return new Promise((resolve, reject) => {
     API.getUserInfo({
       customerId: localStorage.get().userInfo.customerId,
-      token: localStorage.get().userInfo.token
     }).then(res => {
       if (res.respCode == "000000") {
         let userInfo = {
           ...localStorage.get().userInfo,
+          userType: res.userType,
           userName: res.userName,
           userId: res.userId,
           userStatus: res.userStatus, //状态： 0:正常,1:冻结,

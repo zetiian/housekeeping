@@ -50,7 +50,7 @@ Component({
       let wxInfo = localStorage.get().wxInfo
       if(wxInfo){
         if (e.detail.iv && e.detail.encryptedData ) {
-          API.loginFunmin({
+          API.userLogin({
             loginType: '02',
             encryptedData: e.detail.encryptedData,
             encryptedIv:e.detail.iv,

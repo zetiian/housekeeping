@@ -1,4 +1,4 @@
-const loginFunmin = require("../api/interface.js").loginFunmin;
+const API = require("../api/interface.js");
 const util = require("../utils/util.js");
 import localStorage from "./localStorage";
 var app = getApp();
@@ -40,12 +40,8 @@ function wxLogin(cb,err) {
   });
 }
 function serverLogin(cb,err) {
-  // TODO: 
-
-  //发起网络请求
-  loginFunmin({
+  API.userLogin({
     loginType: "01",
-    userType: "0",
     authCode: localStorage.get().wxCode
   }).then(res => {
     if (res.respCode === "300022") {
@@ -68,4 +64,5 @@ function serverLogin(cb,err) {
       });
     }
   });
+
 }

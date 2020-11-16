@@ -3,11 +3,11 @@
 
 <view class="container app-flex app-flex-column" >
   <view class="img-container service" > 
-    <button round class="register-btn" open-type="getPhoneNumber" bind:getphonenumber="registerBefore" data-type="{{1}}" > </button>
+    <button round class="register-btn" open-type="getPhoneNumber" bind:getphonenumber="registerBefore" data-type="{{0}}" > </button>
       <view class="title"> 我是雇主 </view>  
   </view>
   <view class="img-container " > 
-    <button round class="register-btn" open-type="getPhoneNumber" bind:getphonenumber="registerBefore" data-type="{{2}}" > </button>
+    <button round class="register-btn" open-type="getPhoneNumber" bind:getphonenumber="registerBefore" data-type="{{1}}" > </button>
     <view class="title"> 我是服务人员 </view>
   </view>
 </view>
