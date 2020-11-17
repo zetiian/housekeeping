@@ -61,9 +61,9 @@ Page({
       timeLength=1
       wx.$showToast('最短1小时')
     }
-    if(timeLength>=5){
-      timeLength=5
-      wx.$showToast('最长5小时')
+    if(timeLength>=4){
+      timeLength=4
+      wx.$showToast('最长4小时')
     }
     this.setData({timeLength})
   },
