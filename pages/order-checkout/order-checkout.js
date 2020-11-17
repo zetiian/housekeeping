@@ -11,6 +11,7 @@ Page({
     isIPX: app.globalData.isIPX,
     detail:{},
     addressDetail:{},
+    addressDetail:{},
     selectTime:{
       showDateSelect:false,
       showTimeSelect:false,
@@ -18,18 +19,20 @@ Page({
     message:''
   },
   //options(Object)
-  onLoad: function(options) {
+  onLoad: function(op) {
+    let detail = JSON.parse(op.detail)
+    this.setData({detail})
     userInfo = localStorage.get().userInfo
     wx.hideShareMenu();
-    let detail = {
-      orderTime:'2020.09.10 周日 08:00～10:00',
-      orderAddress:'香江国际金融中心606室',
-      orderName:'清洁服务',
-      orderStatus:'派单中',
-      status:1,
-      phone:'1331212121212',
-      user:'Jericho',
-    }
+    // let detail = {
+    //   orderTime:'2020.09.10 周日 08:00～10:00',
+    //   orderAddress:'香江国际金融中心606室',
+    //   orderName:'清洁服务',
+    //   orderStatus:'派单中',
+    //   status:1,
+    //   phone:'1331212121212',
+    //   user:'Jericho',
+    // }
     API.serverAddressList({
       customerId:userInfo.customerId,
       isDefault:'1',
@@ -37,7 +40,6 @@ Page({
       console.log('地址列表',res);
       this.setData({addressDetail:res.resultList[0]})
     })
-    this.setData({detail})
   },
  
   onShow: function() {

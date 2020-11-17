@@ -8,7 +8,7 @@
           <view class="order-flag"> </view>
           <view class="app-flex app-flex-column">
             <view> {{addressDetail.address}} </view>
-            <view>{{addressDetail.userName}}   {{detail.phone}}</view>
+            <view>{{addressDetail.userName}}   {{addressDetail.phone}}</view>
           </view>
          </view>
          <view class="app-flex app-flex-center"> 

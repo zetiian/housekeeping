@@ -3,7 +3,6 @@ const app = getApp();
 const API = require("../../api/interface.js");
 const timeTool = require("../../utils/common.js").timeTool;
 const util = require("../../utils/util.js");
-const img = require("../../utils/img.js");
 import localStorage from "../../libs/localStorage";
 var checkLogin = require("../../libs/checkLogin").checkLogin;
 var userInfo = {};
