@@ -35,7 +35,7 @@ Page({
   goBuyNow(){
   
     wx.navigateTo({
-      url: '/pages/order-checkout/checkout',
+      url: '/pages/order-checkout/order-checkout',
     });
   },
   onHide: function () {

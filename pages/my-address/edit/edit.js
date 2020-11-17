@@ -9,27 +9,26 @@ Page({
     title: "编辑地址",
  
     disabled:true,
-    form: {
-      id:'',
-      userName:'',
-      phone:'',
-      address:'',
-      isDefault:false,
-    },
+
+    addressId:'',
+    userName:'',
+    phone:'',
+    address:'',
+    isDefault:true,
    
   },
 
   onLoad: function(options) {
-    let userInfo =   localStorage.get().userInfo
+    
     if (options.params !== undefined) {
       var _data = JSON.parse(decodeURIComponent(options.params));
       console.log(112,_data)
       this.setData({
-        ["form.id"]: _data.id,
-        ["form.phone"]: _data.phone || "",
-        ["form.userName"]: _data.userName || "",
-        ["form.address"]: _data.address || "",
-        ["form.isDefault"]: _data.isDefault,
+        ["addressId"]: _data.addressId,
+        ["phone"]: _data.phone || "",
+        ["userName"]: _data.userName || "",
+        ["address"]: _data.address || "",
+        ["isDefault"]: _data.isDefault==="1",
       });
       // 加载地址数据
     } else {
@@ -75,101 +74,59 @@ Page({
     console.log(ret);
     return ret;
   },
-
+  switchTap(){
+    this.setData({
+      'isDefault':!this.data.isDefault
+    })
+  },
   onShow: function(options) {
     // 获取url参数
   },
   save: function() {
-    wx.showToast({ title: '保存成功', image: '', duration: 1500, });
-    setTimeout(() => {
-      wx.navigateBack({ delta: 1 });
-    }, 2000);
-
-    return
-    console.log(this.data.form);
-    if (!this.validInput()) return;
-    var curAreaData = this.data.curAreaData;
-    var obj = {};
-    obj.receiverName = this.data.form.userName;
-    obj.receiverMobileNo = this.data.form.mobile;
-    obj.address = this.data.form.detail;
-    obj.defaultAddress = this.data.form.useDefault ? 0 : 1;
-
-    if (curAreaData[0]) {
-      obj.provinceId = curAreaData[0].nodeCode;
-      obj.provinceName = curAreaData[0].nodeName;
+    let userInfo =   localStorage.get().userInfo
+    let form = this.data
+    console.log(form)
+    form.isDefault=form.isDefault?'1':'0'
+    let data = {
+      customerId:userInfo.customerId,
+      mapType:'01',
+      longitude:'115.375512',
+      latitude:'22.767004',
+      isDefault:form.isDefault,
+      address:form.address,
+      phone:form.phone,
+      userName:form.userName,
+      addressId:form.addressId,
     }
-    if (curAreaData[1]) {
-      obj.cityId = curAreaData[1].nodeCode;
-      obj.cityName = curAreaData[1].nodeName;
-    }
-    if (curAreaData[2]) {
-      obj.districtId = curAreaData[2].nodeCode;
-      obj.districtName = curAreaData[2].nodeName;
-    }
-    if (curAreaData[3]) {
-      obj.streetId = curAreaData[3].nodeCode;
-      obj.streetName = curAreaData[3].nodeName;
-    }
-    // 如果有id是修改
-    if (this.data.id) {
-      obj.id = this.data.id;
-    }
-    if (!obj.provinceId || !obj.cityId) {
-      wx.showModal({
-        title: "温馨提示",
-        content: "地区错误，请重新选择",
-        showCancel: false
-      });
-      return;
-    }
-    upsertAddressList({
-      data: obj,
-      success: function(res) {
-        console.log(res, "666");
-        // 返回地址列表
-        if (res.code === 0) {
-          var pages = getCurrentPages(); //获取当前页面js里面的pages里的所有信息。
-          var prevPage = pages[pages.length - 2];
-          if (prevPage && prevPage.route.match(/^pages\/shop-package\/address\/list\/list/)) {
-            wx.navigateBack({
-              delta: 1,fail:err=>{ wx.reLaunch({ url: "/pages/index/index" }); },
-            });
-          } else {
-            wx.navigateTo({
-              url: "/pages/shop-package/address/list/list"
-            });
-          }
-          // 再往前一个页面是结算页，如果修改的地址的Id和结算页的地址相同则修改
-          var prevPage2 = pages[pages.length - 3];
-          if (
-            prevPage2 &&
-            prevPage2.route.match(/^pages\/shop-package\/checkout\/checkout/)
-          ) {
-            console.log("同步结算页的地址", prevPage2.data.address, obj);
-            var prevAddress = prevPage2.data.address;
-            var data = res.data.data || res.data;
-            data.first = `${data.receiverName || ""}，${data.receiverMobileNo ||
-              ""}`;
-            data.second = `${data.provinceName || ""}${data.cityName ||
-              ""}${data.districtName || ""}${data.streetName || ""}`;
-            console.log(
-              ">>>>>>>>>",
-              data.first,
-              data.second,
-              prevAddress,
-              this.data.id
-            );
-            data.isDefault = data.defaultAddress == 1 ? false : true;
-            if (prevAddress.id === this.data.id) {
-              prevPage2.setData({
-                address: data
-              });
-            }
-          }
+    if(data.addressId){
+      API.serverAddressModify({
+        ...data
+      }).then(res=>{
+        if(res.respCode==="000000"){
+            wx.showToast({ title: '保存成功', image: '', duration: 1500, });
+            setTimeout(() => {
+              wx.navigateBack({ delta: 1 });
+            }, 2000);
+        }else{
+          wx.$showToast('填写的数据有问题')
         }
-      }
-    });
+      })
+    }else{
+      API.serverAddressAdd({
+        ...data
+      }).then(res=>{
+        if(res.respCode==="000000"){
+            wx.showToast({ title: '保存成功', image: '', duration: 1500, });
+            setTimeout(() => {
+              wx.navigateBack({ delta: 1 });
+            }, 2000);
+        }else{
+          wx.$showToast('填写的数据有问题')
+        }
+      })
+    }
+   
+  
   },
   nameInput: function(e) {
     this.setData({

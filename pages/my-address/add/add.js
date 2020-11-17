@@ -34,9 +34,7 @@ Page({
     qqmapsdk = new QQMapWX({
       key: 'W57BZ-JDB6X-XPA4H-Z76MI-73FF2-24BT4'
     });
-    wx.showLoading({
-      title: '加载中'
-    });
+    wx.showLoading({ title: '加载中' });
     //定位
     wx.getLocation({
       type: 'wgs84',

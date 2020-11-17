@@ -3,7 +3,8 @@ const app = getApp();
 const API = require('../../api/interface.js')
 var checkLogin = require("../../libs/checkLogin").checkLogin;
 import localStorage from "../../libs/localStorage";
-
+var EventBus = require("../../libs/event");
+var userInfo = {}
 Page({
   data: {
     isIPX: app.globalData.isIPX,
@@ -12,8 +13,42 @@ Page({
   //options(Object)
   onLoad: function(options) {
     wx.hideShareMenu();
+  
+   
+  },
+  defaultClick(e){
+    let id = e.currentTarget.dataset.id
+    console.log(22,id);
+    // wx.showToast({ title: '设置成功', });
+    API.serverAddressModify({
+      customerId:userInfo.customerId,
+      addressId:id,
+      isDefault:'1',
+    }).then(res=>{
+      if(res.respCode==="000000"){
+         this.getList()
+        wx.showToast({ title: '操作成功',  duration: 1500, });
+      }else{
+        wx.$showToast('填写的数据有问题')
+      }
+    })
+
+  },
+  removeClick(){
+    wx.showToast({ title: '删除成功', });
+  },
+  onShow: function() {
     checkLogin(_=>{
-      let userInfo =   localStorage.get().userInfo
+      this.getList()
+    },_=>{
+      wx.switchTab({
+        url: '/pages/index/index',
+      });
+        
+    })
+  },
+  getList(){
+     userInfo = localStorage.get().userInfo
       console.log(2222,userInfo);
       API.serverAddressList({
         customerId:userInfo.customerId
@@ -21,23 +56,6 @@ Page({
         console.log('地址列表',res);
         this.setData({list:res.resultList})
       })
-    },_=>{
-      wx.switchTab({
-        url: '/pages/index/index',
-      });
-        
-    })
-   
-  },
-  defaultClick(){
-    wx.showToast({ title: '设置成功', });
-
-  },
-  removeClick(){
-    wx.showToast({ title: '删除成功', });
-  },
-  onShow: function() {
-    
   },
   addressClick(e){
     let item = e.currentTarget.dataset.item

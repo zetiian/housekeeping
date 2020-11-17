@@ -1,126 +1,125 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": false,
-		"es6": true,
-		"enhance": true,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"uglifyFileName": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"bundle": true,
-		"useIsolateContext": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false,
-		"useMultiFrameRuntime": false,
-		"useApiHook": true,
-		"packNpmManually": false,
-		"packNpmRelationList": []
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.9.4",
-	"appid": "wx7b33222eba0ebf86",
-	"projectname": "houseKeep",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"gamePlugin": {
-			"list": []
-		},
-		"miniprogram": {
-			"list": [
-				{
-					"id": -1,
-					"name": "注册页",
-					"pathName": "pages/register/register",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/my/my",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "详情介绍页",
-					"pathName": "pages/service-detail/service-detail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的地址",
-					"pathName": "pages/my-address/my-address",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "订单列表",
-					"pathName": "pages/order/order",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "详情",
-					"pathName": "pages/order-detail/order-detail",
-					"query": "detail=%7B%22orderTime%22%3A%222020.09.10%20%E5%91%A8%E6%97%A5%2008%3A00%EF%BD%9E10%3A00%22%2C%22orderAddress%22%3A%22%E9%A6%99%E6%B1%9F%E5%9B%BD%E9%99%85%E9%87%91%E8%9E%8D%E4%B8%AD%E5%BF%83606%E5%AE%A4%22%2C%22orderName%22%3A%22%E4%BF%9D%E6%B4%81%E6%9C%8D%E5%8A%A1%22%2C%22orderStatus%22%3A%22%E6%B4%BE%E5%8D%95%E4%B8%AD%22%2C%22status%22%3A1%7D",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/order-checkout/order-checkout",
-					"pathName": "pages/order-checkout/order-checkout",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "新增或者添加地址",
-					"pathName": "pages/my-address/edit/edit",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": true,
+    "useIsolateContext": true,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.10.4",
+  "appid": "wx7b33222eba0ebf86",
+  "projectname": "houseKeep",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "注册页",
+          "pathName": "pages/register/register",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "详情介绍页",
+          "pathName": "pages/service-detail/service-detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的地址",
+          "pathName": "pages/my-address/my-address",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "订单列表",
+          "pathName": "pages/order/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "详情",
+          "pathName": "pages/order-detail/order-detail",
+          "query": "detail=%7B%22orderTime%22%3A%222020.09.10%20%E5%91%A8%E6%97%A5%2008%3A00%EF%BD%9E10%3A00%22%2C%22orderAddress%22%3A%22%E9%A6%99%E6%B1%9F%E5%9B%BD%E9%99%85%E9%87%91%E8%9E%8D%E4%B8%AD%E5%BF%83606%E5%AE%A4%22%2C%22orderName%22%3A%22%E4%BF%9D%E6%B4%81%E6%9C%8D%E5%8A%A1%22%2C%22orderStatus%22%3A%22%E6%B4%BE%E5%8D%95%E4%B8%AD%22%2C%22status%22%3A1%7D",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/order-checkout/order-checkout",
+          "pathName": "pages/order-checkout/order-checkout",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "新增或者添加地址",
+          "pathName": "pages/my-address/edit/edit",
+          "scene": null
+        }
+      ]
+    }
+  }
 }
