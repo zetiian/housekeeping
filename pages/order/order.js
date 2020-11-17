@@ -5,7 +5,7 @@ const API = require('../../api/interface.js')
 import localStorage from "../../libs/localStorage";
 var checkLogin = require('../../libs/checkLogin').checkLogin
 let timeTool = require('../../utils/common.js').timeTool
-var userRegister = {}
+var userInfo = {}
 Page({
   data: {
     isIPX: app.globalData.isIPX,
@@ -101,21 +101,25 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    userRegister = localStorage.get().userRegister
-    if(!userRegister || !userRegister.type){
-      wx.showToast({
+    userInfo = localStorage.get().userInfo
+
+    checkLogin(_=>{
+      console.log(3333,'已注册')
+    },_=>{
+      console.warn(4444,'未注册')
+       wx.showToast({
         title: '请先进行注册',
         icon: 'none',
         duration: 1500,
         mask: false,
       });
-      // setTimeout(() => {
-      //   wx.reLaunch({
-      //     url: '/pages/my/my',
-      //   });
-      // }, 1500);
-    
-    }
+      setTimeout(() => {
+        wx.reLaunch({
+          url: '/pages/my/my',
+        });
+      }, 1500);
+    })
+ 
     this.setData({newList:this.data.list})
   },
 

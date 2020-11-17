@@ -4,7 +4,6 @@ const API = require('../../api/interface.js')
 import localStorage from "../../libs/localStorage";
 var checkLogin = require('../../libs/checkLogin').checkLogin
 let timeTool = require('../../utils/common.js').timeTool
-var userRegister = {}
 Page({
   data: {
     isIPX: app.globalData.isIPX,
@@ -12,13 +11,13 @@ Page({
     bottomHeight: app.globalData.isIPX ? 85 : 65,
     isRegister: '',
     account: {},
-    userRegister: {},
-
+    userInfo:{}
   },
   onUnload(e) {},
   onLoad(options) {
-    userRegister = localStorage.get().userRegister||{}
-    this.setData({userRegister})
+    let isRegister = localStorage.get().isRegister||''
+    
+    this.setData({isRegister})
     //   wx.hideShareMenu();
     //   checkLogin(_=>{
     //     userInfo = localStorage.get().userInfo||{}
@@ -50,7 +49,12 @@ Page({
         _active: "my"
       });
     }
-
+    checkLogin(_=>{
+      let userInfo = localStorage.get().userInfo||{}
+      this.setData({userInfo})
+    },_=>{
+      
+    })
   },
   getphonenumber(e) {
     console.log(2222, e);

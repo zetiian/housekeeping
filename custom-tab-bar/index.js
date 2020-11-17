@@ -1,6 +1,6 @@
 const app = getApp();
 import localStorage from "../libs/localStorage";
-var userRegister  = {}
+var userInfo  = {}
 Component({
   lifetimes: {
     attached: function() {
@@ -22,16 +22,16 @@ Component({
   },
   observers: {
     _active(v) {
-      userRegister = localStorage.get().userRegister||{}
+      userInfo = localStorage.get().userInfo||{}
       let page = getCurrentPages()[0]
       console.log(1111,page.route);
-      if(userRegister.type===2 && page.route ==="pages/index/index" ){
+      if(userInfo.userType==='1' && page.route ==="pages/index/index" ){
         wx.switchTab({ url:'/pages/order/order' });
       }
       setTimeout(_ => {
         this.setData({
           flage: !this.data.flage,
-          isService: (userRegister.type===2||false)
+          isService: (userInfo.userType==='1'||false)
         });
         // this.getTabRedPointDisp();
       }, 100);

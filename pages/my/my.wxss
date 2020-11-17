@@ -81,7 +81,7 @@ page{
   margin-left: 10rpx;
 }
 .my-ticket-item:nth-last-of-type(1){
-  border-bottom: none;
+  /* border-bottom: none; */
 }
 .my-ticket-left-icon{
   width: 38rpx;
