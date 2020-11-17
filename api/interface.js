@@ -69,3 +69,6 @@ exports.serverAppointList = function (parameter) {
 exports.serverAppointModify = function (parameter) {
   return formatParams(parameter,'/acc/serverAppointModify')
 }
+exports.monthServerData = function (parameter) {
+  return formatParams(parameter,'/acc/monthServerData')
+}

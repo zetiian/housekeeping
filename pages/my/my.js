@@ -10,7 +10,7 @@ Page({
     systemInfo: app.globalData.systemInfo,
     bottomHeight: app.globalData.isIPX ? 85 : 65,
     isRegister: '',
-    account: {},
+    userData: {},
     userInfo:{}
   },
   onUnload(e) {},
@@ -52,6 +52,22 @@ Page({
     checkLogin(_=>{
       let userInfo = localStorage.get().userInfo||{}
       this.setData({userInfo})
+      if(userInfo.userType==='1'){
+        API.monthServerData({
+          customerId:userInfo.customerId
+        }).then(res=>{
+          console.log(345,res);
+          if(res.respCode==='000000'){
+            this.setData({
+              userData:{
+                waitNum:res.waitNum,
+                finishNum:res.finishNum,
+              }
+            })
+          }
+        })
+      }
+   
     },_=>{
       
     })

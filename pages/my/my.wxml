@@ -20,15 +20,15 @@
 
    
   </view>
-  <view class="my-item app-flex app-flex-column" wx:if="{{isRegister==='yes' && userInfo.userType==='0'}}">
+  <view class="my-item app-flex app-flex-column" wx:if="{{isRegister==='yes' && userInfo.userType==='1'}}">
     <view > 本月数据 </view>
     <view class="app-flex app-flex-between">
        <view class="app-flex app-flex-column sercice-data">
-         <view>20</view>
+         <view>{{userData.waitNum}}</view>
          <view>待服务</view>
        </view>
        <view class="app-flex app-flex-column sercice-data">
-          <view>30</view>
+          <view>{{userData.finishNum}}</view>
          <view>已完成</view>
        </view>
     </view>
