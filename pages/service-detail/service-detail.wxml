@@ -1,11 +1,12 @@
 
 <import src="../../plugins/wxParser/wxParse.wxml" />
 <nav  title="{{page.serverName}}"></nav>
-<swiper class="app-swiper " autoplay="{{false}}" indicator-dots="{{false}}" snap-to-edge="{{true}}" circular="{{true}}">
-  <swiper-item class="app-swiper-item index-swiper-item item-1" wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerLink" data-item="{{item}}" style="background-image: url({{item}});"></swiper-item>
-</swiper>
+<view class="app-swiper " >
+  <view class="app-swiper-item index-swiper-item item-1" wx:key="index"  style="background-image: url({{detail.topImage}});"></view>
+</view>
 <view class="detail">
-   <template is="wxParse" data="{{wxParseData:htmlContent.nodes}}"></template>
+  <image class="detail-image" src="{{detail.takeImage}}" mode="widthFix"/>
+  <image class="detail-image" src="{{detail.serverContentImage}}" mode="widthFix"/>
 </view>
   
  <view class="app-bottom-btn {{isIPX?'ipx':''}}">

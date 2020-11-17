@@ -8,4 +8,8 @@
   }
   .detail{
     padding-bottom: 200rpx;
+    width: 100%;
+  }
+  .detail-image{
+    width: 100%;
   }

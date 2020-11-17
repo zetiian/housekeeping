@@ -37,3 +37,7 @@ exports.serverAddressAdd = function (parameter) {
 exports.serverAddressModify = function (parameter) {
   return formatParams(parameter,'/acc/serverAddressModify')
 }
+// 服务详情
+exports.serverPageInfo = function (parameter) {
+  return formatParams(parameter,'/marketing/serverPageInfo')
+}
