@@ -4,16 +4,18 @@
   <swiper-item class="app-swiper-item index-swiper-item item-1" wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerLink" data-item="{{item}}" style="background-image: url({{item}});"></swiper-item>
 </swiper>
 <view class="app-flex service-box">
-  <view class="service-item" catchtap="goDetail" data-title="保洁服务">
-    <view class="service-name">保洁服务</view>
-    <view class="service-img"></view>
+  <view class="service-item" catchtap="goDetail" data-page="{{item}}" wx:for="{{serviceList}}" wx:key="index">
+    <view class="service-name">
+      <view>
+        {{item.serverName}}
+      </view>
+      <view class="service-intro" wx:if="{{item.serverIntro}}">{{item.serverIntro}}</view>
+    </view>
+    <view class="service-img a-{{item.serverType}}"></view>
   </view>
-  <view class="service-item"  catchtap="goDetail" data-title="保姆服务">
-    <view class="service-name">保姆服务</view>
-    <view class="service-img"></view>
-  </view>
+ 
 </view>
-<view class="app-flex service-box">
+<!-- <view class="app-flex service-box">
   <view class="service-item"  catchtap="goDetail" data-title="月嫂服务">
     <view class="service-name">月嫂服务</view>
     <view class="service-img"></view>
@@ -22,7 +24,7 @@
     <view class="service-name">病患照顾</view>
     <view class="service-img"></view>
   </view>
-</view>
+</view> -->
 
 
 

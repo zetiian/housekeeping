@@ -1,6 +1,6 @@
 
 <import src="../../plugins/wxParser/wxParse.wxml" />
-<nav  title="{{title}}"></nav>
+<nav  title="{{page.serverName}}"></nav>
 <swiper class="app-swiper " autoplay="{{false}}" indicator-dots="{{false}}" snap-to-edge="{{true}}" circular="{{true}}">
   <swiper-item class="app-swiper-item index-swiper-item item-1" wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerLink" data-item="{{item}}" style="background-image: url({{item}});"></swiper-item>
 </swiper>
@@ -9,9 +9,14 @@
 </view>
   
  <view class="app-bottom-btn {{isIPX?'ipx':''}}">
-      <van-button round  catchtap="goBuyNow" custom-class="app-btn" >
+      <van-button round  catchtap="goBuyNow" custom-class="app-btn" wx:if="{{page.serverType!=='01'}}">
        <view class="btn-text">
          立即预约
+       </view>
+     </van-button>
+      <van-button round  catchtap="goBuyNow" custom-class="app-btn" wx:if="{{page.serverType==='01'}}">
+       <view class="btn-text">
+         立即购买
        </view>
      </van-button>
  </view>

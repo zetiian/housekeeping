@@ -15,11 +15,7 @@ const isExpired = require("../../utils/common.js").isExpired;
 Page({
   data: {
     userInfo: {},
-    failImg: img.failImg,
-    baseImg: img.baseImg,
-    waitImg: img.waitImg,
-    qrcode: "",
-    account: null,
+
     isRegister: "",
     isIPX: app.globalData.isIPX,
     systemInfo: app.globalData.systemInfo,
@@ -27,10 +23,14 @@ Page({
     isShowAd: false,
     adData: {},
     bannerList: [],
-    noticList: [],
-    announ: "",
-    animateTime: 0,
-    widthLeft: 0
+    serviceList:[
+      // 01：保洁服务 02：保姆 03：月嫂服务 04：护工
+      { serverName:'保洁服务', serverType:'01' },
+      { serverName:'保姆服务', serverType:'02' },
+      { serverName:'月嫂服务', serverType:'03' },
+      { serverName:'病患照顾', serverType:'04' ,serverIntro:'专业护工'},
+    ]
+ 
   },
   getNoTiceList() {
     API.getNoticeList({})
@@ -51,9 +51,9 @@ Page({
     wx.navigateTo({ url: '/pages/demo/demo', });
   },
   goDetail(e){
-    let title = e.currentTarget.dataset.title;
+    let page = e.currentTarget.dataset.page;
     wx.navigateTo({
-      url: `/pages/service-detail/service-detail?title=${title}`
+      url: `/pages/service-detail/service-detail?page=${JSON.stringify(page)}`
     });
   },
   goRegist() {

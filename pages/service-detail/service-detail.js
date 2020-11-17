@@ -3,7 +3,7 @@ var app = getApp();
 Page({
   data: {
     isIPX: app.globalData.isIPX,
-    title:'',
+    page:'',
     detail:'',
     bannerList:[]
   },
@@ -18,7 +18,7 @@ Page({
       });
     }
     this.setData({
-      title:op.title
+      page:JSON.parse(op.page)
     })
   },
 
