@@ -5,7 +5,7 @@
       <view class="app-flex app-flex-column question-list">
         <view class="question-item app-flex app-flex-between" wx:for="{{resultList}}" wx:key="index" catchtap="choose" data-item="{{item}}">
           <view class="question-item-name"> {{item.typeName}} </view>
-          <view  class="app-choose-icon {{currentType===item.typeValue?'active':''}}"></view>
+          <view  class="app-choose-icon {{currentItem.typeValue===item.typeValue?'active':''}}"></view>
         </view>
       </view>
       

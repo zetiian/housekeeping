@@ -5,6 +5,7 @@ import localStorage from "../../libs/localStorage";
 var  userInfo  = {}
 Page({
   data: {
+    
     resultList:[
       {
         typeName:'时间、地址填写错误',
@@ -23,45 +24,46 @@ Page({
         typeValue:4,
       },
     ],
-    currentType:'',
+    currentItem:{},
     isIPX:app.globalData.isIPX,
+    detail:{}
   },
   onShow(e) {
    
   },
-  onLoad(options) {
+  onLoad(op) {
     wx.hideShareMenu();
- 
+    userInfo = localStorage.get().userInfo
+    this.setData({
+      detail:{
+       customerId:userInfo.customerId,
+       serverOrderId:op.id,
+       actionType:'03',
+      },
+    })
   },
   choose(e){
     let item = e.currentTarget.dataset.item
-    this.setData({currentType:item.typeValue})
+    this.setData({currentItem:item})
   },
+
   ensureRefund() {
-    wx.showToast({ title: '提交成功', });
-    setTimeout(() => {
-      wx.reLaunch({
-        url: '/pages/order/order',
-      });
-    }, 1500);
-    return
-    API.submitService({
-      token:userInfo.token,
-      customerId:userInfo.customerId,
-      questionId:`${userInfo.customerId}_${util.getCurrentTimeStr('yymmddhhiiss')}`,
-      questionTime:util.getCurrentTimeStr('yymmdd'),
-      questionType:this.data.currentType
-    }).then(res=>{
-      if(res.respCode==='000000'){
-        wx.showToast({ title: '反馈成功', });
-        setTimeout(() => {
-          this.setData({currentType:''})
-          wx.navigateBack({ delta: 1 });
-        }, 1500);
-      }
+    let data = {
+      ...this.data.detail,
+      reason:this.data.currentItem.typeName,
+    }
+    util.changeOrderStatus(data).then(res=>{
+      console.log(11111,res);
+      wx.showToast({ title: '提交成功' });
+      setTimeout(() => {
+        wx.reLaunch({
+          url: '/pages/order/order',
+        });
+      }, 1500);
+    }).catch(err=>{
+      console.log(2222,err);
+      wx.$showToast(err)
     })
-    
-    
 
   },
 });

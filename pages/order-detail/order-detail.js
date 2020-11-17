@@ -63,9 +63,10 @@ Page({
     console.log(111);
     
   },
-  goCancel(){
+  goCancel(e){
+    let orderid = e.currentTarget.dataset.orderid
     wx.navigateTo({
-      url: '/pages/order-detail/cancel',
+      url: '/pages/order-detail/cancel?id='+orderid,
     });
   },
   onReachBottom: function () {

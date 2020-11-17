@@ -166,8 +166,9 @@ Page({
     this.appoint(data).then(id=>{
       wx.showToast({ title: '预约成功，待系统派单后即可支付', });
       setTimeout(() => {
+     
         wx.navigateTo({
-          url: '/pages/order-detail/order-detail?id='+id,
+          url: `/pages/order-detail/order-detail?detail=${encodeURIComponent(JSON.stringify({serverOrderId:id}))}`,
         });
       }, 1000);
         
@@ -199,7 +200,7 @@ Page({
             wx.showToast({ title: '预约成功！', });
             setTimeout(() => {
               wx.navigateTo({
-                url: '/pages/order-detail/order-detail?id='+res.serverOrderId,
+                url: `/pages/order-detail/order-detail?detail=${encodeURIComponent(JSON.stringify({serverOrderId:res.serverOrderId}))}`,
               });
             }, 1000);
           }
