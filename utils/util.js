@@ -2,7 +2,7 @@
  * @Author: Jericho Ding 
  * @Date: 2020-07-23 15:31:49 
  * @Last Modified by: 丁希虎
- * @Last Modified time: 2020-11-16 18:34:25
+ * @Last Modified time: 2020-11-17 21:24:05
  */
 import localStorage from "../libs/localStorage";
 const API = require('../api/interface.js')
@@ -202,3 +202,14 @@ exports.getPure = function(str) {
         // var dds=dd;//dds为得到后的内容
         // console.log(dds);
 }
+exports.changeOrderStatus = function(str) {
+  return new Promise((resolve,reject)=>{
+    API.serverAppointModify({
+      customerId:userInfo.customerId,
+      serverOrderId:data.serverOrderId,
+      actionType:data.actionType,
+      reason:data.reason,//取消预约必填
+    })
+  })
+}
+

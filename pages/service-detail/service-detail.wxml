@@ -5,8 +5,8 @@
   <view class="app-swiper-item index-swiper-item item-1" wx:key="index"  style="background-image: url({{detail.topImage}});"></view>
 </view>
 <view class="detail">
-  <image class="detail-image" src="{{detail.takeImage}}" mode="widthFix"/>
-  <image class="detail-image" src="{{detail.serverContentImage}}" mode="widthFix"/>
+  <image class="detail-image" wx:if="{{detail.takeImage}}" src="{{detail.takeImage}}" mode="widthFix"/>
+  <image class="detail-image" wx:if="{{detail.serverContentImage}}"  src="{{detail.serverContentImage}}" mode="widthFix"/>
 </view>
   
  <view class="app-bottom-btn {{isIPX?'ipx':''}}">

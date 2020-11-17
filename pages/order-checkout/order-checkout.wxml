@@ -19,7 +19,7 @@
         <view class="app-flex app-flex-center" style="justify-content:center;"> 
           <text > 请选择服务时长 </text>
           <text style="margin-left:10rpx;font-size:18rpx;">
-          {{detail.serverPrice}}每小时
+          {{Number(detail.serverPrice)/100}}元每小时
         </text>
           </view>
         <view class="app-flex app-flex-center app-flex-between" style="width:200rpx; font-size:28rpx;"> 

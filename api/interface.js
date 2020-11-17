@@ -61,3 +61,11 @@ exports.serverAppoint = function (parameter) {
 exports.pay = function (parameter) {
   return formatParams(parameter,'/pay/pay')
 }
+//  订单列表
+exports.serverAppointList = function (parameter) {
+  return formatParams(parameter,'/acc/serverAppointInfo')
+}
+//  订单列表
+exports.serverAppointModify = function (parameter) {
+  return formatParams(parameter,'/acc/serverAppointModify')
+}
