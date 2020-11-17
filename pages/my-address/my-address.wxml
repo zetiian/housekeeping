@@ -1,41 +1,37 @@
-
 <nav title="我的地址"></nav>
-
-<scroll-view class="container app-flex app-flex-column my-address" height="90vh">
- 
+<scroll-view class="container app-flex app-flex-column my-address" height="90vh" wx:if="{{list.length}}">
   <van-swipe-cell right-width="{{ 160 }}" left-width="{{ 0 }}" wx:for="{{list}}" wx:key="index">
-  
-  <van-cell-group >
-    <van-cell title="1" value="2" >
-      <view slot="left">
-        <view class="address-list-item">
-              <view class="address-list-text-con" bindtap="addressClick" data-item="{{item}}">
-                  <view class="address-list-text-1">
-                    <view class="address-list-text-11">{{item.second}}{{item.detailAddress}}</view>
-                    <view wx:if="{{item.isDefault}}" class="address-list-sptext">默认</view>
-                  </view>
-                  <view  class="address-list-text-2">{{item.name}} {{item.phone}}</view>
+    <van-cell-group>
+      <van-cell title="1" value="2">
+        <view slot="left">
+          <view class="address-list-item">
+            <view class="address-list-text-con" bindtap="addressClick" data-item="{{item}}">
+              <view class="address-list-text-1">
+                <view class="address-list-text-11">{{item.address}}</view>
+                <view wx:if="{{item.isDefault===1}}" class="address-list-sptext">默认</view>
               </view>
-              <view class="address-list-icon-con" catchtap="toEdit" data-item="{{item}}">
-                  <view class="address-list-icon"></view>
-              </view>
+              <view class="address-list-text-2">{{item.userName}} {{item.phone}}</view>
             </view>
-  </view>
-    </van-cell>
-  </van-cell-group>
-  <view slot="right" class="app-flex">
-    <view class="address-right-default" data-id="{{item.id}}" bindtap="defaultClick">设为默认</view>
-    <view class="address-right-remove" data-id="{{item.id}}" bindtap="removeClick">删除</view>
-  </view>
-   
-</van-swipe-cell>
-    
-
+            <view class="address-list-icon-con" catchtap="toEdit" data-item="{{item}}">
+              <view class="address-list-icon"></view>
+            </view>
+          </view>
+        </view>
+      </van-cell>
+    </van-cell-group>
+    <view slot="right" class="app-flex">
+      <view class="address-right-default" data-id="{{item.id}}" bindtap="defaultClick">设为默认</view>
+      <view class="address-right-remove" data-id="{{item.id}}" bindtap="removeClick">删除</view>
+    </view>
+  </van-swipe-cell>
+ 
 </scroll-view>
-<view class="app-bottom-btn {{isIPX?'ipx':''}}" >
-      <van-button round  catchtap="toCreate" custom-class="app-btn" >
-       <view class="btn-text">
-         新增地址
-       </view>
-     </van-button>
- </view>
+ <view class="app-blank app-flex app-flex-column" wx:if="{{!list.length}}">
+    <image class="app-blank-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAPKADAAQAAAABAAAAPAAAAACL3+lcAAAFyklEQVRoBe1aW2hcRRie/+zm1pR2SRCljUiFPhQvkew1mGZjVLD1gkVf9EV9qD74YIvi7aXti5eAti8iWhH7UhEiFEpSQUU3sWSzFyFKKLUoiDUoNLVJTXNp9ozff+Iup7Ozt2ST7NnseTkz/+XM980/M/85Z4bEGl6JRKLOXPz3DRL0DDcrhTxhuDe/7fP5rq8VDFqrhi5Eo1uuyLkvpRAP2NsEgG881PjEzlBo2i5frfKaEB6LRtsW5PwgInqXjggi/nM9NextD4Uu6vTllK064WR06O6UNAcBensB4H+6yNjrDXX/VMBuRWpjRd4FnOPR7x9MCTkMs0Jk+Unb2ZZ9Cjx2RepVIxyLDj8npRgUUm4pGqFlSwPsW7RPiYarQjg+EjksZOpTYHGXiAf9I+vY13pGqc5F2Jd1Dltp5/rMcSQcK+3o2iciiUbfZB1W7LdAMA8GOmHUNe8vZ9rK05gObm5ZrrRj9wDZBUHGs/7g7s9ZHh8dfkpI8zOQrrfb2csAWNa0VRbChdIOE0Dq+Ue6aF8g0B2xE4rFhsJkmqcw3z12ub1czrS1YsLFpB008rshaI+3M3zOTiRdTo5EdplCnsEQvy0t09zLkrZWRJhTiBTUn28lxjBObjKaHrkjEPhLQyIjGo/FbrmWmh3Ay0lHRqgWiKZJyCf9oZ6vVVWx9WWv0kupgwYKkB2ob/KEC5FlsGxTv8nTjQ7ilxT9VYa0tawIc8pAJA7pUS1JAfwjX7D7RdxT+exUHRYwV2J06APcX1B19jrm9RF/Z/iwXVZMOS/hsbGx5oXZqYdImF5T0jYkklYi4cEC05X/4TQLu+9gg2m5rIvQxn1wb8rnjTZ+gN0VLImTBskJKYxkfdPWr9rb22dy+WkJW6uumD+CXn4ajo25nCtUPodRdbJeNBzSfYxkEY5HI8+j144V6t0KJWuDZY2yA/5Q+GObEOnRdoHsUUT1gE3k+CKifQykD6aJZFbpWDTySrWRZZLMibmlCVsRjseHAiIlR6DMdEDa4MY7XRa8nFTSJbF0CdmSDxKibAoXdfr93bGlr5lF2Yc0k4MsfWuQ6GumxuSuYHAy34PXS3dudLR1Rs4hk4hXQf5+FQcHkhZFH+Q9lBgZDpoiFVWNuI4eeNkbCh9FD1VWVHVgIQMxSkYjB00h3tOZGMIVMkwyH9cpkdtO+jp73ncKWebAWBkzY9dxYq7I16JXVfKYx3foS6rcKXXGzhxUvMyV522bqkD9PD66L2nkjhD9j/28BmybgcXq5myFHMuWOU2SzYG5coRdKhXM/XlV5rR6Dg4uJryhrhrhag93LcK1CFdZD5S0FTJ1+Y8zWO536/oAb3XDW1tu3aPTsWy9fFU8JRHGFwT+Mclm9SFcX9LpNEuy9fJVEdUWLbVHqq1ei3C1RVTls+EiXNIqjT8JX+C/T0LtNasuxa9aeUa4Xr4ZAFahJMKelrYPb3QvvrZevirCDTeka4TVIVBt9VqEqy2iKp+NF2FsRWl2y3W/btW+qvR6Ngfmiv/SNKFCx/kJrypzWl3HgbliY1D8opLBD+ubkqORXlXulDpjZw4qXuaK82LitKrgekqKT8bHxzfrdJUsY8yMXYsRXI1G2XAK78izWQZS7rg2fSkSj5+9M0tXoQLGypixb7ojGyLNMldEmQ95Rt6Rpnwt28jaglzAnv8AGTIB4wvYW66ovWJsEvLm9U5pkg+L0sPYI9YeVCWD3vUHw69bhHHsd6tcnPkRxrfrSDtdhq3T38jd3IFdxSkrD3OhznA9hnhedTq5bPx0lbkxR9ZlXjzuCXSNuw1XL5bzrDSV/RBnSJgLc2JuacQZwizoCHYlqM6aC/1pA6feMZ/7mQtzsnOw5rBdkC7zUSa5aO5H2noUP501m+Zpywq6k/gbWE+T2zjOR5R0yHISThvzkZ9k8mwbjv1sk2S2YpgU9En7rsUdLxiSpDEp3WLC6733ou5shx3Hf1PkKK9upu80AAAAAElFTkSuQmCC" mode="aspectFill" />
+    <view>你还没有地址信息，去添加吧</view>
+  </view>
+<view class="app-bottom-btn {{isIPX?'ipx':''}}">
+  <van-button round catchtap="toCreate" custom-class="app-btn">
+    <view class="btn-text">新增地址</view>
+  </van-button>
+</view>

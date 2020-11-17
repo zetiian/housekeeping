@@ -1,33 +1,33 @@
 import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 const app = getApp();
+const API = require('../../api/interface.js')
+var checkLogin = require("../../libs/checkLogin").checkLogin;
+import localStorage from "../../libs/localStorage";
 
-
-//Page Object
 Page({
   data: {
     isIPX: app.globalData.isIPX,
-    list:[
-      {
-        id:1,
-        phone:'13311111111',
-        name:'Jerry',
-        second:'广东省 广州市',
-        detailAddress:'海珠大厦',
-        isDefault:true,
-      },
-      {
-        id:2,
-        phone:'1334444444444',
-        name:'Tom',
-        second:'广东省 深圳市',
-        detailAddress:'龙湾一号',
-        isDefault:false,
-      },
-    ]
+    list:[ ]
   },
   //options(Object)
   onLoad: function(options) {
     wx.hideShareMenu();
+    checkLogin(_=>{
+      let userInfo =   localStorage.get().userInfo
+      console.log(2222,userInfo);
+      API.serverAddressList({
+        customerId:userInfo.customerId
+      }).then(res=>{
+        console.log('地址列表',res);
+        this.setData({list:res.resultList})
+      })
+    },_=>{
+      wx.switchTab({
+        url: '/pages/index/index',
+      });
+        
+    })
+   
   },
   defaultClick(){
     wx.showToast({ title: '设置成功', });
