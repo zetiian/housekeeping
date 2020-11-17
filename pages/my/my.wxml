@@ -16,11 +16,11 @@
   <view class=" app-flex app-flex-column my-card-1" wx:if="{{isRegister==='yes'}}">
     <open-data type="userAvatarUrl" class="my-avatar"></open-data>
     <open-data type="userNickName" class="my-nickname"></open-data>
-     <base-button class="tag" size="mini" type="plain tag" wx:if="{{isRegister && isRegister==='yes'}}">{{userInfo.userType==='0'?'雇主':'服务'}}</base-button>
+     <base-button class="tag" size="mini" type="plain tag" wx:if="{{isRegister && isRegister==='yes' && userInfo.userType==='0'}}">{{userInfo.userType==='0'?'雇主':'服务'}}</base-button>
 
    
   </view>
-  <view class="my-item app-flex app-flex-column" wx:if="{{userRegister && userRegister.type===2}}">
+  <view class="my-item app-flex app-flex-column" wx:if="{{isRegister==='yes' && userInfo.userType==='0'}}">
     <view > 本月数据 </view>
     <view class="app-flex app-flex-between">
        <view class="app-flex app-flex-column sercice-data">
@@ -36,7 +36,7 @@
   </view>
   <!-- 菜单 -->
   <view class=" app-flex app-flex-column my-ticket">
-     <view class="app-flex app-flex-between my-ticket-item" catchtap="goAddress" wx:if="{{userRegister.type}}">
+     <view class="app-flex app-flex-between my-ticket-item" catchtap="goAddress" wx:if="{{ userInfo && userInfo.userType==='0'}}">
       <view class="my-ticket-item-name app-flex">
         <view class="my-ticket-left-icon my-address"></view>
         <view>我的地址</view>

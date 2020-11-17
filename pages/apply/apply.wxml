@@ -37,6 +37,7 @@
           input-align="right"
           label="联系电话"
           type="phone"
+          maxlength="11"
           placeholder="请输入联系电话"
         />
        <van-field

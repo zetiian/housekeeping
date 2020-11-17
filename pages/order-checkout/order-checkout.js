@@ -164,7 +164,7 @@ Page({
       return wx.$showToast('请选择时间')
     }
     this.appoint(data).then(id=>{
-      wx.showToast({ title: '预约成功，待系统派单后即可支付', });
+      wx.$showToast('预约成功，待系统派单后即可支付');
       setTimeout(() => {
      
         wx.navigateTo({
