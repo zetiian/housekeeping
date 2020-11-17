@@ -106,7 +106,10 @@ Page({
 
     checkLogin(_=>{
       console.log(3333,'已注册')
-      this.getList()
+      let data = {
+        customerId:userInfo.customerId,
+      }
+      this.getList(data)
     },_=>{
       console.warn(4444,'未注册')
        wx.showToast({
@@ -123,10 +126,8 @@ Page({
     })
  
   },
-  getList(){
-    API.serverAppointList({
-      customerId:userInfo.customerId
-    }).then(res=>{
+  getList(data){
+    API.serverAppointList(data).then(res=>{
       let list = res.resultList
       list.forEach(el=>{
         el.orderStatus = stateList[el.state]
@@ -138,7 +139,15 @@ Page({
   
   select(e){
     let nav = e.currentTarget.dataset.nav
-    console.log(nav);
+    let data = {
+      customerId:userInfo.customerId,
+      state:nav,
+    }
+    this.setData({nav})
+    if(nav===10) {
+      delete data.state
+    }
+    this.getList(data)
   },
   goDetail(e){
     let item = e.currentTarget.dataset.item
@@ -148,12 +157,7 @@ Page({
     
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
 
-  },
 
   /**
    * 页面上拉触底事件的处理函数
