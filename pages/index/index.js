@@ -66,6 +66,13 @@ Page({
     });
   },
   onLoad: function(options) {
+    API.adList({
+      adType:'01',
+    }).then(res=>{
+      console.log(3345,res);
+      
+      this.setData({bannerList:res.resultList})
+    })
     // checkLogin(
     //   _ => {
     //     util.getAccountInfo().then(resolve => {
@@ -118,7 +125,7 @@ Page({
       'https://azure-upms.obs.cn-south-1.myhuaweicloud.com/hycan-huaweicloud%2FbackendUpload%2F20200608154641356-ac_pic_jrfa%403x.png',
       'https://azure-upms.obs.cn-south-1.myhuaweicloud.com/hycan-huaweicloud%2FbackendUpload%2F20200724104417130-yysj_banner_yzt%403x.png',
     ]
-    this.setData({bannerList})
+   
     // userInfo = localStorage.get().userInfo;
  
     // this.getUserData()
@@ -154,6 +161,7 @@ Page({
     }
   },
   goBannerLink(e) {
+    return
     let item = e.currentTarget.dataset.item;
     if(item.adUrl && item.adUrl.indexOf('http')>=0){
       wx.navigateTo({

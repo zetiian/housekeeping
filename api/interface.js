@@ -41,3 +41,7 @@ exports.serverAddressModify = function (parameter) {
 exports.serverPageInfo = function (parameter) {
   return formatParams(parameter,'/marketing/serverPageInfo')
 }
+// 首页详列表
+exports.adList = function (parameter) {
+  return formatParams(parameter,'/marketing/adList')
+}

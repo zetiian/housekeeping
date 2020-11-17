@@ -1,7 +1,7 @@
 <!-- <view class="app-main-bg"></view> -->
 <nav leftBtnType="none" title="家政平台"></nav>
 <swiper class="app-swiper " autoplay="{{true}}" indicator-dots="{{false}}" snap-to-edge="{{true}}" circular="{{true}}">
-  <swiper-item class="app-swiper-item index-swiper-item item-1" wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerLink" data-item="{{item}}" style="background-image: url({{item}});"></swiper-item>
+  <swiper-item class="app-swiper-item index-swiper-item item-1" wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerLink" data-item="{{item}}" style="background-image: url({{item.adTitileImage}});"></swiper-item>
 </swiper>
 <view class="app-flex service-box">
   <view class="service-item" catchtap="goDetail" data-page="{{item}}" wx:for="{{serviceList}}" wx:key="index">
