@@ -1,32 +1,34 @@
 // var upsertAddressList = require("../../../../api/address").upsertAddressList;
 const app = getApp();
+const API = require('../../../api/interface.js')
+var checkLogin = require("../../../libs/checkLogin").checkLogin;
+import localStorage from "../../../libs/localStorage";
 Page({
   data: {
     isIPX: app.globalData.isIPX,
     title: "编辑地址",
+ 
     disabled:true,
     form: {
       id:'',
-      name:'',
+      userName:'',
       phone:'',
-      second:'',
-      detailAddress:'',
+      address:'',
       isDefault:false,
     },
    
   },
 
   onLoad: function(options) {
-   
+    let userInfo =   localStorage.get().userInfo
     if (options.params !== undefined) {
       var _data = JSON.parse(decodeURIComponent(options.params));
       console.log(112,_data)
       this.setData({
         ["form.id"]: _data.id,
         ["form.phone"]: _data.phone || "",
-        ["form.name"]: _data.name || "",
-        ["form.second"]: _data.second || "",
-        ["form.detailAddress"]: _data.detailAddress || "",
+        ["form.userName"]: _data.userName || "",
+        ["form.address"]: _data.address || "",
         ["form.isDefault"]: _data.isDefault,
       });
       // 加载地址数据
@@ -38,10 +40,10 @@ Page({
     this.updateDisabled();
   },
   onClickIcon(){
-    wx.showToast({
-      title: '前往地址选择器，后续完善',
-      icon: 'none',
-    });
+   wx.navigateTo({
+     url:'../add/add'
+   });
+     
       
   },
   fmtAreaData: function(data) {
@@ -78,11 +80,7 @@ Page({
     // 获取url参数
   },
   save: function() {
-    wx.showToast({
-      title: '保存成功',
-      image: '',
-      duration: 1500,
-    });
+    wx.showToast({ title: '保存成功', image: '', duration: 1500, });
     setTimeout(() => {
       wx.navigateBack({ delta: 1 });
     }, 2000);
@@ -92,9 +90,9 @@ Page({
     if (!this.validInput()) return;
     var curAreaData = this.data.curAreaData;
     var obj = {};
-    obj.receiverName = this.data.form.name;
+    obj.receiverName = this.data.form.userName;
     obj.receiverMobileNo = this.data.form.mobile;
-    obj.detailAddress = this.data.form.detail;
+    obj.address = this.data.form.detail;
     obj.defaultAddress = this.data.form.useDefault ? 0 : 1;
 
     if (curAreaData[0]) {
@@ -175,7 +173,7 @@ Page({
   },
   nameInput: function(e) {
     this.setData({
-      ["form.name"]: e.detail.value
+      ["form.userName"]: e.detail.value
     });
     this.updateDisabled();
   },
@@ -224,7 +222,7 @@ Page({
     var disabled = true;
     if (this.data.form) {
       var form = this.data.form;
-      if (form.name && form.mobile && form.area && form.detail) {
+      if (form.userName && form.mobile && form.area && form.detail) {
         disabled = false;
       }
     }
@@ -235,8 +233,8 @@ Page({
   // 提交前的输入验证，返回true才能继续提交
   validInput: function() {
     var form = this.data.form;
-    // name
-    if (form.name.length > 16) {
+    // userName
+    if (form.userName.length > 16) {
       wx.showModal({
         title: "提示",
         content: "收货人不能超过16个字",

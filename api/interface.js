@@ -29,3 +29,7 @@ exports.getUserInfo = function (parameter) {
 exports.serverAddressList = function (parameter) {
   return formatParams(parameter,'/acc/serverAddressList')
 }
+//地址列表接口
+exports.serverAddressAdd = function (parameter) {
+  return formatParams(parameter,'/acc/serverAddressAdd')
+}

@@ -46,6 +46,14 @@
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
 		"plugin": {
 			"list": []
 		},
@@ -107,14 +115,9 @@
 					"scene": null
 				},
 				{
-					"name": "添加地址",
-					"pathName": "pages/my-address/add/add",
-					"query": "",
-					"scene": null
-				},
-				{
-					"name": "提交页面",
-					"pathName": "pages/apply/apply",
+					"id": -1,
+					"name": "新增或者添加地址",
+					"pathName": "pages/my-address/edit/edit",
 					"scene": null
 				}
 			]
