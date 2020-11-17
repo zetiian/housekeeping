@@ -2,12 +2,15 @@ const app = getApp();
 const API = require("../../api/interface.js");
 var checkLogin = require("../../libs/checkLogin").checkLogin;
 import localStorage from "../../libs/localStorage";
+const timeTool = require('../../utils/common.js').timeTool
 var EventBus = require("../../libs/event");
 var userInfo = {};
 
 //Page Object
 Page({
   data: {
+    timeLength:1,
+    isAgree:true,
     isIPX: app.globalData.isIPX,
     detail: {},
     addressDetail: {},
@@ -15,7 +18,6 @@ Page({
       showDateSelect: false,
       showTimeSelect: false,
     },
-    message: "",
     timeList: [],
     selectTimeObj: {
       date: "请选择",
@@ -46,6 +48,24 @@ Page({
       "selectTime.showTimeSelect": false,
       "selectTimeObj.time": item.label,
     });
+  },
+  changeTime(e){
+    let type = e.currentTarget.dataset.type;
+    let timeLength = this.data.timeLength
+    if(type==='add'){
+      timeLength++
+    }else{
+      timeLength--
+    }
+    if(timeLength<=0){
+      timeLength=1
+      wx.$showToast('最短1小时')
+    }
+    if(timeLength>=5){
+      timeLength=5
+      wx.$showToast('最长5小时')
+    }
+    this.setData({timeLength})
   },
   getRightAppointTime(data) {
     API.appointTimeInfo({
@@ -120,7 +140,39 @@ Page({
       "selectTime.showDateSelect": true,
     });
   },
-
+  goAgree(){
+    this.setData({
+      isAgree:!this.data.isAgree
+    })
+  },
+  goRule(){},
+  buyNowPay(){
+    let _this = this.data
+    let data = {
+      addressId:_this.addressDetail.addressId,
+      customerId:userInfo.customerId,
+      serverType:_this.detail.serverType,
+      serverFreq:'01',// 01：单次 02：年卡
+      remark:_this.remark,
+      serverHours:_this.timeLength,
+      serverBeginTime:_this.selectTimeObj.date +' '+ _this.selectTimeObj.time,
+    } 
+    if(!data.addressId){
+      return wx.$showToast('请选择服务地址')
+    }
+    if(!_this.selectTimeObj.time){
+      return wx.$showToast('请选择时间')
+    }
+    this.appoint(data).then(id=>{
+      wx.showToast({ title: '预约成功，待系统派单后即可支付', });
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '/pages/order-detail/order-detail?id='+id,
+        });
+      }, 1000);
+        
+    })
+  },
   buyNow() {
     let _this = this.data
     let data = {
@@ -137,18 +189,25 @@ Page({
     if(!_this.selectTimeObj.time){
       return wx.$showToast('请选择时间')
     }
-    API.serverAppoint(data).then(res=>{
-      if(res.respCode==='000000'){
-        wx.showToast({ title: '预约成功！', });
-        setTimeout(() => {
-          wx.navigateTo({
-            url: '/pages/order-detail/order-detail?id='+res.serverOrderId,
-          });
-        }, 1000);
-      }else{
-        wx.$showToast(res.respMsg)
-      }
-        
-    })
+    this.appoint(data)
   },
+  appoint(data){
+    return new Promise((resolve,reject)=>{
+      API.serverAppoint(data).then(res=>{
+        if(res.respCode==='000000'){
+          if(data.serverType!=='01'){
+            wx.showToast({ title: '预约成功！', });
+            setTimeout(() => {
+              wx.navigateTo({
+                url: '/pages/order-detail/order-detail?id='+res.serverOrderId,
+              });
+            }, 1000);
+          }
+          resolve(res.serverOrderId)
+        }else{
+          wx.$showToast(res.respMsg)
+        }
+      })
+    })
+  }
 });

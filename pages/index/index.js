@@ -176,21 +176,7 @@ Page({
     });
 
   },
-  // showAd() {
-  //   let isShowAd = !this.data.isShowAd
-  //   this.setData({ isShowAd })
-  // },
-  /**
-   * 
-   * @param {*} msg 
-   * msg  = {
-        type: 'warning', // normal warning
-        money: '2.00',
-        status: '余额不足',
-        list: [{ name: '所乘公交', value: '102路' },
-          { name: '乘车时间', value: '2020.08.06  11:20' }, ]
-      }
-   */
+
 
   showPop(msg) {
     app.$popupText().show({

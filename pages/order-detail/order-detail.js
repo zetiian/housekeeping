@@ -59,10 +59,40 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  toPay(){
+    let orderId = timeTool.getTimesNum2() + '' + parseInt((Math.random() + 1) * Math.pow(10, 6 - 1));
+    wx.showLoading({ title: '支付中...', mask: true });
+    API.pay({
+      customerId:data.customerId,
+      actionType:'03',
+      tranType:'00',
+      serverOrderId:id,
+      orderId:orderId,
+      txnTime:timeTool.getTimesNum(),
+      totalAmt:Number(_this.detail.serverPrice)*_this.timeLength,
+      goodsName:'服务单支付',
+      openid:userInfo.wxopenId,
+      returnUrl: '',
+    }).then(result=>{
+      if(result.respCode==="000000"){
+       console.log(88888,result)
+       let wxpayInfo = result.orderInfo;
+       wx.requestPayment({
+        timeStamp: wxpayInfo.timeStamp,
+        nonceStr: wxpayInfo.nonceStr,
+        package: wxpayInfo.package,
+        signType: wxpayInfo.signType,
+        paySign: wxpayInfo.paySign,
+        success: reswx => {
+          util.getUserInfo()
+          console.log(999,'支付成功', reswx)
+          wx.hideLoading();
+        }
+      })
+      
+      }else{
+        wx.$showToast(result.respMsg)
+      }
+    })
+  },
 })

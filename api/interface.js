@@ -51,7 +51,13 @@ exports.adList = function (parameter) {
 exports.appointTimeInfo = function (parameter) {
   return formatParams(parameter,'/acc/appointTimeInfo')
 }
-// 首页详列表
+// 预约接口
 exports.serverAppoint = function (parameter) {
   return formatParams(parameter,'/acc/serverAppoint')
+}
+
+
+//  支付接口
+exports.pay = function (parameter) {
+  return formatParams(parameter,'/pay/pay')
 }
