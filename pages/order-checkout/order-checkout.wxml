@@ -15,7 +15,7 @@
            <van-icon name="arrow" />
          </view>
       </view>
-      <view class="order-item app-flex app-flex-between">
+      <view class="order-item app-flex app-flex-between" wx:if="{{detail.serverType==='01'}}">
         <view> 请选择服务时长 </view>
         <view class="app-flex app-flex-center app-flex-between" style="width:200rpx; font-size:28rpx;"> 
           <van-icon name="https://azure-shop.obs.cn-south-1.myhuaweicloud.com/20201115145017079-icon_jianshao.png" size="22"/>
@@ -26,7 +26,7 @@
       <view class="order-item app-flex app-flex-between" catchtap="popTimeSelect">
         <view> 请选择开始时间 </view>
          <view class="app-flex app-flex-center"> 
-           <view> 请选择 </view>
+           <view> {{selectTimeObj.date}} {{selectTimeObj.time}} </view>
            <van-icon name="arrow" />
          </view>
       </view>
@@ -35,7 +35,7 @@
       </view>
        <van-cell-group>
         <van-field
-          value="{{ message }}"
+          model:value="{{ remark }}"
           autosize
           type="textarea"
           maxlength="50"
@@ -60,18 +60,7 @@
 <van-action-sheet show="{{ selectTime.showTimeSelect }}" title="选择开始时间" bind:click-overlay="clickOverlay">
   <view class="app-flex app-flex-column">
     <view class="time-list app-flex ">
-      <view class="time-list-item "> 8:00 </view>
-      <view class="time-list-item"> 8:00 </view>
-      <view class="time-list-item active"> 8:00 </view>
-      <view class="time-list-item"> 8:00 </view>
-      <view class="time-list-item "> 8:00 </view>
-      <view class="time-list-item disable"> 8:00 </view>
-      <view class="time-list-item "> 8:00 </view>
-      <view class="time-list-item "> 8:00 </view>
-      <view class="time-list-item "> 8:00 </view>
-      <view class="time-list-item "> 8:00 </view>
-      <view class="time-list-item "> 8:00 </view>
-        
+      <view class="time-list-item {{item.state==='0'?'disable':''}}" wx:for="{{timeList}}" wx:key="index" catchtap="chooseTime" data-item="{{item}}"> {{item.label}} </view>
     </view>
       
   </view>

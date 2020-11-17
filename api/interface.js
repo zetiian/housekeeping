@@ -45,3 +45,13 @@ exports.serverPageInfo = function (parameter) {
 exports.adList = function (parameter) {
   return formatParams(parameter,'/marketing/adList')
 }
+
+
+
+exports.appointTimeInfo = function (parameter) {
+  return formatParams(parameter,'/acc/appointTimeInfo')
+}
+// 首页详列表
+exports.serverAppoint = function (parameter) {
+  return formatParams(parameter,'/acc/serverAppoint')
+}

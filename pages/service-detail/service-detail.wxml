@@ -11,14 +11,10 @@
   
  <view class="app-bottom-btn {{isIPX?'ipx':''}}">
       <van-button round  catchtap="goBuyNow"  data-detail="{{detail}}"  custom-class="app-btn" wx:if="{{page.serverType!=='01'}}">
-       <view class="btn-text">
-         立即预约
-       </view>
+       <view class="btn-text"> 立即预约 </view>
      </van-button>
       <van-button round  catchtap="goBuyNow" data-detail="{{detail}}" custom-class="app-btn" wx:if="{{page.serverType==='01'}}">
-       <view class="btn-text">
-         立即购买
-       </view>
+       <view class="btn-text"> 立即购买 </view>
      </van-button>
  </view>
    
