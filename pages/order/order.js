@@ -11,73 +11,7 @@ Page({
   data: {
     isIPX: app.globalData.isIPX,
     nav:0,
-    list:[
-      // 1:派单中 2:待支付 3:待服务 4:服务人员已到达 5:待评价 6:服务已完成 7:预约成功 8:预约已取消
-      // 0：服务已完成 1：派单中 2：待支付 3：待服务 4：服务人员已到达 5：待评价 9：预约已取消
-      // {
-      //   orderTime:'2020.09.10 周日 08:00～10:00',
-      //   orderAddress:'香江国际金融中心606室',
-      //   orderName:'清洁服务',
-      //   orderStatus:'派单中',
-      //   status:1,
-      // },
-      // {
-      //   orderTime:'2020.09.10 周日 08:00～10:00',
-      //   orderAddress:'香江国际金融中心606室',
-      //   orderName:'保洁服务',
-      //   orderStatus:'派单中',
-      //   status:1,
-      // },
-      // {
-      //   orderTime:'2020.09.10 周日 08:00～10:00',
-      //   orderAddress:'香江国际金融中心606室',
-      //   orderName:'保洁服务',
-      //   orderStatus:'待支付',
-      //   status:2,
-      // },
-      // {
-      //   orderTime:'2020.09.10 周日 08:00～10:00',
-      //   orderAddress:'香江国际金融中心606室',
-      //   orderName:'保洁服务',
-      //   orderStatus:'待服务',
-      //   status:3,
-      // },
-      // {
-      //   orderTime:'2020.09.10 周日 08:00～10:00',
-      //   orderAddress:'香江国际金融中心606室',
-      //   orderName:'保洁服务',
-      //   orderStatus:'服务人员已到达',
-      //   status:4,
-      // },
-      // {
-      //   orderTime:'2020.09.10 周日 08:00～10:00',
-      //   orderAddress:'香江国际金融中心606室',
-      //   orderName:'保洁服务',
-      //   orderStatus:'待评价',
-      //   status:5,
-      // },
-      // {
-      //   orderTime:'2020.09.10 周日 08:00～10:00',
-      //   orderAddress:'香江国际金融中心606室',
-      //   orderName:'保洁服务',
-      //   orderStatus:'服务已完成',
-      //   status:6,
-      // },
-      // {
-      //   orderTime:'2020.09.10 周日 08:00～10:00',
-      //   orderAddress:'香江国际金融中心606室',
-      //   orderName:'保洁服务',
-      //   orderStatus:'预约成功',
-      //   status:7,
-      // },
-      // {
-      //   orderTime:'2020.09.10 周日 08:00～10:00',
-      //   orderAddress:'香江国际金融中心606室',
-      //   orderName:'保洁服务',
-      //   orderStatus:'预约已取消',
-      //   status:8,
-      // },
-    ],
+    list:[]
   },
 
   /**

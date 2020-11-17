@@ -19,11 +19,12 @@
           </view>
           <view class="order-time">
             <text style="color:#A3A19D;margin-right:20rpx;"> 服务时间 </text>
-             {{detail.orderTime}} 
+             {{detail.serverBeginTime}} -
+             {{detail.serverEndTime}} 
           </view>
           <view class="order-time">
             <text style="color:#A3A19D;margin-right:20rpx;"> 服务地址 </text>
-             {{detail.orderAddress}} 
+             {{detail.address}} 
           </view>
           <view class="order-time">
             <text style="color:#A3A19D;margin-right:20rpx;"> 联系电话 </text>
@@ -32,24 +33,24 @@
         </view>
       </view>
   </view>
-  <view class="order-item app-flex app-flex-column" >
+  <view class="order-item app-flex app-flex-column" wx:if="{{detail.serverNo}}">
       <view class="order-top app-flex app-flex-between">
          <view class="order-name">服务人员</view>
       </view>
       <view class="order-detail app-flex  app-flex-center">
         <view class="order-info app-flex app-flex-column">
-          <image class="order-avatar" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3579293472,3519035658&fm=26&gp=0.jpg" mode="aspectFill" lazy-load="false"  />
+          <image class="order-avatar" src="{{detail.serverPhoto}}" mode="aspectFill" lazy-load="false"  />
         </view>
         <view class="order-server app-flex app-flex-column">
            <view class="app-flex " style="margin-bottom:10rpx;">
-            <view class="order-server-name">刘阿姨</view>
+            <view class="order-server-name">{{detail.serverName}}</view>
              <base-button size="mini" type="plain disable">保洁</base-button>
           </view>
            <view class="app-flex ">
-            <view class="order-server-age">46岁丨从业16年</view>
+            <view class="order-server-age">{{detail.serverAge||40}}岁丨从业16年</view>
           </view>
            <view class="app-flex ">
-            <star count="{{4}}" bindchange="starChange" data-pi="{{1}}" ></star>
+            <star count="{{detail.serverRating}}" bindchange="starChange" data-pi="{{1}}" ></star>
           </view>
         </view>
       </view>
@@ -63,15 +64,15 @@
           <view class="app-flex app-flex-between">
            <view class="order-time">
               <text style="color:#A3A19D;margin-right:20rpx;"> 服务价格 </text>
-             2小时 
+            {{detail.serverHours}}小时 
            </view>
-            <view> 100元 </view>
+            <view> {{detail.serverPrice/100}}元 </view>
           </view>
           <view class="app-flex app-flex-between">
            <view class="order-time">
               <text style="color:#A3A19D;margin-right:20rpx;"> 订单总价 </text>
            </view>
-            <view> 200元 </view>
+            <view> {{detail.serverMoney/100}}元 </view>
           </view>
        
         </view>
@@ -82,11 +83,11 @@
   </view>
     
 </scroll-view>
-  <view class="app-bottom-btn {{isIPX?'ipx':''}}" wx:if="{{detail.status===2 || detail.status===4}}" >
-      <van-button round  catchtap="toConfirm" custom-class="app-btn" wx:if="{{detail.status===2}}">
+  <view class="app-bottom-btn {{isIPX?'ipx':''}}" wx:if="{{detail.state==2 || detail.state==4}}" >
+      <van-button round  catchtap="toPay" custom-class="app-btn" wx:if="{{detail.state==2}}">
        <view class="btn-text"> 支付 </view>
      </van-button>
-      <van-button round  catchtap="toConfirm" custom-class="app-btn"  wx:if="{{detail.status===4}}">
+      <van-button round  catchtap="toConfirm" custom-class="app-btn"  wx:if="{{detail.state==4}}">
        <view class="btn-text"> 确认人员已到达 </view>
      </van-button>
  </view>
