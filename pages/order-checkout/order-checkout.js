@@ -1,12 +1,16 @@
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
-var app = getApp();
-
+const app = getApp();
+const API = require('../../api/interface.js')
+var checkLogin = require("../../libs/checkLogin").checkLogin;
+import localStorage from "../../libs/localStorage";
+var EventBus = require("../../libs/event");
+var userInfo = {}
 
 //Page Object
 Page({
   data: {
     isIPX: app.globalData.isIPX,
     detail:{},
+    addressDetail:{},
     selectTime:{
       showDateSelect:false,
       showTimeSelect:false,
@@ -15,6 +19,7 @@ Page({
   },
   //options(Object)
   onLoad: function(options) {
+    userInfo = localStorage.get().userInfo
     wx.hideShareMenu();
     let detail = {
       orderTime:'2020.09.10 周日 08:00～10:00',
@@ -25,11 +30,23 @@ Page({
       phone:'1331212121212',
       user:'Jericho',
     }
+    API.serverAddressList({
+      customerId:userInfo.customerId,
+      isDefault:'1',
+    }).then(res=>{
+      console.log('地址列表',res);
+      this.setData({addressDetail:res.resultList[0]})
+    })
     this.setData({detail})
   },
  
   onShow: function() {
-    
+    EventBus.on('current-address',data=>{
+      console.log(344567,data);
+      this.setData({
+        addressDetail:data
+      })
+    })
   },
  
   onTimeLengthChange(){

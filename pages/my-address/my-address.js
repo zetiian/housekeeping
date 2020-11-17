@@ -59,7 +59,8 @@ Page({
   },
   addressClick(e){
     let item = e.currentTarget.dataset.item
-    wx.showToast({ title: `已选择地址：${JSON.stringify(item)}`,icon:'none', });
+    EventBus.emit('current-address',item)
+    // wx.showToast({ title: `已选择地址：${JSON.stringify(item)}`,icon:'none', });
     setTimeout(() => {
       wx.navigateBack({ delta: 1 });
     }, 2000);
