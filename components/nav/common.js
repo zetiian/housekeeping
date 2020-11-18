@@ -1,5 +1,6 @@
 var app = getApp();
 var systemInfo = app.globalData.systemInfo;
+import localStorage from "../../libs/localStorage";
 Component({
   options: {
     multipleSlots: true
@@ -72,8 +73,10 @@ Component({
       })
     },
     goHome: function (e) {
+      let userInfo = localStorage.get().userInfo
+      let url = (userInfo && userInfo.userType==='1')?'/pages/my/my':'/pages/index/index'
       this.data.backHome ? this.triggerEvent('backHome') : wx.reLaunch({
-        url: this.data.homeUrl || '/pages/index/index'
+        url: this.data.homeUrl || url
       });
     }
   }

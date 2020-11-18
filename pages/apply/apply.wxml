@@ -30,6 +30,7 @@
           input-align="right"
           label="身份证号"
           type="idcard"
+          maxlength="18"
           placeholder="请输入身份证号"
         />
        <van-field

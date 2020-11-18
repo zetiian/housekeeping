@@ -34,8 +34,20 @@ Page({
     })
 
   },
-  removeClick(){
-    wx.showToast({ title: '删除成功', });
+  removeClick(e){
+    API.serverAddressDel()
+    let id = e.currentTarget.dataset.id
+    API.serverAddressDel({
+      customerId:userInfo.customerId,
+      addressId:id,
+    }).then(res=>{
+      if(res.respCode==="000000"){
+        this.getList()
+        wx.showToast({ title: '删除成功',  duration: 1500, });
+      }else{
+        wx.$showToast('填写的数据有问题')
+      }
+    })
   },
   onShow: function() {
     checkLogin(_=>{

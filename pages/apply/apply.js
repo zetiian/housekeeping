@@ -82,7 +82,15 @@ Page({
     API.serverInfoCommit(data).then(res=>{
       if(res.respCode==="000000"){
       console.log(7777,res);
-
+        wx.showToast({
+          title: '提交成功',
+        });
+        setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/my/my',
+          });
+        }, 1500);
+          
       }else{
         wx.$showToast(res.respMsg)
       }

@@ -33,6 +33,10 @@ exports.serverAddressList = function (parameter) {
 exports.serverAddressAdd = function (parameter) {
   return formatParams(parameter,'/acc/serverAddressAdd')
 }
+//地址删除接口
+exports.serverAddressDel = function (parameter) {
+  return formatParams(parameter,'/acc/serverAddressDel')
+}
 //地址修改接口
 exports.serverAddressModify = function (parameter) {
   return formatParams(parameter,'/acc/serverAddressModify')
