@@ -120,15 +120,8 @@ Page({
         _active: "index"
       });
     }
-    let bannerList = [
-      'https://azure-upms.obs.cn-south-1.myhuaweicloud.com/hycan-huaweicloud%2FbackendUpload%2F20200529154304887-applegamy750563%403x.png',
-      'https://azure-upms.obs.cn-south-1.myhuaweicloud.com/hycan-huaweicloud%2FbackendUpload%2F20200608154641356-ac_pic_jrfa%403x.png',
-      'https://azure-upms.obs.cn-south-1.myhuaweicloud.com/hycan-huaweicloud%2FbackendUpload%2F20200724104417130-yysj_banner_yzt%403x.png',
-    ]
-   
-    // userInfo = localStorage.get().userInfo;
+  
  
-    // this.getUserData()
   },
   getUserData(){
 
