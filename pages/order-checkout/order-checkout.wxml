@@ -36,7 +36,7 @@
          </view>
       </view>
       <view class="order-item app-flex app-flex-between no-border" >
-        <view> 留言 </view>
+        <view> 备注 </view>
       </view>
        <van-cell-group>
         <van-field
@@ -45,7 +45,7 @@
           type="textarea"
           maxlength="50"
           show-word-limit
-          placeholder="请输入留言"
+          placeholder="还有什么要求，备注告诉我们吧~"
           border="{{ false }}"
         />
       </van-cell-group>

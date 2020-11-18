@@ -57,9 +57,19 @@ App({
     let mobile = this.globalData.systemInfo.model;
     let system = this.globalData.systemInfo.system;
     this.globalData.isIP = mobile.search(/iphone/i) != -1;
-    this.globalData.isIPX =
-      mobile.search(/unknown/i) === -1 &&
-      mobile.search(/iphone\s?(X|11|12)/i) != -1; // 兼容 iPhoneSE2
+    
+    // 截止2020年11月iPhone 手机含有底部的小黑条的手机型号 iPhoneSE 2是：unknown<iPhone12  故不在此列
+    let iPhoneXModelList = [
+      'iPhone X',// xs、xs max 系列
+      'iPhone XR',
+      'iPhone 11',// 11 系列
+      'unknown<iPhone13',// 12 系列
+    ]
+    this.globalData.isIPX = iPhoneXModelList.some(ip=> mobile.indexOf(ip)===0)
+
+    // this.globalData.isIPX =
+    //   mobile.search(/unknown/i) === -1 &&
+    //   mobile.search(/iphone\s?(X|11|12)/i) != -1; // 兼容 iPhoneSE2
     this.globalData.isMi = mobile.search(/MI/i) != -1;
     this.globalData.isAndroid = system.search(/Android/i) != -1;
     this.checkUpdate();

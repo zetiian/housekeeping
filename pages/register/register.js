@@ -34,7 +34,7 @@ Page({
         openId:wxInfo.openid,
       }).then(rrr=>{
         if(rrr.respCode==='000000'){
-          console.warn('登录成功！');
+          console.warn('登录成功！',rrr);
           this.updateUser(rrr)
           return
         }
@@ -49,7 +49,8 @@ Page({
           mobileNo: wxInfo.mobileNo,
         }).then(res=>{
           if(res.respCode==="000000"){
-            console.warn('注册成功！');
+            console.warn('注册成功！',res);
+            
             this.updateUser(res)
           }
       

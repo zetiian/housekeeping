@@ -78,6 +78,11 @@ Page({
       url: `/pages/register/register`,
     });
   },
+  goUpload(e) {
+    wx.navigateTo({
+      url: `/pages/apply/apply`,
+    });
+  },
   goRule() {
     wx.navigateTo({
       url: `/pages/rich-text/rich-text?pageTitle=用户协议&detail=我是用户协议`,
