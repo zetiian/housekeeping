@@ -6,7 +6,7 @@
       <view style='margin-top:10rpx;'>
           <van-cell-group>
                 <van-field model:value="{{userName }}" clearable label="联系人" placeholder="请输入姓名" />
-                <van-field model:value="{{ phone }}" type="number" clearable label="联系电话" placeholder="请输入联系电话" />
+                <van-field model:value="{{ phone }}" type="number" maxlength="11" clearable label="联系电话" placeholder="请输入联系电话" />
                 <!-- TODO: 时间紧 后续更新 -->
                 <!-- <van-field model:value="{{ address }}"   label="地址" placeholder="请选择地址" readonly icon="arrow" bind:click-icon="onClickIcccon"/> -->
                 <van-field model:value="{{ address }}" clearable label="地址"  type="textarea" autosize placeholder="地址" />

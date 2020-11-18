@@ -31,13 +31,6 @@ Page({
     userInfo = localStorage.get().userInfo;
     wx.hideShareMenu();
 
-    API.serverAddressList({
-      customerId: userInfo.customerId,
-      isDefault: "1",
-    }).then((res) => {
-      console.log("地址列表", res);
-      this.setData({ addressDetail: res.resultList[0] });
-    });
   },
   chooseTime(e) {
     let item = e.currentTarget.dataset.item;
@@ -87,6 +80,15 @@ Page({
       this.setData({
         addressDetail: data,
       });
+    });
+
+    
+    API.serverAddressList({
+      customerId: userInfo.customerId,
+      isDefault: "1",
+    }).then((res) => {
+      console.log("地址列表", res);
+      this.setData({ addressDetail: res.resultList[0] });
     });
   },
 

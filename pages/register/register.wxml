@@ -1,5 +1,5 @@
 
-<nav leftBtnType="none" title="注册"></nav>
+<nav  title="注册"></nav>
 
 <view class="container app-flex app-flex-column" >
   <view class="img-container service" > 

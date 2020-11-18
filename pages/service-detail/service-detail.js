@@ -39,9 +39,22 @@ Page({
   },
 
   goBuyNow(){
-    wx.navigateTo({
-      url: '/pages/order-checkout/order-checkout?detail='+JSON.stringify(this.data.detail),
-    });
+    checkLogin(_=>{
+      wx.navigateTo({
+        url: '/pages/order-checkout/order-checkout?detail='+JSON.stringify(this.data.detail),
+      });
+    },_=>{
+      wx.switchTab({
+        url: '/pages/register/register',
+        success: (result) => {
+          
+        },
+        fail: () => {},
+        complete: () => {}
+      });
+        
+    })
+ 
   },
   onHide: function () {
 
