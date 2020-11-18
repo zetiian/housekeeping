@@ -72,10 +72,7 @@ Page({
       
     })
   },
-  getphonenumber(e) {
-    console.log(2222, e);
 
-  },
   goRegister(e) {
     wx.navigateTo({
       url: `/pages/register/register`,

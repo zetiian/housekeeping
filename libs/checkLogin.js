@@ -3,13 +3,15 @@ const util = require("../utils/util.js");
 import localStorage from "./localStorage";
 var app = getApp();
 exports.checkLogin = function(cb,err) {
-  if(localStorage.get().userInfo && localStorage.get().userInfo.customerId){
+  let userInfo = localStorage.get().userInfo || {}
+  console.log(55555,'check login userInfo=',JSON.stringify(userInfo));
+  if(userInfo && JSON.stringify(userInfo)!=="{}"){
     cb('yes')
   }else{
     wx.checkSession({
       success() {
         //session_key 未过期，使用本地数据
-        if (!localStorage.get().userInfo || !localStorage.get().wxCode) {
+        if (!userInfo || !localStorage.get().wxCode) {
           wxLogin(cb,err);
         } else {
           console.log("未过期，使用本地wxCode");
@@ -44,9 +46,10 @@ function serverLogin(cb,err) {
     loginType: "01",
     authCode: localStorage.get().wxCode
   }).then(res => {
+    console.warn("服务器登录", res);
+
     if (res.respCode === "300022") {
       // 未注册用户存储信息
-      console.warn("未绑定用户", res.reserve);
       localStorage.set({ wxInfo: res.reserve,isRegister:'none' });
       err('none')
     } else if (res.respCode == "000000") {

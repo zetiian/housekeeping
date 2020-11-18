@@ -18,11 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   if (typeof this.getTabBar === "function" && this.getTabBar()) {
-      this.getTabBar().setData({
-        _active: "order"
-      });
-    }
+ 
   },
 
   /**
@@ -37,7 +33,11 @@ Page({
    */
   onShow: function () {
     userInfo = localStorage.get().userInfo
-
+    if (typeof this.getTabBar === "function" && this.getTabBar()) {
+      this.getTabBar().setData({
+        _active: "order"
+      });
+    }
     checkLogin(_=>{
       console.log(3333,'已注册')
       let data = {

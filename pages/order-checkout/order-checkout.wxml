@@ -7,7 +7,7 @@
          <view class="app-flex ">
           <view class="order-flag"> </view>
           <view class="app-flex app-flex-column">
-            <view> {{addressDetail.address}} </view>
+            <view> {{addressDetail.address || '请添加地址'}} </view>
             <view>{{addressDetail.userName}}   {{addressDetail.phone}}</view>
           </view>
          </view>
