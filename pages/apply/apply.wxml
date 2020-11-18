@@ -12,7 +12,7 @@
   <view style="margin-top:16rpx;">
     <van-cell-group>
        <van-field
-          value="{{ form.serverName }}"
+          model:value="{{ serverName }}"
           input-align="right"
           label="服务类型"
           readonly
@@ -20,20 +20,20 @@
           placeholder="请选择服务类型"
         />
        <van-field
-          value="{{ form.userName }}"
+          model:value="{{ userName }}"
           input-align="right"
           label="姓名"
           placeholder="请输入姓名"
         />
        <van-field
-          value="{{ form.certNo }}"
+          model:value="{{ certNo }}"
           input-align="right"
           label="身份证号"
           type="idcard"
           placeholder="请输入身份证号"
         />
        <van-field
-          value="{{ form.phone }}"
+          model:value="{{ phone }}"
           input-align="right"
           label="联系电话"
           type="phone"
@@ -41,7 +41,7 @@
           placeholder="请输入联系电话"
         />
        <van-field
-          value="{{ form.address }}"
+          model:value="{{ address }}"
           input-align="right"
           label="联系地址"
           type="textarea"
@@ -49,7 +49,7 @@
           placeholder="请输入联系地址"
         />
         <van-field
-          value="{{ form.serverYear }}"
+          model:value="{{ serverYear }}"
           input-align="right"
           label="从业时长"
           type="number"
@@ -58,7 +58,6 @@
          <view slot="button" >年</view >
         </van-field>
         <van-field
-          value="{{ form.serverYear }}"
           input-align="right"
           label="从业资格证"
           readOnly

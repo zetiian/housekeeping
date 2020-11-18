@@ -1,6 +1,11 @@
-import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 const app = getApp();
-var baseConfig = require("../../config").baseConfig
+const API = require("../../api/interface.js");
+var checkLogin = require("../../libs/checkLogin").checkLogin;
+import localStorage from "../../libs/localStorage";
+const timeTool = require('../../utils/common.js').timeTool
+const util = require('../../utils/util')
+var EventBus = require("../../libs/event");
+var userInfo = {};
 
 //Page Object
 Page({
@@ -13,7 +18,15 @@ Page({
       { name: '月嫂服务', type:'03' },
       { name: '护工', type:'04' },
     ],
-    form:{ }
+    form:{ },
+    address:'',
+    certNo:'',
+    userName:'',
+    serverName:'',
+    serverType:'',
+    serverYear:'',
+    phone:'',
+    applyImages:[]
   },
   //options(Object)
   onLoad: function(options) {
@@ -21,38 +34,77 @@ Page({
   },
  
   onShow: function() {
+    userInfo = localStorage.get().userInfo
   },
   onSelect(e){
     console.log(2345,e.detail);
     this.setData({ 
       showSelect:false,
-      'form.serverType':e.detail.type,
-      'form.serverName':e.detail.name,
+      'serverType':e.detail.type,
+      'serverName':e.detail.name,
     })
     
+  },
+  save(){
+    let _this = this.data
+    let data = {
+      customerId:userInfo.customerId,
+      serverType:_this.serverType,
+      address:_this.address,
+      certNo:_this.certNo,
+      userName:_this.userName,
+      serverYear:_this.serverYear,
+      phone:_this.phone,
+      applyImages:this.applyImages||[]
+    }
+    console.log(666,data);
+    if(!data.serverType){
+      return  wx.$showToast('请选择服务类型')
+    }
+    if(!data.userName){
+      return  wx.$showToast('请填写姓名')
+    }
+    if(!data.certNo){
+      wx.$showToast('请填写身份证')
+    }
+    if(!data.phone){
+      return wx.$showToast('请填写联系地址')
+    }
+    if(!data.serverYear){
+      return  wx.$showToast('请填写从业时间')
+    }
+    if(!data.applyImages.length){
+      return wx.$showToast('请上传图片')
+    }
+    if(!data.applyImages.filter(el=>el.photoType==='04').length){
+     return wx.$showToast('请上传头像')
+    }
+    API.serverInfoCommit(data).then(res=>{
+      if(res.respCode==="000000"){
+      console.log(7777,res);
+
+      }else{
+        wx.$showToast(res.respMsg)
+      }
+    })
   },
   selectType(){
     this.setData({ showSelect:true })
   },
+  applyImages:[],
   filesChange(e){
     let dataset = e.currentTarget.dataset
     let img = e.detail.files[0]
-    let resultUrl = ''
     if(img.src.size>5242880){
       return wx.$showToast('上传图片过大，换张图片试试');
     }
     this.uploadImgFile(img.src.path).then(res=>{
-      console.log(777,res);
-      resultUrl = res
-       // if(dataset.name==='one'){
-      //   this.data.idCard.push({photoType:'01',photoPath: resultUrl,id:util.randomString(16)})
-      // }else if(dataset.name==='two'){
-      //   this.data.idCard.push({photoType:'02',photoPath: resultUrl,id:util.randomString(16)})
-      // }else if(dataset.name==='cert'){
-      //   this.data.idCard.push({photoType:'99',photoPath: resultUrl,id:util.randomString(16)})
-      // }
-    }).catch(_=>{
-     return wx.$showToast('网络不好，重新试试');  
+      console.log(777,res,dataset);
+       if(dataset.name==='avatar'){
+        this.applyImages.push({photoType:'04',photoPath: res,id:util.randomString(16)})
+      }else if(dataset.name==='cert'){
+        this.applyImages.push({photoType:'03',photoPath: res,id:util.randomString(16)})
+      }
     })
    
   },

@@ -72,3 +72,6 @@ exports.serverAppointModify = function (parameter) {
 exports.monthServerData = function (parameter) {
   return formatParams(parameter,'/acc/monthServerData')
 }
+exports.serverInfoCommit = function (parameter) {
+  return formatParams(parameter,'/acc/serverInfoCommit')
+}
