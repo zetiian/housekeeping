@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "乘车码",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false,
+    "disableScroll":true,
+    "backgroundTextStyle": "dark"
+
+}

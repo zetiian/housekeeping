@@ -96,7 +96,7 @@ Page({
   },
   goAboutUs() {
     wx.navigateTo({
-      url: '/pages/rich-text/rich-text?pageTitle=关于我们&detail=我是关于我们的正文',
+      url: '/pages/about-us/about-us',
     });
   },
   goAddress() {

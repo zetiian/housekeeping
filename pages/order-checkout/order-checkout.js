@@ -147,7 +147,9 @@ Page({
       isAgree:!this.data.isAgree
     })
   },
-  goRule(){},
+  goRule(){
+    wx.navigateTo({ url: '/pages/user-rule/user-rule', });
+  },
   buyNowPay(){
     let _this = this.data
     let data = {
