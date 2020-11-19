@@ -83,19 +83,7 @@ App({
    
      
 
-    } else {
-      checkLogin(
-        res => {
-          // 成功的状态
-          this.globalData.isLogin = "yes";
-        },
-        err => {
-          // 未登陆的状态
-          console.warn(err, "未登陆状态");
-          this.globalData.isLogin = "none";
-        }
-      );
-    }
+    } 
    
   },
 
