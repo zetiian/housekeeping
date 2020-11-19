@@ -15,6 +15,7 @@
   </view>
  
 </view>
+ <image class="detail-image" wx:if="{{bottomList.length}}" src="{{bottomList[0].adTitileImage}}" mode="widthFix"/>
 <!-- <view class="app-flex service-box">
   <view class="service-item"  catchtap="goDetail" data-title="月嫂服务">
     <view class="service-name">月嫂服务</view>

@@ -22,6 +22,7 @@ Page({
     isShowAd: false,
     adData: {},
     bannerList: [],
+    bottomList: [],
     serviceList:[
       // 01：保洁服务 02：保姆 03：月嫂服务 04：护工
       { serverName:'保洁服务', serverType:'01' },
@@ -69,9 +70,13 @@ Page({
     API.adList({
       adType:'01',
     }).then(res=>{
-      console.log(3345,res);
-      
       this.setData({bannerList:res.resultList})
+    })
+    API.adList({
+      adType:'04',
+    }).then(res=>{
+      console.log(3345,res);
+      this.setData({bottomList:res.resultList})
     })
     checkLogin(
       _ => {
