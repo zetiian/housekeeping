@@ -73,45 +73,15 @@ Page({
       
       this.setData({bannerList:res.resultList})
     })
-    // checkLogin(
-    //   _ => {
-    //     util.getAccountInfo().then(resolve => {
-    //       if (resolve) {
-    //         // 登录信息
-    //         this.setData({ account: resolve });
-    //       }
-    //     });
-    //     userInfo = localStorage.get().userInfo;
-    //     this.setData({
-    //       userInfo,
-    //       isRegister: localStorage.get().isRegister || ""
-    //     });
-    //     this.getUserData()
-    //   },
-    //   _ => {
-    //     this.setData({
-    //       isRegister: localStorage.get().isRegister || ""
-    //     });
-    //   }
-    // );
-    // this.getNoTiceList();
-    // if (userInfo && userInfo.account) {
-    //   userInfo.account.yuan = util.getYuan(userInfo.account.totalBalance);
-    //   this.setData({
-    //     account: userInfo.account
-    //   });
-    // }
-    // util.getAdList("01").then(res => {
-    //   this.setData({
-    //     bannerList: res
-    //   });
-    // });
-    // util.getAdList("03").then(res => {
-    //   this.setData({
-    //     adData: res[0] || null,
-    //     isShowAd: !!res.length
-    //   });
-    // });
+    checkLogin(
+      _ => {
+        app.globalData.isLogin = "yes";
+      },
+      _ => {
+        app.globalData.isLogin = "none";
+      }
+    );
+   
   },
 
   onShow: function() {

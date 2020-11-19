@@ -53,9 +53,12 @@ Page({
     checkLogin(_=>{
       this.getList()
     },_=>{
-      wx.switchTab({
-        url: '/pages/index/index',
-      });
+      wx.$showToast('检测到您未登录')
+      setTimeout(()=>{
+        wx.switchTab({
+          url: '/pages/index/index',
+        });
+      },1500)
         
     })
   },

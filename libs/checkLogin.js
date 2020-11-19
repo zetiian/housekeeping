@@ -4,6 +4,14 @@ import localStorage from "./localStorage";
 var app = getApp();
 exports.checkLogin = function(cb,err) {
   let userInfo = localStorage.get().userInfo || {}
+  let wxInfo = localStorage.get().wxInfo || {}
+
+  if(wxInfo && JSON.stringify(wxInfo)!=="{}"){
+    err('none')
+    return
+  }
+
+
   console.log(55555,'check login userInfo=',JSON.stringify(userInfo));
   if(userInfo && JSON.stringify(userInfo)!=="{}"){
     cb('yes')

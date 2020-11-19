@@ -1,7 +1,6 @@
 // var upsertAddressList = require("../../../../api/address").upsertAddressList;
 const app = getApp();
 const API = require('../../../api/interface.js')
-var checkLogin = require("../../../libs/checkLogin").checkLogin;
 import localStorage from "../../../libs/localStorage";
 Page({
   data: {

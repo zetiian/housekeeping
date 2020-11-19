@@ -78,15 +78,9 @@ App({
     userInfo = localStorage.get().userInfo;
     if (userInfo) {
       this.globalData.isLogin = "yes";
-      wx.showToast({ title: "自动登录成功！" });
+      // wx.showToast({ title: "自动登录成功！" });
       console.log("本地有缓存，登陆成功", userInfo);
-      util.getUserInfo().then(res=>{
-        userInfo = localStorage.get().userInfo
-         if (userInfo.accountType && userInfo.accountType !== '01') { // TODO:开卡状态要放在用户的接口里
-          console.log(555555,'找到了申请状态',userInfo)
-            // util.checkSpecial(userInfo.accountType)
-          }
-      });
+   
      
 
     } else {

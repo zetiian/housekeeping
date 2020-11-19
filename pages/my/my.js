@@ -18,30 +18,6 @@ Page({
     let isRegister = localStorage.get().isRegister||''
     
     this.setData({isRegister})
-    //   wx.hideShareMenu();
-    //   checkLogin(_=>{
-    //     userInfo = localStorage.get().userInfo||{}
-    //     console.log(666,'登录了',userInfo)
-    //     if(userInfo && !userInfo.account){
-    //       util.getAccountInfo().then(account=>{
-    //         if(account){
-    //           account.yuan = util.getYuan(account.totalBalance)
-    //           this.setData({ account })
-    //           setTimeout(() => {
-    //             wx.reLaunch({ url: '/pages/my/my', });
-    //           }, 0);
-    //         }
-
-
-    //       })
-    //     }else{
-    //       userInfo.account.yuan = util.getYuan(userInfo.account.totalBalance)
-    //       this.setData({ account: userInfo.account })
-    //     }
-    //   },_=>{
-    //     console.log(777,'未登录')
-    //   })
-
   },
   onShow(e) {
     if (typeof this.getTabBar === "function" && this.getTabBar()) {
