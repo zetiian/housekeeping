@@ -23,42 +23,16 @@ Page({
     let detail = e.detail
     let wxInfo = localStorage.get().wxInfo
     console.log(1111,type,detail,wxInfo);
-    if(detail.errMsg==='getPhoneNumber:ok'){
-      // let userRegister = { type, }
-      // localStorage.set({userRegister})
-      API.userLogin({
-        loginType:'02',
-        encryptedData:detail.encryptedData,
-        encryptedIv:detail.iv,
-        sessionKey:wxInfo.session_key,
-        openId:wxInfo.openid,
-      }).then(rrr=>{
-        if(rrr.respCode==='000000'){
-          console.warn('登录成功！',rrr);
-          this.updateUser(rrr)
-          return
-        }
-        wxInfo.mobileNo = rrr.reserve.mobileNo
-        wxInfo.areaCode = rrr.reserve.areaCode
-        console.log('注册结果',rrr,wxInfo);
-
-        localStorage.set({wxInfo})
-        API.userRegister({
-          userType: type+'',
-          areaCode: wxInfo.areaCode,
-          mobileNo: wxInfo.mobileNo,
-        }).then(res=>{
-          if(res.respCode==="000000"){
-            console.warn('注册成功！',res);
-            
-            this.updateUser(res)
-          }
-      
-        })
-      })
-  
-        
-    }
+    API.userRegister({
+      userType: type+'',
+      areaCode: wxInfo.areaCode,
+      mobileNo: wxInfo.mobileNo,
+    }).then(res=>{
+      if(res.respCode==="000000"){
+        console.warn('注册成功！',res);
+        this.updateUser(res)
+      }
+    })
     
   },
   updateUser(data){
@@ -70,7 +44,7 @@ Page({
     localStorage.delete('wxInfo')
     setTimeout(() => {
       wx.reLaunch({
-        url: '/pages/index/index',
+        url: '/pages/my/my',
       });
     }, 1000);
   }

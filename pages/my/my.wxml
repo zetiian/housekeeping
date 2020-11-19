@@ -2,7 +2,8 @@
   <scroll-view class="order-box app-flex app-flex-column"   style="min-height:100vh;" scroll-y upper-threshold="50" lower-threshold="50" scroll-top="0"  scroll-with-animation="{{true}}" >
    
   <view class="app-flex app-flex-column  app-flex-center my-card" wx:if="{{!isRegister || isRegister!=='yes'}}">
-     <van-button round  catchtap="goRegister" custom-class="app-btn" >
+     <van-button round  custom-class="app-btn" open-type="getPhoneNumber" bind:getphonenumber="registerBefore"  >
+      <!-- <button round class="register-btn"  > </button> -->
        <view class="btn-text">
          登录
        </view>

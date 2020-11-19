@@ -4,7 +4,7 @@
   <swiper-item class="app-swiper-item index-swiper-item item-1" wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerLink" data-item="{{item}}" style="background-image: url({{item.adTitileImage}});"></swiper-item>
 </swiper>
 <view class="app-flex service-box">
-  <view class="service-item" catchtap="goDetail" data-page="{{item}}" wx:for="{{serviceList}}" wx:key="index">
+  <view class="service-item app-flex app-flex-center" catchtap="goDetail" data-page="{{item}}" wx:for="{{serviceList}}" wx:key="index">
     <view class="service-name">
       <view>
         {{item.serverName}}

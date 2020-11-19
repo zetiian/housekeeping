@@ -49,6 +49,56 @@ Page({
     })
   },
 
+  registerBefore(e){
+    let type = e.currentTarget.dataset.type
+    let detail = e.detail
+    let wxInfo = localStorage.get().wxInfo
+    console.log(1111,type,detail,wxInfo);
+    if(detail.errMsg==='getPhoneNumber:ok'){
+      API.userLogin({
+        loginType:'02',
+        encryptedData:detail.encryptedData,
+        encryptedIv:detail.iv,
+        sessionKey:wxInfo.session_key,
+        openId:wxInfo.openid,
+      }).then(rrr=>{
+        if(rrr.respCode==='000000'){
+          wx.$showToast('登录成功')
+          this.updateUser(rrr)
+          wx.reLaunch({
+            url: '/pages/my/my',
+          });
+          return
+        }else{
+          wxInfo.mobileNo = rrr.reserve.mobileNo
+          wxInfo.areaCode = rrr.reserve.areaCode
+          console.log("存储注册手机号",rrr,wxInfo);
+          localStorage.set({wxInfo})
+          setTimeout(() => {
+            wx.navigateTo({
+              url: '/pages/register/register',
+            });
+          }, 0);
+        }
+       
+     
+      })
+    }
+    
+  },
+  updateUser(data){
+    let userInfo = { customerId:data.customerId, token:data.token, }
+    localStorage.set({ userInfo,isRegister:'yes' });
+    setTimeout(() => {
+      util.getUserInfo()
+    }, 0);
+    localStorage.delete('wxInfo')
+    setTimeout(() => {
+      wx.reLaunch({
+        url: '/pages/my/my',
+      });
+    }, 1000);
+  },
   goRegister(e) {
     wx.navigateTo({
       url: `/pages/register/register`,
