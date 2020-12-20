@@ -4,7 +4,8 @@ var app = getApp()
 var EventBus = require("../../../libs/event");
 Page({
   data: {
-    isIPX:app.globalData.isIPX,
+    isIPX: app.globalData.isIPX,
+    systemInfo: app.globalData.systemInfo,
     addListShow: true,
     chooseCity: false,
     regionShow: {
@@ -15,8 +16,8 @@ Page({
     markers: [],
     regionData: {},
     currentRegion: {
-      province: '选择城市',
-      city: '选择城市',
+      province: '广东省',
+      city: '汕尾市',
       district: '选择城市',
     },
     currentProvince: '选择城市',
@@ -32,7 +33,6 @@ Page({
     keyword: ''
   },
   onLoad: function (op) {
-    let location = op.location ? JSON.parse(op.location) : {}
     let self = this;
     self.mapCtx = wx.createMapContext('myMap')
     // 实例化API核心类
@@ -42,51 +42,62 @@ Page({
     wx.showLoading({
       title: '加载中'
     });
-    //定位
-    wx.getLocation({
-      type: 'wgs84',
-      success(res) {
-        //console.log(res)
-        // const latitude = res.latitude
-        // const longitude = res.longitude
-        location = {
-          latitude: res.latitude,
-          longitude: res.longitude,
-        }
-
-      },
-      fail(err) {
-        wx.hideLoading();
-        wx.showToast({
-          title: '定位失败，请授权打开微信定位，重新进入',
-          icon: 'none',
-          duration: 1500
-        })
-
-      }
+    this.getUserLocation(op).then(data => {
+      //你地址解析
+      qqmapsdk.reverseGeocoder({
+        location: {
+          latitude: data.latitude,
+          longitude: data.longitude
+        },
+        success: function (res) {
+          //console.log(res)
+          self.setData({
+            latitude: data.latitude,
+            longitude: data.longitude,
+            currentRegion: res.result.address_component,
+            keyword: self.data.defaultKeyword
+          })
+          // 调用接口
+          self.nearby_search();
+          wx.hideLoading();
+        },
+      })
+    }).catch(err => {
+      wx.hideLoading();
     })
+ 
 
-    //你地址解析
-    qqmapsdk.reverseGeocoder({
-      location: {
-        latitude: location.latitude,
-        longitude: location.longitude
-      },
-      success: function (res) {
-        //console.log(res)
-        self.setData({
-          latitude: location.latitude,
-          longitude: location.longitude,
-          currentRegion: res.result.address_component,
-          keyword: self.data.defaultKeyword
-        })
-        // 调用接口
-        self.nearby_search();
-      },
-    })
+
   },
   onReady: function () {
 
+  },
+  getUserLocation(op) {
+    let location = {}
+    return new Promise((resolve, reject) => {
+      if (op.location) {
+        location = JSON.parse(op.location)
+        resolve(location)
+      }else{
+           //定位
+        wx.getLocation({
+          type: 'wgs84',
+          success(res) {
+            location = { latitude: res.latitude, longitude: res.longitude }
+            resolve(location)
+          },
+          fail(err) {
+            reject(err)
+             wx.showToast({
+              title: '定位失败，请授权打开微信定位，重新进入',
+              icon: 'none',
+              duration: 1500
+            })
+          }
+        })
+      }
+
+    })
   },
   //监听拖动地图，拖动结束根据中心点更新页面
   mapChange: function (e) {
@@ -190,7 +201,7 @@ Page({
   },
   //地图标记点
   addMarker: function (data) {
-    console.log(666666666666666,data)
+    console.log(666666666666666, data)
     var mks = [];
     mks.push({ // 获取返回结果，放到mks数组中
       title: data.title,
@@ -262,10 +273,12 @@ Page({
   nearby_search: function () {
     var self = this;
     wx.hideLoading();
+    if(!self.data.keyword)return
     wx.showLoading({
       title: '地址加载中'
     });
     // 调用接口
+    
     qqmapsdk.search({
       keyword: self.data.keyword, //搜索关键词
       //boundary: 'nearby(' + self.data.latitude + ', ' + self.data.longitude + ', 1000, 16)',
@@ -277,7 +290,7 @@ Page({
         var sug = [];
         for (var i = 0; i < res.data.length; i++) {
           sug.push({ // 获取返回结果，放到sug数组中
-            title: res.data[i].title||'',
+            title: res.data[i].title || '',
             id: res.data[i].id,
             addr: res.data[i].address,
             province: res.data[i].ad_info.province,
@@ -376,8 +389,8 @@ Page({
       fail: () => {},
       complete: () => {}
     });
-      
- 
+
+
   },
   //选择省
   showProvince: function () {
@@ -537,8 +550,10 @@ Page({
 
     let centerData = this.data.centerData
     console.log(centerData)
-    EventBus.emit('LOCATION',centerData)
- 
-    wx.navigateBack({ delta: 1 })
+    EventBus.emit('LOCATION', centerData)
+
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

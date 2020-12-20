@@ -46,7 +46,7 @@
   </scroll-view>
 </view>
 <!-- 建议的列表 -->
-<view class="region-box" wx:if="{{chooseCity}}">
+<view class="region-box" wx:if="{{chooseCity}}" style="padding-top:{{systemInfo.statusBarHeight}}px;">
   <view class="region-top">
     <view class="region-back iconfont icon-fanhui" bindtap="back2"></view>
     <view class="title">选择城市</view>
@@ -60,7 +60,7 @@
       {{currentDistrict}}
     </view>
   </view>
-  <scroll-view scroll-y style="height:1050rpx;">
+  <scroll-view scroll-y style="height:{{systemInfo.windowHeight-50}}px;">
     <view class="region-list" wx:if="{{regionShow.province}}">
       <view class="region-item" wx:for="{{regionData.province}}" wx:key="index">
         <view data-id="{{item.id}}" data-name="{{item.fullname}}" bindtap="selectProvince">
