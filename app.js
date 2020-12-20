@@ -1,5 +1,5 @@
 //app.js
-var aldstat = require("./utils/ald-stat.js");
+// var aldstat = require("./utils/ald-stat.js");
 
 let fun_aes = require("utils/aes.js"); //引用AES源码js
 const timeTool = require("utils/common.js").timeTool;

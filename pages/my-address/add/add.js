@@ -37,13 +37,16 @@ Page({
     self.mapCtx = wx.createMapContext('myMap')
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
-      key: 'W57BZ-JDB6X-XPA4H-Z76MI-73FF2-24BT4'
+      key: '6WEBZ-O4U64-5FBUL-X25FW-LX5VS-G7F3Q'
     });
     wx.showLoading({
       title: '加载中'
     });
+    console.log(111,'入参',op);
+
     this.getUserLocation(op).then(data => {
       //你地址解析
+      console.log(111,'拿到了坐标',data,op);
       qqmapsdk.reverseGeocoder({
         location: {
           latitude: data.latitude,
@@ -75,7 +78,7 @@ Page({
   getUserLocation(op) {
     let location = {}
     return new Promise((resolve, reject) => {
-      if (op.location) {
+      if (op.location && op.location!=='{}') {
         location = JSON.parse(op.location)
         resolve(location)
       }else{
@@ -273,7 +276,6 @@ Page({
   nearby_search: function () {
     var self = this;
     wx.hideLoading();
-    if(!self.data.keyword)return
     wx.showLoading({
       title: '地址加载中'
     });
@@ -550,6 +552,9 @@ Page({
 
     let centerData = this.data.centerData
     console.log(centerData)
+    if(centerData.addr.indexOf('汕尾')< 0){
+      return wx.showToast({ title: '请选择汕尾市内的地址', icon: 'none', duration: 1500, });
+    }
     EventBus.emit('LOCATION', centerData)
 
     wx.navigateBack({
