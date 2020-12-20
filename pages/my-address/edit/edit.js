@@ -37,7 +37,7 @@ Page({
     }
     this.updateDisabled();
   },
-  onClickIcon(){
+  onSelectAddress(){
    wx.navigateTo({
      url:'../add/add'
    });

@@ -44,14 +44,10 @@ Page({
         url: '/pages/order-checkout/order-checkout?detail='+JSON.stringify(this.data.detail),
       });
     },_=>{
-      wx.switchTab({
-        url: '/pages/register/register',
-        success: (result) => {
-          
-        },
-        fail: () => {},
-        complete: () => {}
-      });
+      wx.$showToast('检测到您未登录')
+      setTimeout(() => {
+        wx.switchTab({ url: '/pages/my/my'});
+      }, 1500);
         
     })
  

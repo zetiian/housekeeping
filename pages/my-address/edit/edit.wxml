@@ -8,8 +8,8 @@
                 <van-field model:value="{{userName }}" clearable label="联系人" placeholder="请输入姓名" />
                 <van-field model:value="{{ phone }}" type="number" maxlength="11" clearable label="联系电话" placeholder="请输入联系电话" />
                 <!-- TODO: 时间紧 后续更新 -->
-                <!-- <van-field model:value="{{ address }}"   label="地址" placeholder="请选择地址" readonly icon="arrow" bind:click-icon="onClickIcccon"/> -->
-                <van-field model:value="{{ address }}" clearable label="地址"  type="textarea" autosize placeholder="地址" />
+                <van-field catchtap="onSelectAddress" model:value="{{ address }}"   label="地址" placeholder="请选择地址" readonly icon="arrow" bind:click-icon="onSelectAddress"/>
+                <!-- <van-field model:value="{{ address }}" clearable label="地址"  type="textarea" autosize placeholder="地址" /> -->
                 <view class="app-flex app-flex-between" style="padding:40rpx 30rpx 0;">
                     <view class="van-field__label"> 是否默认 </view>
                     <van-switch checked="{{ isDefault }}" active-color="#F7B500" inactive-color="#7B736B" size="24px" catchtap="switchTap"/>

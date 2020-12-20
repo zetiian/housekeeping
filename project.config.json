@@ -117,6 +117,12 @@
         {
           "name": "提交审核信息",
           "pathName": "pages/apply/apply",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "我的地址",
+          "pathName": "pages/my-address/my-address",
           "scene": null
         }
       ]
