@@ -1,4 +1,9 @@
 /* pages/shopMap/shopMap.wxss */
+
+.isIPX{
+  width: 100%;
+  height: 44px;
+}
 @font-face {font-family: "iconfont";
     src: url('//at.alicdn.com/t/font_1120834_hvoztl864h6.eot?t=1554258412999'); /* IE9 */
     src: url('//at.alicdn.com/t/font_1120834_hvoztl864h6.eot?t=1554258412999#iefix') format('embedded-opentype'), /* IE6-IE8 */

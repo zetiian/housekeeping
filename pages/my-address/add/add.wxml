@@ -1,14 +1,14 @@
 <nav title="选择位置" backgroundColor="#fff"></nav>
 <view class="search-box  app-flex ">
-  <view class="region">{{currentRegion.city}}</view>
-  <!-- bindtap="chooseCity" -->
+  <view class="region" bindtap="chooseCity">{{currentRegion.city}}</view>
+  <!--  -->
   <input bindinput="getsuggest" placeholder="请搜索汕尾的服务地址"></input>
 </view>
 <view wx:if="{{addListShow}}">
   <!-- 关键词输入提示列表渲染 -->
   <view class="myMap">
     <!-- 地图容器 -->
-    <map id="myMap" style="width:100%;height:300px;" longitude="{{longitude}}" latitude="{{latitude}}" scale="17" bindregionchange="mapChange"></map>
+    <map id="myMap" style="width:100%;height:300px;" longitude="{{longitude}}" latitude="{{latitude}}" scale="17" bindregionchange="mapChange" covers="{{covers}}" markers="{{markers}}"></map>
     <scroll-view class="near-list" scroll-y>
       <!-- 绑定回填事件 -->
       <view class="near-item" wx:for="{{nearList}}" wx:key="index">
@@ -24,12 +24,14 @@
     </scroll-view>
     <view class="bottom-box">
       <button bindtap="selectedOk">确认地址</button>
+      <view wx:if="{{isIPX}}" class="isIPX"> </view>
+        
     </view>
   </view>
 
 </view>
   <!-- 搜索的列表 -->
-<view class="add-list-box " wx:if="{{addListShow && suggestion}}">
+<view class="add-list-box " wx:if="{{false}}">
   <scroll-view class="add-list" scroll-y>
     <view class="add-item" wx:for="{{suggestion}}" wx:key="index">
       <!-- 绑定回填事件 -->

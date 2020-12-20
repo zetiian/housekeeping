@@ -1,15 +1,19 @@
 var QQMapWX = require('../../../libs/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
+var app = getApp()
+var EventBus = require("../../../libs/event");
 Page({
   data: {
-    addListShow: false,
+    isIPX:app.globalData.isIPX,
+    addListShow: true,
     chooseCity: false,
     regionShow: {
       province: false,
       city: false,
       district: true
     },
-    regionData: {}, 
+    markers: [],
+    regionData: {},
     currentRegion: {
       province: '选择城市',
       city: '选择城市',
@@ -27,70 +31,72 @@ Page({
     defaultKeyword: '房产小区',
     keyword: ''
   },
-  onLoad: function () {
-    let self =this;
+  onLoad: function (op) {
+    let location = op.location ? JSON.parse(op.location) : {}
+    let self = this;
     self.mapCtx = wx.createMapContext('myMap')
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
       key: 'W57BZ-JDB6X-XPA4H-Z76MI-73FF2-24BT4'
     });
-    wx.showLoading({ title: '加载中' });
+    wx.showLoading({
+      title: '加载中'
+    });
     //定位
     wx.getLocation({
       type: 'wgs84',
       success(res) {
         //console.log(res)
-        const latitude = res.latitude
-        const longitude = res.longitude
-        const speed = res.speed
-        const accuracy = res.accuracy
-        //你地址解析
-        qqmapsdk.reverseGeocoder({
-          location: {
-            latitude: latitude,
-            longitude: longitude
-          },
-          success: function (res) {
-            //console.log(res)
-            self.setData({
-              latitude: latitude,
-              longitude: longitude,
-              currentRegion: res.result.address_component,
-              keyword: self.data.defaultKeyword
-            })
-            // 调用接口
-            self.nearby_search();
-          },
-        });
+        // const latitude = res.latitude
+        // const longitude = res.longitude
+        location = {
+          latitude: res.latitude,
+          longitude: res.longitude,
+        }
+
       },
       fail(err) {
-        //console.log(err)
-        wx.hideLoading({});
+        wx.hideLoading();
         wx.showToast({
-          title: '定位失败',
+          title: '定位失败，请授权打开微信定位，重新进入',
           icon: 'none',
           duration: 1500
         })
-        setTimeout(function () {
-          wx.navigateBack({
-            delta: 1
-          })
-        }, 1500)
+
       }
+    })
+
+    //你地址解析
+    qqmapsdk.reverseGeocoder({
+      location: {
+        latitude: location.latitude,
+        longitude: location.longitude
+      },
+      success: function (res) {
+        //console.log(res)
+        self.setData({
+          latitude: location.latitude,
+          longitude: location.longitude,
+          currentRegion: res.result.address_component,
+          keyword: self.data.defaultKeyword
+        })
+        // 调用接口
+        self.nearby_search();
+      },
     })
   },
   onReady: function () {
-    
+
   },
   //监听拖动地图，拖动结束根据中心点更新页面
   mapChange: function (e) {
     let self = this;
-    if (e.type == 'end' && (e.causedBy == 'scale' || e.causedBy == 'drag')){
+    if (e.type == 'end' && (e.causedBy == 'scale' || e.causedBy == 'drag')) {
       self.mapCtx.getCenterLocation({
         success: function (res) {
           //console.log(res)
           self.setData({
-            nearList:[],
+            nearList: [],
             latitude: res.latitude,
             longitude: res.longitude,
           })
@@ -98,7 +104,7 @@ Page({
         }
       })
     }
-    
+
   },
   //重新定位
   reload: function () {
@@ -109,7 +115,7 @@ Page({
     let self = this;
     //调用获取城市列表接口
     qqmapsdk.getCityList({
-      success: function (res) {//成功后的回调
+      success: function (res) { //成功后的回调
         //console.log(res)
         let provinceArr = res.result[0];
         let cityArr = [];
@@ -123,7 +129,7 @@ Page({
               qqmapsdk.getDistrictByCityId({
                 // 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
                 id: provinceArr[i].id,
-                success: function (res) {//成功后的回调
+                success: function (res) { //成功后的回调
                   //console.log(res);
                   cityArr = res.result[0];
                   self.setData({
@@ -150,7 +156,7 @@ Page({
             qqmapsdk.getDistrictByCityId({
               // 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
               id: res.result[1][i].id,
-              success: function (res) {//成功后的回调
+              success: function (res) { //成功后的回调
                 //console.log(res);
                 districtArr = res.result[0];
                 self.setData({
@@ -184,21 +190,20 @@ Page({
   },
   //地图标记点
   addMarker: function (data) {
-    //console.log(data)
-    //console.log(data.title)
+    console.log(666666666666666,data)
     var mks = [];
     mks.push({ // 获取返回结果，放到mks数组中
       title: data.title,
-      id: data.id, 
+      id: data.id,
       addr: data.addr,
       province: data.province,
       city: data.city,
       district: data.district,
       latitude: data.latitude,
       longitude: data.longitude,
-      iconPath: "/images/my_marker.png", //图标路径
-      width: 25,
-      height: 25
+      iconPath: "/images/location.png", //图标路径
+      width: 50,
+      height: 50
     })
     this.setData({ //设置markers属性，将搜索结果显示在地图中
       markers: mks,
@@ -222,7 +227,7 @@ Page({
           addListShow: false,
           latitude: this.data.suggestion[i].latitude,
           longitude: this.data.suggestion[i].longitude
-        }); 
+        });
         this.nearby_search();
         return;
         //console.log(this.data.centerData)
@@ -257,10 +262,12 @@ Page({
   nearby_search: function () {
     var self = this;
     wx.hideLoading();
-    wx.showLoading({ title: '地址加载中' });
+    wx.showLoading({
+      title: '地址加载中'
+    });
     // 调用接口
     qqmapsdk.search({
-      keyword: self.data.keyword,  //搜索关键词
+      keyword: self.data.keyword, //搜索关键词
       //boundary: 'nearby(' + self.data.latitude + ', ' + self.data.longitude + ', 1000, 16)',
       location: self.data.latitude + ',' + self.data.longitude,
       page_size: 20,
@@ -270,7 +277,7 @@ Page({
         var sug = [];
         for (var i = 0; i < res.data.length; i++) {
           sug.push({ // 获取返回结果，放到sug数组中
-            title: res.data[i].title,
+            title: res.data[i].title||'',
             id: res.data[i].id,
             addr: res.data[i].address,
             province: res.data[i].ad_info.province,
@@ -283,13 +290,13 @@ Page({
         self.setData({
           selectedId: 0,
           centerData: sug[0],
-          nearList: sug, 
+          nearList: sug,
           suggestion: sug
         })
         self.addMarker(sug[0]);
       },
       fail: function (res) {
-        console.log(66666,res);
+        console.log(66666, res);
       },
       complete: function (res) {
         //console.log(res);
@@ -311,7 +318,7 @@ Page({
       page_size: 20,
       page_index: 1,
       //region:'北京', //设置城市名，限制关键词所示的地域范围，非必填参数
-      success: function (res) {//搜索成功后的回调
+      success: function (res) { //搜索成功后的回调
         //console.log(res);
         var sug = [];
         for (var i = 0; i < res.data.length; i++) {
@@ -343,18 +350,34 @@ Page({
   //打开选择省市区页面
   chooseCity: function () {
     let self = this;
-    self.getRegionData();
-    self.setData({
-      chooseCity: true,
-      regionShow: {
-        province: false,
-        city: false,
-        district: true
+
+    wx.showModal({
+      title: '提示',
+      content: '目前顾家家政服务范围仅限汕尾市，请勿超出服务范围',
+      showCancel: false,
+      confirmText: '确定',
+      confirmColor: '#3CC51F',
+      success: (result) => {
+        if (result.confirm) {
+          self.getRegionData();
+          self.setData({
+            chooseCity: true,
+            regionShow: {
+              province: false,
+              city: false,
+              district: true
+            },
+            currentProvince: self.data.currentRegion.province,
+            currentCity: self.data.currentRegion.city,
+            currentDistrict: self.data.currentRegion.district,
+          })
+        }
       },
-      currentProvince: self.data.currentRegion.province,
-      currentCity: self.data.currentRegion.city,
-      currentDistrict: self.data.currentRegion.district,
-    })
+      fail: () => {},
+      complete: () => {}
+    });
+      
+ 
   },
   //选择省
   showProvince: function () {
@@ -396,11 +419,11 @@ Page({
       currentProvince: name,
       currentCity: '请选择城市',
     })
-    if (name == '北京市' || name == '天津市' || name == '上海市' || name == '重庆市'){
+    if (name == '北京市' || name == '天津市' || name == '上海市' || name == '重庆市') {
       var provinceArr = self.data.regionData.province;
       var cityArr = [];
-      for (var i = 0; i < provinceArr.length;i++){
-        if(provinceArr[i].fullname == name){
+      for (var i = 0; i < provinceArr.length; i++) {
+        if (provinceArr[i].fullname == name) {
           cityArr.push(provinceArr[i])
           self.setData({
             regionData: {
@@ -413,7 +436,7 @@ Page({
           return;
         }
       }
-    }else{
+    } else {
       let bj = self.data.regionShow;
       self.getById(id, name, bj)
     }
@@ -445,21 +468,21 @@ Page({
         province: self.data.currentProvince,
         city: self.data.currentCity,
         district: name
-      }, 
+      },
       chooseCity: false,
       keyword: self.data.defaultKeyword
     })
     self.nearby_search();
   },
   //根据选择省市加载市区列表
-  getById: function (id,name,bj) {
+  getById: function (id, name, bj) {
     let self = this;
     qqmapsdk.getDistrictByCityId({
       // 传入对应省份ID获得城市数据，传入城市ID获得区县数据,依次类推
       id: id, //对应接口getCityList返回数据的Id，如：北京是'110000'
-      success: function (res) {//成功后的回调
+      success: function (res) { //成功后的回调
         //console.log(res);
-        if(bj.province){
+        if (bj.province) {
           self.setData({
             regionData: {
               province: self.data.regionData.province,
@@ -497,7 +520,7 @@ Page({
       this.setData({
         addListShow: false
       })
-    }else {
+    } else {
       wx.navigateBack({
         delta: 1
       })
@@ -511,14 +534,11 @@ Page({
   },
   //确认选择地址
   selectedOk: function () {
-    //let pages = getCurrentPages(); //获取当前页面js里面的pages里的所有信息。
-    //let prevPage = pages[pages.length - 2]; 
-    console.log(this.data.centerData)
-    //prevPage.setData({
-      //storeAddress: this.data.centerData.title
-    //})
-    //wx.navigateBack({
-      //delta: 1
-    //})
+
+    let centerData = this.data.centerData
+    console.log(centerData)
+    EventBus.emit('LOCATION',centerData)
+ 
+    wx.navigateBack({ delta: 1 })
   }
 })

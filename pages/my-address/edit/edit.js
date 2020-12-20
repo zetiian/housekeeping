@@ -2,13 +2,14 @@
 const app = getApp();
 const API = require('../../../api/interface.js')
 import localStorage from "../../../libs/localStorage";
+var EventBus = require("../../../libs/event");
 Page({
   data: {
     isIPX: app.globalData.isIPX,
     title: "编辑地址",
  
     disabled:true,
-
+    location:{},
     addressId:'',
     userName:'',
     phone:'',
@@ -23,6 +24,10 @@ Page({
       var _data = JSON.parse(decodeURIComponent(options.params));
       console.log(112,_data)
       this.setData({
+        location:{
+          longitude:_data.longitude,
+          latitude:_data.latitude,
+        },
         ["addressId"]: _data.addressId,
         ["phone"]: _data.phone || "",
         ["userName"]: _data.userName || "",
@@ -31,15 +36,25 @@ Page({
       });
       // 加载地址数据
     } else {
-      this.setData({
-        title: "新增地址"
-      });
+      this.setData({ title: "新增地址" });
     }
+    EventBus.on('LOCATION',data=>{
+      console.log(22345,'收到了',data);
+      
+      this.setData({
+        address:`${data.addr} ${data.title}`,
+        location:{
+          longitude:data.longitude,
+          latitude:data.latitude,
+        }
+      })
+    })
+    
     this.updateDisabled();
   },
   onSelectAddress(){
    wx.navigateTo({
-     url:'../add/add'
+     url:`../add/add?location=${JSON.stringify(this.data.location)}`
    });
      
       
@@ -84,13 +99,13 @@ Page({
   save: function() {
     let userInfo =   localStorage.get().userInfo
     let form = this.data
-    console.log(form)
+    console.log(1111111,form)
     form.isDefault=form.isDefault?'1':'0'
     let data = {
       customerId:userInfo.customerId,
       mapType:'01',
-      longitude:'115.375512',
-      latitude:'22.767004',
+      longitude:form.location.longitude,
+      latitude:form.location.latitude,
       isDefault:form.isDefault,
       address:form.address,
       phone:form.phone,
