@@ -27,6 +27,7 @@ Page({
   //options(Object)
   onLoad: function (op) {
     let detail = JSON.parse(op.detail);
+    detail.serverPrice = Number(detail.serverPrice)/100
     this.setData({ detail });
     userInfo = localStorage.get().userInfo;
     wx.hideShareMenu();
