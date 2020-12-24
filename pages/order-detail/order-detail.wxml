@@ -47,7 +47,7 @@
              <base-button size="mini" type="plain disable">保洁</base-button>
           </view>
            <view class="app-flex ">
-            <view class="order-server-age">{{detail.serverAge||40}}岁丨从业16年</view>
+            <view class="order-server-age">{{detail.serverAge||40}}岁丨从业{{detail.serverYear||1}}年</view>
           </view>
            <view class="app-flex ">
             <star count="{{detail.serverRating}}" bindchange="starChange" data-pi="{{1}}" ></star>
