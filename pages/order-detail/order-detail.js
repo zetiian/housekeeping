@@ -35,17 +35,21 @@ Page({
   },
  
   toConfirm(){
-    wx.showToast({
-      title: '操作成功！',
-      duration: 1500,
-    });
-    setTimeout(() => {
-      wx.reLaunch({
-        url: '/pages/order/order',
-      });
-        
-    }, 1500);
-      
+    let data={
+      customerId:userInfo.customerId,
+      serverOrderId:this.data.detail.serverOrderId,
+      actionType:'01',
+    }
+    util.changeOrderStatus(data).then(res=>{
+      wx.showToast({ title: '操作成功！' });
+      setTimeout(() => {
+        wx.reLaunch({ url: '/pages/order/order' });
+      }, 1500);
+    }).catch(err=>{
+      console.log(2222,err);
+      wx.$showToast(JSON.stringify(err))
+    })
+
   },
  
   onReady: function () {
