@@ -21,7 +21,7 @@
         </view>
         <view class="order-action app-flex " wx:if="{{item.state==='2' || item.state==='4'}}">
          <base-button size="small" type="plain primary" wx:if="{{item.state==='2'}}">去支付</base-button>
-         <base-button size="small" type="plain primary" wx:if="{{item.state==='4'}}">服务人员已到达</base-button>
+         <base-button size="small" type="plain primary" wx:if="{{item.state==='4'}}" >服务人员已到达</base-button>
         </view>
 
       </view>
