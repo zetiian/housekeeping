@@ -25,8 +25,8 @@ Page({
       console.log(112,_data)
       this.setData({
         location:{
-          longitude:_data.longitude,
-          latitude:_data.latitude,
+          longitude:_data.longitude+'',
+          latitude:_data.latitude+'',
         },
         ["addressId"]: _data.addressId,
         ["phone"]: _data.phone || "",
@@ -44,8 +44,8 @@ Page({
       this.setData({
         address:`${data.addr} ${data.title}`,
         location:{
-          longitude:data.longitude,
-          latitude:data.latitude,
+          longitude:data.longitude+'',
+          latitude:data.latitude+'',
         }
       })
     })
@@ -104,8 +104,8 @@ Page({
     let data = {
       customerId:userInfo.customerId,
       mapType:'01',
-      longitude:form.location.longitude,
-      latitude:form.location.latitude,
+      longitude:form.location.longitude+'',
+      latitude:form.location.latitude+'',
       isDefault:form.isDefault,
       address:form.address,
       phone:form.phone,

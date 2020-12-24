@@ -81,6 +81,7 @@ function getSignParameter(parameter) {
   })
   let signStr = obj2Str(parameters);
   parameters.sign = getSign(signStr)
+  console.log(88888,signStr);
   return parameters;
 }
 

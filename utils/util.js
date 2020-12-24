@@ -2,7 +2,7 @@
  * @Author: Jericho Ding 
  * @Date: 2020-07-23 15:31:49 
  * @Last Modified by: 丁希虎
- * @Last Modified time: 2020-11-18 09:46:09
+ * @Last Modified time: 2020-12-24 15:02:44
  */
 import localStorage from "../libs/localStorage";
 const API = require('../api/interface.js')
@@ -209,13 +209,13 @@ exports.changeOrderStatus = function(data) {
       serverOrderId:data.serverOrderId,
       actionType:data.actionType,
       reason:data.reason,//取消预约必填
+    }).then(res=>{
+      if(res.respCode==='000000'){
+        resolve('success')
+      }else{
+        reject(res.respMsg)
+      }
     })
-  }).then(res=>{
-    if(res.respCode==='000000'){
-      resolve('success')
-    }else{
-      reject(res.respMsg)
-    }
   })
 }
 

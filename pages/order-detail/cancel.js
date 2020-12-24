@@ -54,12 +54,12 @@ Page({
     }
     util.changeOrderStatus(data).then(res=>{
       console.log(11111,res);
-      wx.showToast({ title: '提交成功' });
+      wx.showToast({ title: '取消成功' });
       setTimeout(() => {
         wx.reLaunch({
           url: '/pages/order/order',
         });
-      }, 1500);
+      }, 1000);
     }).catch(err=>{
       console.log(2222,err);
       wx.$showToast(err)
