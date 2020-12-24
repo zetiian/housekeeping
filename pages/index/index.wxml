@@ -1,21 +1,20 @@
 <!-- <view class="app-main-bg"></view> -->
 <nav leftBtnType="none" title="家政平台"></nav>
-<swiper class="app-swiper " autoplay="{{true}}" indicator-dots="{{false}}" snap-to-edge="{{true}}" circular="{{true}}">
-  <swiper-item class="app-swiper-item index-swiper-item item-1" wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerLink" data-item="{{item}}" style="background-image: url({{item.adTitileImage}});"></swiper-item>
-</swiper>
-<view class="app-flex service-box">
-  <view class="service-item app-flex app-flex-center" catchtap="goDetail" data-page="{{item}}" wx:for="{{serviceList}}" wx:key="index">
-    <view class="service-name">
-      <view>
-        {{item.serverName}}
+<scroll-view class="order-box app-flex app-flex-column" style="height:100vh;" scroll-y upper-threshold="50" lower-threshold="50" scroll-top="0" scroll-with-animation="{{true}}">
+  <swiper class="app-swiper " autoplay="{{true}}" indicator-dots="{{false}}" snap-to-edge="{{true}}" circular="{{true}}">
+    <swiper-item class="app-swiper-item index-swiper-item item-1" wx:for="{{bannerList}}" wx:key="index" bindtap="goBannerLink" data-item="{{item}}" style="background-image: url({{item.adTitileImage}});"></swiper-item>
+  </swiper>
+  <view class="app-flex service-box">
+    <view class="service-item app-flex app-flex-center" catchtap="goDetail" data-page="{{item}}" wx:for="{{serviceList}}" wx:key="index">
+      <view class="service-name">
+        <view>{{item.serverName}}</view>
+        <view class="service-intro" wx:if="{{item.serverIntro}}">{{item.serverIntro}}</view>
       </view>
-      <view class="service-intro" wx:if="{{item.serverIntro}}">{{item.serverIntro}}</view>
+      <view class="service-img a-{{item.serverType}}"></view>
     </view>
-    <view class="service-img a-{{item.serverType}}"></view>
   </view>
- 
-</view>
- <image class="detail-image" wx:if="{{bottomList.length}}" src="{{bottomList[0].adTitileImage}}" mode="widthFix"/>
+  <image class="detail-image" wx:if="{{bottomList.length}}" src="{{bottomList[0].adTitileImage}}" mode="widthFix" />
+</scroll-view>
 <!-- <view class="app-flex service-box">
   <view class="service-item"  catchtap="goDetail" data-title="月嫂服务">
     <view class="service-name">月嫂服务</view>
@@ -26,11 +25,6 @@
     <view class="service-img"></view>
   </view>
 </view> -->
-
-
-
-
-
 <!-- <view class="container" style="position:fixed;bottom:100px;left:175px;">
   <van-button catchtap="onClick" type="primary">去案例</van-button>
 </view> -->
