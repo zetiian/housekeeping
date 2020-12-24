@@ -84,13 +84,13 @@
     
 </scroll-view>
   <view class="app-bottom-btn {{isIPX?'ipx':''}}" wx:if="{{detail.state==2 || detail.state==3 || detail.state==4 || detail.state==6}}" >
-      <van-button round  catchtap="toPay" custom-class="app-btn" wx:if="{{detail.state==2}}">
+      <van-button round  catchtap="toPay" custom-class="app-btn" wx:if="{{detail.state==2 && userInfo.userType==='0'}}">
        <view class="btn-text"> 支付 </view>
      </van-button>
-      <van-button round  catchtap="toConfirm" custom-class="app-btn"  wx:if="{{detail.state==4}}">
+      <van-button round  catchtap="toConfirm" custom-class="app-btn"  wx:if="{{ userInfo.userType==='1' && detail.state==4}}">
        <view class="btn-text"> 确认人员已到达 </view>
      </van-button>
-      <van-button round  catchtap="toArrivePlace" custom-class="app-btn"  wx:if="{{detail.state==3}}">
+      <van-button round  catchtap="toArrivePlace" custom-class="app-btn"  wx:if="{{userInfo.userType==='1' && detail.state==3}}">
        <view class="btn-text"> 已出发 </view>
      </van-button>
       <van-button round  catchtap="toFinish" custom-class="app-btn"  wx:if="{{userInfo.userType==='0' && detail.state==6}}">
