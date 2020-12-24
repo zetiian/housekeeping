@@ -2,15 +2,15 @@ const app = getApp();
 const API = require("../../api/interface.js");
 var checkLogin = require("../../libs/checkLogin").checkLogin;
 import localStorage from "../../libs/localStorage";
-const timeTool = require('../../utils/common.js').timeTool
+const timeTool = require("../../utils/common.js").timeTool;
 var EventBus = require("../../libs/event");
 var userInfo = {};
 
 //Page Object
 Page({
   data: {
-    timeLength:1,
-    isAgree:true,
+    timeLength: 1,
+    isAgree: true,
     isIPX: app.globalData.isIPX,
     detail: {},
     addressDetail: {},
@@ -27,39 +27,40 @@ Page({
   //options(Object)
   onLoad: function (op) {
     let detail = JSON.parse(op.detail);
-    detail.serverPrice = Number(detail.serverPrice)/100
+    detail.serverPrice = Number(detail.serverPrice) / 100;
     this.setData({ detail });
     userInfo = localStorage.get().userInfo;
     wx.hideShareMenu();
-
   },
   chooseTime(e) {
     let item = e.currentTarget.dataset.item;
-    console.log(1123,item);
-    if(item.state!=='1'){ return }
+    console.log(1123, item);
+    if (item.state !== "1") {
+      return;
+    }
     this.setData({
       "selectTime.showDateSelect": false,
       "selectTime.showTimeSelect": false,
       "selectTimeObj.time": item.label,
     });
   },
-  changeTime(e){
+  changeTime(e) {
     let type = e.currentTarget.dataset.type;
-    let timeLength = this.data.timeLength
-    if(type==='add'){
-      timeLength++
-    }else{
-      timeLength--
+    let timeLength = this.data.timeLength;
+    if (type === "add") {
+      timeLength++;
+    } else {
+      timeLength--;
     }
-    if(timeLength<=0){
-      timeLength=1
-      wx.$showToast('最短1小时')
+    if (timeLength <= 0) {
+      timeLength = 1;
+      wx.$showToast("最短1小时");
     }
-    if(timeLength>=4){
-      timeLength=4
-      wx.$showToast('最长4小时')
+    if (timeLength >= 4) {
+      timeLength = 4;
+      wx.$showToast("最长4小时");
     }
-    this.setData({timeLength})
+    this.setData({ timeLength });
   },
   getRightAppointTime(data) {
     API.appointTimeInfo({
@@ -83,7 +84,6 @@ Page({
       });
     });
 
-    
     API.serverAddressList({
       customerId: userInfo.customerId,
       isDefault: "1",
@@ -143,98 +143,120 @@ Page({
       "selectTime.showDateSelect": true,
     });
   },
-  goAgree(){
+  goAgree() {
     this.setData({
-      isAgree:!this.data.isAgree
-    })
+      isAgree: !this.data.isAgree,
+    });
   },
-  goRule(){
-    wx.navigateTo({ url: '/pages/user-rule/user-rule', });
+  goRule() {
+    wx.navigateTo({ url: "/pages/user-rule/user-rule" });
   },
-  buyNowPay(){
-        let _this = this.data
-          if(!_this.addressDetail){
-            return wx.$showToast('请选择服务地址')
-          }
-          let data = {
-            addressId:_this.addressDetail.addressId,
-            customerId:userInfo.customerId,
-            serverType:_this.detail.serverType,
-            serverFreq:'01',// 01：单次 02：年卡
-            remark:_this.remark,
-            serverHours:_this.timeLength,
-            serverBeginTime:_this.selectTimeObj.date +' '+ _this.selectTimeObj.time,
-          } 
-          if(!data.addressId){
-            return wx.$showToast('请选择服务地址')
-          }
-          if(!_this.selectTimeObj.time){
-            return wx.$showToast('请选择时间')
-          }
-    let rId = 'idf74cRdLtWEYsNLrnri42YwqIXndk5gE-sPYdd_VEM'
-    wx.requestSubscribeMessage({
-      tmplIds: [rId],
-      success: rep => {
-        if(rep[rId]==='accept'){
-          this.appoint(data).then(id=>{
-            wx.$showToast('预约成功，待系统派单后即可支付');
-            setTimeout(() => {
-              wx.navigateTo({
-                url: `/pages/order-detail/order-detail?detail=${encodeURIComponent(JSON.stringify({serverOrderId:id}))}`,
-              });
-            }, 1000);
-          })
-        }else if(rep[rId]==='reject'){
-          wx.showToast({
-            title: '为获取更好的通知服务,请选则同意~',
-            icon: 'none',
-          });
-            
+  buyNowPay() {
+    checkLogin(
+      (_) => {
+        let _this = this.data;
+        if (!_this.addressDetail) {
+          return wx.$showToast("请选择服务地址");
         }
+        let data = {
+          addressId: _this.addressDetail.addressId,
+          customerId: userInfo.customerId,
+          serverType: _this.detail.serverType,
+          serverFreq: "01", // 01：单次 02：年卡
+          remark: _this.remark,
+          serverHours: _this.timeLength,
+          serverBeginTime:
+            _this.selectTimeObj.date + " " + _this.selectTimeObj.time,
+        };
+        if (!data.addressId) {
+          return wx.$showToast("请选择服务地址");
+        }
+        if (!_this.selectTimeObj.time) {
+          return wx.$showToast("请选择时间");
+        }
+        let rId = "idf74cRdLtWEYsNLrnri42YwqIXndk5gE-sPYdd_VEM";
+        wx.requestSubscribeMessage({
+          tmplIds: [rId],
+          success: (rep) => {
+            if (rep[rId] === "accept") {
+              this.appoint(data).then((id) => {
+                wx.$showToast("预约成功，待系统派单后即可支付");
+                setTimeout(() => {
+                  wx.navigateTo({
+                    url: `/pages/order-detail/order-detail?detail=${encodeURIComponent(
+                      JSON.stringify({ serverOrderId: id })
+                    )}`,
+                  });
+                }, 1000);
+              });
+            } else if (rep[rId] === "reject") {
+              wx.showToast({
+                title: "为获取更好的通知服务,请选则同意~",
+                icon: "none",
+              });
+            }
+          },
+        });
       },
-     
-    })
-    
-   
+      (_) => {
+        wx.$showToast("您还没登录，即将前往注册登录页");
+        setTimeout(() => {
+          wx.reLaunch({ url: "/pages/my/my" });
+        }, 1500);
+      }
+    );
   },
   buyNow() {
-    let _this = this.data
-    if(!_this.addressDetail){
-      return wx.$showToast('请选择服务地址')
-    }
-    let data = {
-      addressId:_this.addressDetail.addressId,
-      customerId:userInfo.customerId,
-      serverType:_this.detail.serverType,
-      serverFreq:'01',// 01：单次 02：年卡
-      remark:_this.remark,
-      serverBeginTime:_this.selectTimeObj.date +' '+ _this.selectTimeObj.time,
-    } 
-    if(!data.addressId){
-      return wx.$showToast('请选择服务地址')
-    }
-    if(!_this.selectTimeObj.time){
-      return wx.$showToast('请选择时间')
-    }
-    this.appoint(data)
+    checkLogin(
+      (_) => {
+        let _this = this.data;
+        if (!_this.addressDetail) {
+          return wx.$showToast("请选择服务地址");
+        }
+        let data = {
+          addressId: _this.addressDetail.addressId,
+          customerId: userInfo.customerId,
+          serverType: _this.detail.serverType,
+          serverFreq: "01", // 01：单次 02：年卡
+          remark: _this.remark,
+          serverBeginTime:
+            _this.selectTimeObj.date + " " + _this.selectTimeObj.time,
+        };
+        if (!data.addressId) {
+          return wx.$showToast("请选择服务地址");
+        }
+        if (!_this.selectTimeObj.time) {
+          return wx.$showToast("请选择时间");
+        }
+        this.appoint(data);
+      },
+      (_) => {
+        wx.$showToast("您还没登录，即将前往注册登录页");
+        setTimeout(() => {
+          wx.reLaunch({ url: "/pages/my/my" });
+        }, 1500);
+      }
+    );
   },
-  appoint(data){
-    return new Promise((resolve,reject)=>{
-      API.serverAppoint(data).then(res=>{
-        if(res.respCode==='000000'){
-          if(data.serverType!=='01'){
-            wx.showToast({ title: '预约成功！', });
+  appoint(data) {
+    return new Promise((resolve, reject) => {
+      API.serverAppoint(data).then((res) => {
+        if (res.respCode === "000000") {
+          if (data.serverType !== "01") {
+            wx.showToast({ title: "预约成功！" });
             setTimeout(() => {
               wx.navigateTo({
-                url: `/pages/order-detail/order-detail?detail=${encodeURIComponent(JSON.stringify({serverOrderId:res.serverOrderId}))}`,
+                url: `/pages/order-detail/order-detail?detail=${encodeURIComponent(
+                  JSON.stringify({ serverOrderId: res.serverOrderId })
+                )}`,
               });
             }, 1000);
           }
-          resolve(res.serverOrderId)
-        }else{
-          wx.$showToast(res.respMsg)
+          resolve(res.serverOrderId);
+        } else {
+          wx.$showToast(res.respMsg);
         }
-      })
-    })
-  }
+      });
+    });
+  },
 });
