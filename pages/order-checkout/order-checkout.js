@@ -152,35 +152,50 @@ Page({
     wx.navigateTo({ url: '/pages/user-rule/user-rule', });
   },
   buyNowPay(){
-    let _this = this.data
-    if(!_this.addressDetail){
-      return wx.$showToast('请选择服务地址')
-    }
-    let data = {
-      addressId:_this.addressDetail.addressId,
-      customerId:userInfo.customerId,
-      serverType:_this.detail.serverType,
-      serverFreq:'01',// 01：单次 02：年卡
-      remark:_this.remark,
-      serverHours:_this.timeLength,
-      serverBeginTime:_this.selectTimeObj.date +' '+ _this.selectTimeObj.time,
-    } 
-    if(!data.addressId){
-      return wx.$showToast('请选择服务地址')
-    }
-    if(!_this.selectTimeObj.time){
-      return wx.$showToast('请选择时间')
-    }
-    this.appoint(data).then(id=>{
-      wx.$showToast('预约成功，待系统派单后即可支付');
-      setTimeout(() => {
+        let _this = this.data
+          if(!_this.addressDetail){
+            return wx.$showToast('请选择服务地址')
+          }
+          let data = {
+            addressId:_this.addressDetail.addressId,
+            customerId:userInfo.customerId,
+            serverType:_this.detail.serverType,
+            serverFreq:'01',// 01：单次 02：年卡
+            remark:_this.remark,
+            serverHours:_this.timeLength,
+            serverBeginTime:_this.selectTimeObj.date +' '+ _this.selectTimeObj.time,
+          } 
+          if(!data.addressId){
+            return wx.$showToast('请选择服务地址')
+          }
+          if(!_this.selectTimeObj.time){
+            return wx.$showToast('请选择时间')
+          }
+    let rId = 'idf74cRdLtWEYsNLrnri42YwqIXndk5gE-sPYdd_VEM'
+    wx.requestSubscribeMessage({
+      tmplIds: [rId],
+      success: rep => {
+        if(rep[rId]==='accept'){
+          this.appoint(data).then(id=>{
+            wx.$showToast('预约成功，待系统派单后即可支付');
+            setTimeout(() => {
+              wx.navigateTo({
+                url: `/pages/order-detail/order-detail?detail=${encodeURIComponent(JSON.stringify({serverOrderId:id}))}`,
+              });
+            }, 1000);
+          })
+        }else if(rep[rId]==='reject'){
+          wx.showToast({
+            title: '为获取更好的通知服务,请选则同意~',
+            icon: 'none',
+          });
+            
+        }
+      },
      
-        wx.navigateTo({
-          url: `/pages/order-detail/order-detail?detail=${encodeURIComponent(JSON.stringify({serverOrderId:id}))}`,
-        });
-      }, 1000);
-        
     })
+    
+   
   },
   buyNow() {
     let _this = this.data
