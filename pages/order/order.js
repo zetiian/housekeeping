@@ -6,7 +6,7 @@ import localStorage from "../../libs/localStorage";
 var checkLogin = require('../../libs/checkLogin').checkLogin
 let timeTool = require('../../utils/common.js').timeTool
 var userInfo = {}
-var stateList= [ '服务已完成', '派单中', '待支付', '待服务', '服务人员已到达', '待评价', '', '', '', '预约已取消', ]
+var stateList= [ '服务已完成', '派单中', '待支付', '待服务', '服务人员已到达', '待评价', '已出发', '', '', '预约已取消', ]
 Page({
   data: {
     isIPX: app.globalData.isIPX,
