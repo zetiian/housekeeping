@@ -153,6 +153,9 @@ Page({
   },
   buyNowPay(){
     let _this = this.data
+    if(!_this.addressDetail){
+      return wx.$showToast('请选择服务地址')
+    }
     let data = {
       addressId:_this.addressDetail.addressId,
       customerId:userInfo.customerId,
@@ -181,6 +184,9 @@ Page({
   },
   buyNow() {
     let _this = this.data
+    if(!_this.addressDetail){
+      return wx.$showToast('请选择服务地址')
+    }
     let data = {
       addressId:_this.addressDetail.addressId,
       customerId:userInfo.customerId,
