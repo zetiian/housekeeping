@@ -54,7 +54,7 @@ Page({
     util
       .changeOrderStatus(data)
       .then((res) => {
-        wx.showToast({ title: "操作成功！" });
+        wx.showToast({ title: "操作成功" });
         setTimeout(() => {
           wx.reLaunch({ url: "/pages/order/order" });
         }, 1500);
@@ -73,7 +73,7 @@ Page({
     util
       .changeOrderStatus(data)
       .then((res) => {
-        wx.showToast({ title: "操作成功！" });
+        wx.showToast({ title: "操作成功" });
         setTimeout(() => {
           wx.reLaunch({ url: "/pages/order/order" });
         }, 1500);
@@ -92,7 +92,7 @@ Page({
     util
       .changeOrderStatus(data)
       .then((res) => {
-        wx.showToast({ title: "操作成功！" });
+        wx.showToast({ title: "操作成功" });
         setTimeout(() => {
           wx.reLaunch({ url: "/pages/order/order" });
         }, 1500);
