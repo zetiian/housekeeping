@@ -2,7 +2,8 @@ let timeTool = require('./utils/common.js').timeTool;
 
 
 exports.baseConfig = {
-    baseUrl:"https://mobileqrsmallprog.gz-sanjie.com",
+    baseUrl:"https://sjtest.gz-sanjie.com",
+    // baseUrl:"https://mobileqrsmallprog.gz-sanjie.com",
     baseVersion:"test",
     baseParams : {
       shopNo: 'SP16045920',
