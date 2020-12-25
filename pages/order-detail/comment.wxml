@@ -1,0 +1,38 @@
+<nav title="服务评价"></nav>
+<view class="app-contanier app-flex app-flex-column">
+  <view class="order-item app-flex app-flex-column" wx:if="{{detail.serverNo}}">
+    <view class="order-top app-flex app-flex-between">
+      <view class="order-name">服务人员</view>
+    </view>
+    <view class="order-detail app-flex  app-flex-center">
+      <view class="order-info app-flex app-flex-column">
+        <image class="order-avatar" src="{{detail.serverPhoto}}" mode="aspectFill" lazy-load="false" />
+      </view>
+      <view class="order-server app-flex app-flex-column">
+        <view class="app-flex " style="margin-bottom:10rpx;">
+          <view class="order-server-name">{{detail.serverName}}</view>
+          <base-button size="mini" type="plain disable">保洁</base-button>
+        </view>
+        <view class="app-flex ">
+          <view class="order-server-age">
+            {{detail.serverAge||40}}岁丨从业{{detail.serverYear||1}}年
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="app-flex app-flex-between order-top">
+    <view class="order-name">服务满意度</view>
+    <view class="app-flex ">
+      <star count="{{star}}" bindchange="starChange" data-pi="{{1}}"></star>
+    </view>
+  </view>
+    <van-cell-group>
+      <van-field model:value="{{ remark }}" autosize type="textarea" maxlength="50" show-word-limit placeholder="还有什么想说的呢？" border="{{ false }}" />
+    </van-cell-group>
+</view>
+<view class="app-bottom-btn {{isIPX?'ipx':''}}">
+  <van-button round catchtap="submit" custom-class="app-btn">
+    <view class="btn-text">提交评价</view>
+  </van-button>
+</view>

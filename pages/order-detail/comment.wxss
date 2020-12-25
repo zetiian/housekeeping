@@ -1,0 +1,154 @@
+.my-account {
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20rpx;
+  margin-top: 32rpx;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #727484;
+}
+
+.my-account-box {
+  width: 100%;
+  height: 100%;
+  margin-top: 20rpx;
+  justify-content: space-around;
+}
+
+.question-item {
+  height: 108rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #AFB9C6;
+}
+
+
+.question-item-name {
+  margin-left: 30rpx;
+
+}
+.my-account-btn{
+  width: 100%;
+  justify-content: center;
+}
+.app-contanier{
+  box-shadow: none;
+}
+.choose-icon {
+    width: 36rpx;
+    height: 36rpx;
+    margin-right: 16rpx;
+    opacity: 0;
+    border-radius: none;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAJKADAAQAAAABAAAAJAAAAAAqDuP8AAACzklEQVRYCeWYz49LURTHz2mfjAkGe/MfsBEbKRKRYNhI1MaKpZ2QVjpjQTKIPkT8AzMLQcJsx4T4kSbYWmBN6h/wIzqlfdf33NfbuX3pPLftey9NnKS9v8/59Nx73us9TJaUyzd3tINWRREdRvc0kZqwhhOschPK6kz0LJ/zblSrl74a5egL5ULp2hk07iqltpq+LEpm/gYHnL/jzy2Kvbx8CQwptYDqRmlnLGLzxN7CoS/v3r58z3qbVOtDj2eYl3KsaoHi72nAQfcUdB+AE04a/eKpPHs7vfDMrG1Tnqno+3NLZmKK5b2L5etFFQSPxYY4pK1alVznAId24Rnfv5wFjLZ3uzr7hGAzNA4oBFMODURTKLJNpp5VGbE5DaC10E7rzMT9uF6bakI8NFby/wGpZZpSr8hz3YZUPQSQbatEL5oNeugKlRqQhmnQc8TyHqWoCKgHLlCpANkwZqsAdUpDKYq1GTtolA1S9oMx6wH1iZkC0+5XDgQEY5t/r9DufoqkLw4Gw1cnj9MVmRcnzkACs9qglaBNr/8sUyGqNAkY0ekEZGBwQAt432xpK3pqQyUFI0BOz4fmL5I3ctcrFtSMN0kf4TkdTaIwIk7bZK9x8hD+kszj3+QPe6GBQuTUJLTtsU59YBhZ5wS04Ri9AdQMIuSnbVigEDm77L5OfSgYWesEJBM1FNHRKJSMRWRoGNHjDCSTHaBGghkY6B9QI8MMBbQOVCIwQwPZUNjzWZcnsKxxEafn0HqK5ExhTD6JyUCHOjGrMYrGEUhf/DWz3Chj4FMZ6rXJTfFQ3VjS11vTyKiM2KznJCXStY27dqk0371vd/tTqshVuud+D5axSzbo/JCVjknJFw5qmc9KjkjnhyQvI/kZpEQOYmmmOSJJwyDhcK4nYSX8ArV/35H7SIsAiLfjswndIz04RW9/kcjmz0z8CCm907f8Ss3M+wsKqjEGYzZX3QAAAABJRU5ErkJggg==) no-repeat center center/ 100% 100%;
+}
+.choose-icon.active {
+  opacity: 1;
+
+}
+
+
+.nav-row{
+  box-shadow: 0px 0px 6px 0px rgba(123, 115, 107, 0.24);
+}
+.nav-item {
+   justify-content: flex-start;
+   height: 160rpx;
+   position: relative;
+   padding-left: 32rpx;
+   background-color: #fff;
+}
+.nav-item-icon{
+   width: 40rpx;
+   height: 40rpx;
+   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAARCAYAAADQWvz5AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEqADAAQAAAABAAAAEQAAAADdCciFAAABvklEQVQ4Ec1Tv09TURT+zntVeOlQB0ocOxHSCSaH4ojRsjCS6MDgzAA8SJmY2kDTwX9AF90cmKiR0ZjQDQc7OOkobViAkDa8d/jOhb5U09jH5kluzo/7fd875953BbSNrdpL1WgbKkVAfauNN4kg2hbx9xr7lQ/iROLoPUQ6Am0pCEhhxPrEPoFqXjz/VcZ1YiLZiWJjd7ObQiOBVCrVfO8a303Ds3Gsk/uKmFqttuOmMI2MnclgnN4hlmPFnCc4mSjjoNfEShxjVnwcTz7Hp6SVoeCWqz6FgOlsJ7hqYpUir5mWYuAr80eqWGM+jxhHzB8b9m970+oEpxdTcEKF3M8cwe8SkKIELr0rUHCR+WKyPxSQ20qE+tEDu6lfIpgiKUt/Sd8VNkuxgP6c/myIn4R3XHhWOfk91wmWUCD4o+XmLWf42XII3lo+ahnXIG40C8yCMlbpbDmbXMLyIB7nXUfjQGn2/z+hDG+oz9N9mKb9URgxLjXsiXxTaGm9Up0ZBfxXzXEEC6YhYVh7FiNqknDNwg+Kpnz9fDii9vGMB/8F/zUgDKtPY9WQG0WO+ccvYfsjTdyH255IvV7f+XIDF8mvKFlzrWcAAAAASUVORK5CYII=);
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: contain;
+   margin-right: 20rpx;
+}
+.nav-item.active::after {
+   content: '';
+   position: absolute;
+   bottom: 10rpx;
+   left: 50%;
+   transform: translateX(-50%);
+   border-radius: 2rpx;
+   background-color: #0a0;
+   width: 40rpx;
+   height: 8rpx;
+   background: linear-gradient(180deg, #FCDB00 0%, #F7B500 100%);
+   box-shadow: 0px 0px 6px 0px rgba(123, 115, 107, 0.24);
+   border-radius: 6rpx;
+}
+
+.nav-item-last::before {
+   content: '';
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   left: 4rpx;
+   border-radius: 2rpx;
+   background-color: #0a0;
+   width: 4rpx;
+   height: 50rpx;
+   background: #eee;
+   box-shadow: 0px 0px 6px 0px rgba(123, 115, 107, 0.24);
+   border-radius: 6rpx;
+}
+
+.order-box {
+   padding-bottom: 200rpx;
+}
+
+.order-item {
+   font-size: 32rpx;
+   font-family: PingFangSC-Regular, PingFang SC;
+   font-weight: 400;
+   color: #727484;
+   margin-bottom: 16rpx;
+   padding-bottom: 40rpx;
+   padding:0 32rpx;
+    border-bottom: 4px solid rgba(123, 115, 107, 0.1);
+}
+.order-name{
+   font-size: 32rpx;
+   font-family: PingFangSC-Medium, PingFang SC;
+   font-weight: 500;
+   color: #727484;
+}
+.order-top {
+   border-bottom: 1rpx solid #eee;
+   padding: 28rpx 0;
+}
+
+.order-status {
+  margin-right: 14rpx;
+
+}
+.order-status.active{
+   color: #F7B500;
+}
+.order-detail {
+  font-size: 28rpx;
+  padding: 32rpx 0;
+  align-items: space-around;
+  min-height: 176rpx;
+}
+.order-time{
+   margin-bottom: 20rpx;
+}
+.order-avatar{
+   width: 140rpx;
+   height: 140rpx;
+   border-radius: 50%;
+   margin-right: 30rpx;
+}
+.order-server-name{
+   margin-right: 20rpx;
+}
+.order-cancel{
+   width: 100%;
+   height: 100rpx;
+   justify-content: center;
+}

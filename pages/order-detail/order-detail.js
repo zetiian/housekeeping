@@ -4,6 +4,7 @@ const API = require("../../api/interface.js");
 import localStorage from "../../libs/localStorage";
 var checkLogin = require("../../libs/checkLogin").checkLogin;
 let timeTool = require("../../utils/common.js").timeTool;
+var EventBus = require("../../libs/event");
 var userInfo = {};
 var stateList = [
   "服务已完成",
@@ -44,7 +45,12 @@ Page({
       this.setData({ detail: list[0],userInfo });
     });
   },
-
+  toComment(){
+    // EventBus.emit('getDetail',this.data.detail)
+    localStorage.set({ currentDetail:this.data.detail })
+    wx.navigateTo({ url: './comment', });
+      
+  },
   toFinish() {
     let data = {
       customerId: userInfo.customerId,

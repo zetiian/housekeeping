@@ -83,7 +83,7 @@
   </view>
     
 </scroll-view>
-  <view class="app-bottom-btn {{isIPX?'ipx':''}}" wx:if="{{detail.state==2 || detail.state==3 || detail.state==4 || detail.state==6}}" >
+  <view class="app-bottom-btn {{isIPX?'ipx':''}}" wx:if="{{detail.state==2 || detail.state==3 || detail.state==4 || detail.state==5 || detail.state==6}}" >
       <van-button round  catchtap="toPay" custom-class="app-btn" wx:if="{{detail.state==2 && userInfo.userType==='0'}}">
        <view class="btn-text"> 支付 </view>
      </van-button>
@@ -95,6 +95,9 @@
      </van-button>
       <van-button round  catchtap="toFinish" custom-class="app-btn"  wx:if="{{userInfo.userType==='0' && detail.state==4}}">
        <view class="btn-text"> 服务完成 </view>
+     </van-button>
+      <van-button round  catchtap="toComment" custom-class="app-btn" wx:if="{{userInfo.userType==='0' && detail.state==5}}">
+       <view class="btn-text"> 去评价 </view>
      </van-button>
  </view>
   
