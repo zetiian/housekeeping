@@ -39,8 +39,9 @@ Page({
       serverOrderId:this.data.detail.serverOrderId,
       serverNo:this.data.detail.serverNo,
       serverRating:this.data.star,
-      remark:this.data.remark,
+      evalContent:this.data.remark,
     }
+    if(!data.serverRating)return wx.$showToast('给个评分吧')
     API.serverEval(data).then(res=>{
       wx.showToast({ title: '评价成功' });
       setTimeout(() => {
