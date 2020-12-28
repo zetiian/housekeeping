@@ -62,7 +62,7 @@ Page({
       let list = res.resultList||[]
      list.forEach(el=>{
         el.orderStatus = stateList[el.state]
-        el.timeLeft =(Number(new Date().getTime()/1000).toFixed()) - Number(el.sendOrderTime) 
+        // el.timeLeft =(Number(new Date().getTime()/1000).toFixed()) - Number(el.sendOrderTime) 
       })
       this.setData({ list })
       wx.hideLoading();

@@ -5,7 +5,7 @@
     <view> {{detail.orderStatus}} </view>
   </van-col>
   <van-col span="16" custom-class="nav-item-2 app-flex app-flex-center "  wx:if="{{detail.state==='2'}}">
-    <count-down class="count-box"  isOrder="{{true}}" bind:finish="onCountDownFinish"  type="active"  time="{{detail.timeLeft}}"></count-down>
+    <count-down class="count-box"  isOrder="{{true}}" bind:finish="onCountDownFinish"  type="active"  time="{{detail.timeLeft||300}}"></count-down>
   </van-col>
    <!-- <view wx:if="{{detail.state==='2'}}"> {{detail.timeLeft}} </view> -->
 </van-row>
