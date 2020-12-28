@@ -2,7 +2,7 @@
  * @Author: Jericho Ding 
  * @Date: 2020-07-23 15:31:49 
  * @Last Modified by: 丁希虎
- * @Last Modified time: 2020-12-24 15:02:44
+ * @Last Modified time: 2020-12-28 11:14:21
  */
 import localStorage from "../libs/localStorage";
 const API = require('../api/interface.js')
@@ -63,38 +63,44 @@ exports.getCurrentTimeStr = function(schema) {  // 获取当前时间  yyyyMMddH
   return ret;
 }
 exports.getUserInfo = function() {  // 获取用户信息
+  let customerId = localStorage.get().userInfo?localStorage.get().userInfo.customerId:''
   return new Promise((resolve, reject) => {
-    API.getUserInfo({
-      customerId: localStorage.get().userInfo.customerId,
-    }).then(res => {
-      if (res.respCode == "000000") {
-        let userInfo = {
-          ...localStorage.get().userInfo,
-          userType: res.userType,
-          userName: res.userName,
-          userId: res.userId,
-          userStatus: res.userStatus, //状态： 0:正常,1:冻结,
-          userDispost: res.userDispost, //用户押金
-          userBalance: res.userBalance, // 余额
-          mobileNo: res.mobileNo, // 手机号
-          areaCode: res.areaCode, // 国际区间码
-          tranPasswordFlag: res.tranPasswordFlag, // 用户交易密码状态  0：未设置 1：已经设置
-          wxopenId: res.wxopenId, // 微信号
-          loginType: res.loginType, // 登录状态 (00-正常登出;01-异常登出;02-已登录)
-          accountType: res. accountType, // 01：普通卡账户
-          applyState: res.applyState, // 0：申请失败 1：申请成功 2：审核中 9：不存在的申请
-          applyDesc: res.applyDesc, // 申请失败失败描述
-        };
-        localStorage.set({ userInfo });
-        console.log("_____获取用户信息", res);
-        resolve(userInfo)
-      } else if (res.respCode == "100009") {
-        // 过期用户
-        localStorage.clear();
-      }else{
-        reject(res)
-      }
-    });
+    if(customerId){
+      API.getUserInfo({
+        customerId: customerId,
+      }).then(res => {
+        if (res.respCode == "000000") {
+          let userInfo = {
+            ...localStorage.get().userInfo,
+            userType: res.userType,
+            userName: res.userName,
+            userId: res.userId,
+            userStatus: res.userStatus, //状态： 0:正常,1:冻结,
+            userDispost: res.userDispost, //用户押金
+            userBalance: res.userBalance, // 余额
+            mobileNo: res.mobileNo, // 手机号
+            areaCode: res.areaCode, // 国际区间码
+            tranPasswordFlag: res.tranPasswordFlag, // 用户交易密码状态  0：未设置 1：已经设置
+            wxopenId: res.wxopenId, // 微信号
+            loginType: res.loginType, // 登录状态 (00-正常登出;01-异常登出;02-已登录)
+            accountType: res. accountType, // 01：普通卡账户
+            applyState: res.applyState, // 0：申请失败 1：申请成功 2：审核中 9：不存在的申请
+            applyDesc: res.applyDesc, // 申请失败失败描述
+          };
+          localStorage.set({ userInfo });
+          console.log("_____获取用户信息", res);
+          resolve(userInfo)
+        } else if (res.respCode == "100009") {
+          // 过期用户
+          localStorage.clear();
+        }else{
+          reject(res)
+        }
+      });
+    }else{
+      reject('未注册')
+    }
+
   });
 }
 exports.getAccountInfo = function(type) {  // 获取用户账户信息

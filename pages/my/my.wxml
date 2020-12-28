@@ -21,7 +21,7 @@
 
    
   </view>
-  <view class="my-item app-flex app-flex-column" wx:if="{{isRegister==='yes' && userInfo.userType==='1'}}">
+  <view class="my-item app-flex app-flex-column" wx:if="{{isRegister==='yes' && userInfo.userType==='1' && userInfo.userStatus==='0'}}">
     <view > 本月数据 </view>
     <view class="app-flex app-flex-between">
        <view class="app-flex app-flex-column sercice-data">
@@ -37,7 +37,7 @@
   </view>
   <!-- 菜单 -->
   <view class=" app-flex app-flex-column my-ticket">
-    <view class="app-flex app-flex-between my-ticket-item" catchtap="goUpload" wx:if="{{ userInfo && userInfo.userType==='1' && userInfo.userStatus==='1'}}">
+    <view class="app-flex app-flex-between my-ticket-item" catchtap="goUpload" wx:if="{{ userInfo && userInfo.userType==='1'  && (currentApply.state==='none')}}">
       <view class="my-ticket-item-name app-flex">
         <view class="my-ticket-left-icon question-feedback"></view>
         <view>提交审核信息</view>
@@ -47,9 +47,12 @@
       <view class="app-flex app-flex-between my-ticket-item" catchtap="goUpload" wx:if="{{ userInfo && userInfo.userType==='1' && currentApply.state==='0'}}">
       <view class="my-ticket-item-name app-flex">
         <view class="my-ticket-left-icon question-feedback"></view>
-        <view>审核失败，请重新填写提交</view>
+        <view>提交审核信息</view>
       </view>
-      <view class="app-arrow-right"></view>
+       <view class="app-flex app-flex-center" style="font-size:24rpx;">
+        审核失败，请重新填写提交
+        <view class="app-arrow-right"></view>
+      </view>
     </view>
     <view class="app-flex app-flex-between my-ticket-item"  wx:if="{{ userInfo && userInfo.userType==='1' && currentApply.state==='2'}}">
       <view class="my-ticket-item-name app-flex">
@@ -58,7 +61,6 @@
       </view>
       <view class="app-flex app-flex-center" style="font-size:24rpx;">
         资料审核中
-        <view class="app-arrow-right"></view>
       </view>
     </view>
      <view class="app-flex app-flex-between my-ticket-item" catchtap="goAddress" wx:if="{{ userInfo && userInfo.userType==='0'}}">

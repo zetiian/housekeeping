@@ -23,43 +23,48 @@ Page({
   },
   onShow(e) {
     if (typeof this.getTabBar === "function" && this.getTabBar()) {
-      this.getTabBar().setData({
-        _active: "my"
-      });
+      this.getTabBar().setData({ _active: "my" });
     }
+    
     checkLogin(_=>{
-      userInfo = localStorage.get().userInfo||{}
-      this.setData({userInfo})
-      if(userInfo.userType==='1'){
-        this.getApplyInfo()
-        API.monthServerData({
-          customerId:userInfo.customerId
-        }).then(res=>{
-          if(res.respCode==='000000'){
-            this.setData({
-              userData:{
-                waitNum:res.waitNum,
-                finishNum:res.finishNum,
-              }
-            })
-          }
-        })
-      }
+      util.getUserInfo().then(userInfo=>{
+        console.log(22222,userInfo);
+        this.getApplyInfo(userInfo)
+        this.setData({userInfo})
+        if(userInfo.userType==='1'){
+          API.monthServerData({
+            customerId:userInfo.customerId
+          }).then(res=>{
+            if(res.respCode==='000000'){
+              this.setData({
+                userData:{
+                  waitNum:res.waitNum,
+                  finishNum:res.finishNum,
+                }
+              })
+            }
+          })
+        }
+      })
+    
    
     },_=>{
       
     })
   },
-  getApplyInfo() {
+  getApplyInfo(userInfo) {
     let data = {
       customerId:userInfo.customerId
     }
     API.serverInfo(data).then(res=>{
       console.log(8999,res);
+      let currentApply ={}
       if(res.respCode ==="000000" && res.resultList.length){
-        let currentApply = res.resultList[res.resultList.length-1]
-        this.setData({currentApply})
+        currentApply= res.resultList[res.resultList.length-1]
+      }else{
+        currentApply.state = 'none'
       }
+      this.setData({currentApply})
     })
   },
 

@@ -22,17 +22,10 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    util.getUserInfo()
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    userInfo = localStorage.get().userInfo
+   
     if (typeof this.getTabBar === "function" && this.getTabBar()) {
       this.getTabBar().setData({
         _active: "order"
@@ -40,12 +33,14 @@ Page({
     }
     checkLogin(_=>{
       console.log(3333,'已注册')
-      let data = {
-        customerId:userInfo.customerId,
-      }
-      this.getList(data)
+      util.getUserInfo().then(userInfo=>{
+        let data = {
+          customerId:userInfo.customerId,
+        }
+        this.getList(data)
+      })
+    
     },_=>{
-      console.warn(4444,'未注册')
        wx.showToast({
         title: '请先进行注册',
         icon: 'none',
@@ -62,8 +57,8 @@ Page({
   },
   getList(data){
     API.serverAppointList(data).then(res=>{
-      let list = res.resultList
-      list.forEach(el=>{
+      let list = res.resultList||[]
+     list.forEach(el=>{
         el.orderStatus = stateList[el.state]
       })
       console.log(1111,'列表',res.resultList,list);
@@ -72,16 +67,19 @@ Page({
   },
   
   select(e){
-    let nav = e.currentTarget.dataset.nav
-    let data = {
-      customerId:userInfo.customerId,
-      state:nav,
-    }
-    this.setData({nav})
-    if(nav===10) {
-      delete data.state
-    }
-    this.getList(data)
+    util.getUserInfo().then(userInfo=>{
+      let nav = e.currentTarget.dataset.nav
+      let data = {
+        customerId:userInfo.customerId,
+        state:nav,
+      }
+      this.setData({nav})
+      if(nav===10) {
+        delete data.state
+      }
+      this.getList(data)
+    })
+   
   },
   goDetail(e){
     let item = e.currentTarget.dataset.item
