@@ -158,6 +158,7 @@
    align-items: flex-start;
    margin-left: 30rpx;
    margin-top: 40rpx;
+   height: 250rpx;
  }
  .upload-3{
    position: absolute;

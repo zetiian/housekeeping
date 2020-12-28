@@ -2,7 +2,7 @@
  * @Author: Jericho Ding 
  * @Date: 2020-07-23 15:31:49 
  * @Last Modified by: 丁希虎
- * @Last Modified time: 2020-12-28 11:14:21
+ * @Last Modified time: 2020-12-28 21:06:02
  */
 import localStorage from "../libs/localStorage";
 const API = require('../api/interface.js')
@@ -50,7 +50,16 @@ function p0 (n){
       return ''+n;
   }
 }
-
+exports.transformTime = function(schema="yy-mm-dd hh:ii:ss",time) {  
+  var d =time?new Date(time): new Date();
+  var ret = schema.replace("yy",d.getFullYear())
+                  .replace("mm",p0(d.getMonth()+1))
+                  .replace("dd",p0(d.getDate()))
+                  .replace("hh",p0(d.getHours()))
+                  .replace("ii",p0(d.getMinutes()))
+                  .replace("ss",p0(d.getSeconds()))
+  return ret;
+}
 exports.getCurrentTimeStr = function(schema) {  // 获取当前时间  yyyyMMddHHmmss
   schema = schema || "yy-mm-dd hh:ii:ss";
   var d = new Date();

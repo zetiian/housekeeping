@@ -183,7 +183,7 @@ Page({
                 wx.$showToast("预约成功，待系统派单后即可支付");
                 setTimeout(() => {
                   wx.navigateTo({
-                    url: `/pages/order-detail/order-detail?id=${id}}`,
+                    url: `/pages/order-detail/order-detail?id=${id}`,
                   });
                 }, 1000);
               });

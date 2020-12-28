@@ -22,7 +22,7 @@
     </view>
   </view>
   <view class=" app-flex app-flex-between id-card-special " >
-      <upload showClose class="upload-3" bindchange="filesChange" data-name="cert" max="{{3}}"></upload>
+      <upload showClose class="upload-3" bindchange="filesChange" data-name="comment" max="{{3}}"></upload>
     </view>
   <view class="app-flex app-flex-between order-top">
     <view class="order-name">服务满意度</view>

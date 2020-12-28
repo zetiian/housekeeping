@@ -40,6 +40,7 @@ Page({
       serverNo:this.data.detail.serverNo,
       serverRating:this.data.star,
       evalContent:this.data.remark,
+      applyImages:this.applyImages||[],
     }
     if(!data.serverRating)return wx.$showToast('给个评分吧')
     API.serverEval(data).then(res=>{
@@ -54,5 +55,37 @@ Page({
       wx.$showToast(err)
     })
 
+  },
+  applyImages:[],
+  filesChange(e){
+    let dataset = e.currentTarget.dataset
+    let img = e.detail.files[0]
+    if(img.src.size>5242880){
+      return wx.$showToast('上传图片过大，换张图片试试');
+    }
+    this.uploadImgFile(img.src.path).then(res=>{
+       if(dataset.name==='comment'){
+        this.applyImages.push({photoType:'05',photoPath: res,id:util.randomString(16)})
+      }
+    })
+   
+  },
+
+  uploadImgFile(src){
+    return new Promise((res,rej)=>{
+      wx.uploadFile({
+        url: 'https://mobileqrsmallprog.gz-sanjie.com/uploadImg',
+        filePath: src,
+        name: 'file',
+        success: result=>{
+          let remoteUrl = JSON.parse(result.data).url
+          res(remoteUrl)
+        },
+        fail:err=>{
+          rej(err)
+        }
+      })
+    })
+  
   },
 });

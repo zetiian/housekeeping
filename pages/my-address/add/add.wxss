@@ -215,6 +215,9 @@
 .near-item .add1 {
   color: #F7B500;
 }
+.isRight {
+  color: #F7B500;
+}
 .bottom-box {
   width: 100%;
   padding: 20rpx;

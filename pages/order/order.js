@@ -56,13 +56,17 @@ Page({
  
   },
   getList(data){
+    wx.showLoading({ title: '订单加载中...', mask: true, });
+      
     API.serverAppointList(data).then(res=>{
       let list = res.resultList||[]
      list.forEach(el=>{
         el.orderStatus = stateList[el.state]
+        el.timeLeft = util.transformTime('yy-mm-dd hh:ii:ss',Number(el.sendOrderTime+'000'))
       })
-      console.log(1111,'列表',res.resultList,list);
       this.setData({ list })
+      wx.hideLoading();
+        
     })
   },
   
