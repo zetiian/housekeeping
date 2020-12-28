@@ -29,9 +29,9 @@ Page({
     checkLogin(_=>{
       util.getUserInfo().then(userInfo=>{
         console.log(22222,userInfo);
-        this.getApplyInfo(userInfo)
         this.setData({userInfo})
         if(userInfo.userType==='1'){
+        this.getApplyInfo(userInfo)
           API.monthServerData({
             customerId:userInfo.customerId
           }).then(res=>{

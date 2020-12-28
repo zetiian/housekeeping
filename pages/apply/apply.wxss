@@ -33,7 +33,6 @@
     color: #727484;
 }
 .id-card-special{
-    /* background-image: none; */
     position: relative;
     align-items: flex-start;
     margin-left: 30rpx;

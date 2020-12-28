@@ -152,3 +152,17 @@
    height: 100rpx;
    justify-content: center;
 }
+
+.id-card-special{
+   position: relative;
+   align-items: flex-start;
+   margin-left: 30rpx;
+   margin-top: 40rpx;
+ }
+ .upload-3{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 300rpx;
+   height: 200rpx;
+ }
