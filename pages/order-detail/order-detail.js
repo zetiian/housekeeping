@@ -40,7 +40,7 @@ Page({
     API.serverAppointList(data).then((res) => {
       let detail = res.resultList[0]
       detail.orderStatus = stateList[detail.state];
-      // detail.timeLeft =(Number(new Date().getTime()/1000).toFixed()) - Number(detail.sendOrderTime) 
+      detail.timeLeft = Number(detail.sendOrderTime) + 15*60 -(Number(new Date().getTime()/1000).toFixed()) 
       console.log(1111, "列表",detail);
       this.setData({ detail,userInfo });
     });

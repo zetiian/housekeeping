@@ -26,7 +26,8 @@ Page({
     serverType:'',
     serverYear:'',
     phone:'',
-    applyImages:[]
+    applyImages:[],
+    currentApply:{}
   },
   //options(Object)
   onLoad: function(options) {
@@ -35,6 +36,22 @@ Page({
  
   onShow: function() {
     userInfo = localStorage.get().userInfo
+    this.getApplyInfo(userInfo)
+  },
+  getApplyInfo(userInfo) {
+    let data = {
+      customerId:userInfo.customerId
+    }
+    API.serverInfo(data).then(res=>{
+      console.log(8999,res);
+      let currentApply ={}
+      if(res.respCode ==="000000" && res.resultList.length){
+        currentApply= res.resultList[res.resultList.length-1]
+      }else{
+        currentApply.state = 'none'
+      }
+      this.setData({currentApply})
+    })
   },
   onSelect(e){
     console.log(2345,e.detail);

@@ -246,8 +246,10 @@ Page({
                 url: `/pages/order-detail/order-detail?id=${res.serverOrderId}`,
               });
             }, 1000);
+          }else{
+            resolve(res.serverOrderId);
           }
-          resolve(res.serverOrderId);
+         
         } else {
           wx.$showToast(res.respMsg);
         }
