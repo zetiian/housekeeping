@@ -151,10 +151,9 @@ Page({
   goRule() {
     wx.navigateTo({ url: "/pages/user-rule/user-rule" });
   },
-  buyNowPay() {
-    checkLogin(
-      (_) => {
-        let _this = this.data;
+  buyNowPay() {  
+    let _this = this.data;
+    checkLogin(_ => {
         if (!_this.addressDetail) {
           return wx.$showToast("请选择服务地址");
         }
@@ -174,6 +173,7 @@ Page({
         if (!_this.selectTimeObj.time) {
           return wx.$showToast("请选择时间");
         }
+        console.log(321);
         let rId = "idf74cRdLtWEYsNLrnri42YwqIXndk5gE-sPYdd_VEM";
         wx.requestSubscribeMessage({
           tmplIds: [rId],
@@ -183,9 +183,7 @@ Page({
                 wx.$showToast("预约成功，待系统派单后即可支付");
                 setTimeout(() => {
                   wx.navigateTo({
-                    url: `/pages/order-detail/order-detail?detail=${encodeURIComponent(
-                      JSON.stringify({ serverOrderId: id })
-                    )}`,
+                    url: `/pages/order-detail/order-detail?id=${id}}`,
                   });
                 }, 1000);
               });
@@ -197,8 +195,7 @@ Page({
             }
           },
         });
-      },
-      (_) => {
+      },_=> {
         wx.$showToast("您还没登录，即将前往注册登录页");
         setTimeout(() => {
           wx.reLaunch({ url: "/pages/my/my" });
@@ -246,9 +243,7 @@ Page({
             wx.showToast({ title: "预约成功！" });
             setTimeout(() => {
               wx.navigateTo({
-                url: `/pages/order-detail/order-detail?detail=${encodeURIComponent(
-                  JSON.stringify({ serverOrderId: res.serverOrderId })
-                )}`,
+                url: `/pages/order-detail/order-detail?id=${res.serverOrderId}`,
               });
             }, 1000);
           }
