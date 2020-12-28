@@ -8,6 +8,13 @@
     padding-left: 32rpx;
     background-color: #fff;
 }
+.nav-item-2 {
+    justify-content:center;
+    height: 160rpx;
+    position: relative;
+    padding-left: 32rpx;
+    background-color: #fff;
+}
 .nav-item-icon{
     width: 40rpx;
     height: 40rpx;

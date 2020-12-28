@@ -34,6 +34,7 @@
   "usingComponents": {
     "nav":"./components/nav/common",
     "star":"./components/star/star",
+    "count-down":"./components/count-down/count-down",
     "upload":"./components/upload/upload",
     "base-button":"./components/button/button",
     "img-lazy":"./components/img-lazy/img-lazy",

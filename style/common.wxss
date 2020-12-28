@@ -55,7 +55,7 @@
     justify-content: space-around;
   }
   .app-flex-end{
-    align-items: flex-end;
+    justify-content: flex-end;
   }
   .app-flex-between {
     justify-content: space-between;

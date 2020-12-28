@@ -1,9 +1,13 @@
 <nav title="订单详情"></nav>
 <van-row custom-class="nav-row">
-  <van-col span="12" custom-class="nav-item app-flex app-flex-center " >
+  <van-col span="{{detail.state==='2'?8:12}}" custom-class="nav-item  app-flex app-flex-center" >
     <view class="nav-item-icon"> </view>
     <view> {{detail.orderStatus}} </view>
   </van-col>
+  <van-col span="16" custom-class="nav-item-2 app-flex app-flex-center "  wx:if="{{detail.state==='2'}}">
+    <count-down class="count-box"  isOrder="{{true}}" bind:finish="onCountDownFinish"  type="active"  time="{{detail.timeLeft}}"></count-down>
+  </van-col>
+   <!-- <view wx:if="{{detail.state==='2'}}"> {{detail.timeLeft}} </view> -->
 </van-row>
 
 <scroll-view class="order-box app-flex app-flex-column" height="100vh" scroll-x="false" scroll-y upper-threshold="50" lower-threshold="50" scroll-top="0"  scroll-with-animation="{{true}}" >

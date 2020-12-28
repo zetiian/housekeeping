@@ -1,0 +1,112 @@
+.shop-detail-banner-count-down {
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  white-space: nowrap;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+}
+.shop-detail-banner-count-down.white {
+  color: white;
+}
+.shop-detail-banner-count-down .span {
+  padding: 0 6rpx;
+  min-width: 40rpx;
+  box-sizing: border-box;
+  background: white;
+  border-radius: 4rpx;
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: #EC5042;
+  line-height: 30rpx;
+  display: inline-block;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  text-align: center;
+}
+.shop-detail-banner-count-down .span.no-left {
+  margin-left: 0;
+}
+
+.shop-detail-banner-count-down.active .span {
+  background: #EC5042;
+  color: white;
+}
+.shop-detail-banner-count-down.left{
+  justify-content:flex-end;
+  font-size: 26rpx;
+  color: #747A86;
+}
+.order-count .span2{
+  background: #fff;
+  color: #EC5042;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 4rpx;
+}
+
+
+.count-down {
+  display: flex;
+  align-items: center;
+}
+.count-down-item {
+  padding: 0 3rpx;
+  min-width: 40rpx;
+  height: 40rpx;
+  background: rgba(109,114,120,1);
+  border-radius: 4rpx;
+  opacity: 0.5;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+.count-down-space {
+  margin: 0 10rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(109,114,120,1);
+  line-height: 40rpx;
+}
+.arrow{
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 5rpx;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(https://azure-shop.obs.cn-south-1.myhuaweicloud.com/20200323142805172-common_icon_jt24_r%403x.png);
+}
+
+.shop-detail-banner-count-down-scekill {
+  display: flex;
+	align-items: center;
+	font-size: 24rpx;
+	font-family: PingFangSC-Regular;
+	font-weight: 400;
+	color: #747A86;
+	line-height: 24rpx;
+}
+.shop-detail-banner-count-down-scekill .span {
+	margin: 0 10rpx;
+	width: 36rpx;
+	height: 30rpx;
+	border-radius: 4rpx;
+	border: 1rpx solid #2CCCD3;
+	font-size: 20rpx;
+	font-family: PingFangSC-Regular;
+	font-weight: 400;
+	color: #2CCCD3;
+	line-height: 20rpx;
+	justify-content: center;
+	display: flex;
+	align-items: center;
+}

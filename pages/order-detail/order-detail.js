@@ -23,6 +23,7 @@ Page({
     isIPX: app.globalData.isIPX,
     detail: {},
     userInfo: {},
+    serverOrderId:''
   },
 
   /**
@@ -31,27 +32,27 @@ Page({
   onLoad: function (op) {
     userInfo = localStorage.get().userInfo;
     if(op.id){
-      let data = {
-        customerId: userInfo.customerId,
-        serverOrderId: op.id,
-      };
-      
-      API.serverAppointList(data).then((res) => {
-        let list = res.resultList;
-        list.forEach((el) => {
-          el.orderStatus = stateList[el.state];
-        });
-        console.log(1111, "列表", res.resultList, list);
-        this.setData({ detail: list[0],userInfo });
-      });
+      this.setData({serverOrderId:op.id})
     }
    
+  },
+  getDetail(data){
+    API.serverAppointList(data).then((res) => {
+      let detail = res.resultList[0]
+      detail.orderStatus = stateList[detail.state];
+      detail.timeLeft =(Number(new Date().getTime()/1000).toFixed()) - Number(detail.sendOrderTime) 
+      console.log(1111, "列表",detail);
+      this.setData({ detail,userInfo });
+    });
   },
   toComment(){
     // EventBus.emit('getDetail',this.data.detail)
     localStorage.set({ currentDetail:this.data.detail })
     wx.navigateTo({ url: './comment', });
       
+  },
+  onCountDownFinish(e){
+    this.onShow()
   },
   toFinish() {
     let data = {
@@ -114,6 +115,7 @@ Page({
 
   onShow: function () {
     userInfo = localStorage.get().userInfo;
+    this.getDetail({ customerId: userInfo.customerId, serverOrderId: this.data.serverOrderId })
   },
 
   onPullDownRefresh: function () {},

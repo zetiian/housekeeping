@@ -1,0 +1,28 @@
+<view wx:if="{{timeObj && !isOrder && type !== 'number-selector' && type !== 'scekill'}}" class="shop-detail-banner-count-down{{type?(' '+type):''}}">
+  <view class="span" style="{{color?('color:'+color+';'):''}}">{{timeObj.h || '00'}}</view>:
+  <view class="span" style="{{color?('color:'+color+';'):''}}">{{timeObj.m || '00'}}</view>:
+  <view class="span" style="{{color?('color:'+color+';'):''}}">{{timeObj.s || '00'}}</view>
+  {{lastText}}
+</view>
+
+<view wx:if="{{timeObj && isOrder && type !== 'number-selector'}}" class="shop-detail-banner-count-down left {{type?(' '+type):''}} order-count">
+  订单将在<view class="span2">{{timeObj.m || '00'}}</view>分
+  <view class="span2">{{timeObj.s || '00'}}</view>秒{{lastText}}
+  <view wx:if="{{hasArrow}}" class="arrow"></view>内过期
+</view>
+
+<view class="count-down" wx:if="{{type === 'number-selector'}}">
+  <view class="count-down-item"><view>{{timeObj.ah||'00'}}</view></view>
+  <view class="count-down-space">:</view>
+  <view class="count-down-item"><view>{{timeObj.m||'00'}}</view></view>
+  <view class="count-down-space">:</view>
+  <view class="count-down-item"><view>{{timeObj.s||'00'}}</view></view>
+</view>
+
+<view wx:if="{{timeObj && type === 'scekill'}}" class="shop-detail-banner-count-down-scekill{{type?(' '+type):''}}">
+  <view class="no-left span">{{timeObj.d || '00'}}</view>天
+  <view class="span">{{timeObj.h || '00'}}</view>:
+  <view class="span">{{timeObj.m || '00'}}</view>:
+  <view class="span">{{timeObj.s || '00'}}</view>
+  {{lastText}}
+</view>

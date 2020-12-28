@@ -10,7 +10,6 @@
       <view class="order-top app-flex app-flex-between">
          <view class="order-name">{{item.userName}}</view>
          <view class="app-flex app-flex-center"> 
-           <view wx:if="{{item.state==='2'}}"> {{item.timeLeft}} </view>
            <view class="order-status {{(item.state==='0'||item.state==='7')?'active':''}}"> {{item.orderStatus}} </view>
            <van-icon name="arrow" />
          </view>
