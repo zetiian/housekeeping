@@ -44,7 +44,14 @@
       </view>
       <view class="app-arrow-right"></view>
     </view>
-    <view class="app-flex app-flex-between my-ticket-item"  wx:if="{{ userInfo && userInfo.userType==='1' && userInfo.userStatus==='2'}}">
+      <view class="app-flex app-flex-between my-ticket-item" catchtap="goUpload" wx:if="{{ userInfo && userInfo.userType==='1' && currentApply.state==='0'}}">
+      <view class="my-ticket-item-name app-flex">
+        <view class="my-ticket-left-icon question-feedback"></view>
+        <view>审核失败，请重新填写提交</view>
+      </view>
+      <view class="app-arrow-right"></view>
+    </view>
+    <view class="app-flex app-flex-between my-ticket-item"  wx:if="{{ userInfo && userInfo.userType==='1' && currentApply.state==='2'}}">
       <view class="my-ticket-item-name app-flex">
         <view class="my-ticket-left-icon question-feedback"></view>
         <view>提交审核信息</view>

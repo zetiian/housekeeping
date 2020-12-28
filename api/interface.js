@@ -79,6 +79,9 @@ exports.monthServerData = function (parameter) {
 exports.serverInfoCommit = function (parameter) {
   return formatParams(parameter,'/acc/serverInfoCommit')
 }
+exports.serverInfo = function (parameter) {
+  return formatParams(parameter,'/acc/serverInfo')
+}
 exports.serverEval = function (parameter) {
   return formatParams(parameter,'/acc/serverEval')
 }

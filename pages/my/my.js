@@ -4,6 +4,7 @@ const API = require('../../api/interface.js')
 import localStorage from "../../libs/localStorage";
 var checkLogin = require('../../libs/checkLogin').checkLogin
 let timeTool = require('../../utils/common.js').timeTool
+var userInfo = {}
 Page({
   data: {
     isIPX: app.globalData.isIPX,
@@ -11,6 +12,7 @@ Page({
     bottomHeight: app.globalData.isIPX ? 85 : 65,
     isRegister: '',
     userData: {},
+    currentApply:{},
     userInfo:{}
   },
   onUnload(e) {},
@@ -26,13 +28,13 @@ Page({
       });
     }
     checkLogin(_=>{
-      let userInfo = localStorage.get().userInfo||{}
+      userInfo = localStorage.get().userInfo||{}
       this.setData({userInfo})
       if(userInfo.userType==='1'){
+        this.getApplyInfo()
         API.monthServerData({
           customerId:userInfo.customerId
         }).then(res=>{
-          console.log(345,res);
           if(res.respCode==='000000'){
             this.setData({
               userData:{
@@ -48,12 +50,23 @@ Page({
       
     })
   },
+  getApplyInfo() {
+    let data = {
+      customerId:userInfo.customerId
+    }
+    API.serverInfo(data).then(res=>{
+      console.log(8999,res);
+      if(res.respCode ==="000000" && res.resultList.length){
+        let currentApply = res.resultList[res.resultList.length-1]
+        this.setData({currentApply})
+      }
+    })
+  },
 
   registerBefore(e){
     let type = e.currentTarget.dataset.type
     let detail = e.detail
     let wxInfo = localStorage.get().wxInfo
-    console.log(1111,type,detail,wxInfo);
     if(detail.errMsg==='getPhoneNumber:ok'){
       API.userLogin({
         loginType:'02',
@@ -149,9 +162,6 @@ Page({
     } else {
 
     }
-
-  },
-  addMoney() {
 
   },
 
