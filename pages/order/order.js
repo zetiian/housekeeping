@@ -84,7 +84,7 @@ Page({
   goDetail(e){
     let item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: `/pages/order-detail/order-detail?detail=${encodeURIComponent(JSON.stringify(item))}`,
+      url: `/pages/order-detail/order-detail?id=${item.serverOrderId}`,
     });
     
   },

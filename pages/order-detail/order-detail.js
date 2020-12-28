@@ -30,20 +30,22 @@ Page({
    */
   onLoad: function (op) {
     userInfo = localStorage.get().userInfo;
-    let detail = JSON.parse(decodeURIComponent(op.detail));
-    let data = {
-      customerId: userInfo.customerId,
-      serverOrderId: detail.serverOrderId,
-    };
-    
-    API.serverAppointList(data).then((res) => {
-      let list = res.resultList;
-      list.forEach((el) => {
-        el.orderStatus = stateList[el.state];
+    if(op.id){
+      let data = {
+        customerId: userInfo.customerId,
+        serverOrderId: op.id,
+      };
+      
+      API.serverAppointList(data).then((res) => {
+        let list = res.resultList;
+        list.forEach((el) => {
+          el.orderStatus = stateList[el.state];
+        });
+        console.log(1111, "列表", res.resultList, list);
+        this.setData({ detail: list[0],userInfo });
       });
-      console.log(1111, "列表", res.resultList, list);
-      this.setData({ detail: list[0],userInfo });
-    });
+    }
+   
   },
   toComment(){
     // EventBus.emit('getDetail',this.data.detail)
@@ -109,7 +111,6 @@ Page({
       });
   },
 
-  onReady: function () {},
 
   onShow: function () {
     userInfo = localStorage.get().userInfo;
