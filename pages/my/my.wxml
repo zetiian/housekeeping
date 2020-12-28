@@ -50,7 +50,7 @@
         <view>提交审核信息</view>
       </view>
        <view class="app-flex app-flex-center" style="font-size:24rpx;">
-        审核不通过，{{currentApply.applyDesc}}
+        审核未通过，{{currentApply.applyDesc}}
         <view class="app-arrow-right"></view>
       </view>
     </view>

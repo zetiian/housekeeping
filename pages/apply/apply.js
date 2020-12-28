@@ -27,7 +27,7 @@ Page({
     serverYear:'',
     phone:'',
     applyImages:[],
-    currentApply:{}
+ 
   },
   //options(Object)
   onLoad: function(options) {
@@ -43,14 +43,16 @@ Page({
       customerId:userInfo.customerId
     }
     API.serverInfo(data).then(res=>{
-      console.log(8999,res);
-      let currentApply ={}
+      let form = {}
       if(res.respCode ==="000000" && res.resultList.length){
-        currentApply= res.resultList[res.resultList.length-1]
-      }else{
-        currentApply.state = 'none'
+         form = res.resultList[res.resultList.length-1]
       }
-      this.setData({currentApply})
+      this.data.actions.map(el=>{
+        if(el.type===form.serverType){
+          this.onSelect({detail:el})
+        }
+      })
+      this.setData({...form})
     })
   },
   onSelect(e){
