@@ -61,7 +61,7 @@ Page({
       wx.$showToast("最长4小时");
     }
     let serverPrice
-    if(timeLength>=2){
+    if(timeLength>2){
        serverPrice = 45
     }else{
       serverPrice = 50
