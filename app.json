@@ -5,6 +5,7 @@
     "pages/order/order",
     "pages/order-detail/order-detail",
     "pages/order-detail/cancel",
+    "pages/order-detail/comment",
     "pages/register/register",
     "pages/apply/apply",
     "pages/rich-text/rich-text",

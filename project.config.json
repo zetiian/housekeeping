@@ -126,6 +126,11 @@
           "pathName": "pages/my-address/my-address",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "评价",
+          "pathName": "pages/order-detail/comment",
+          "scene": null
         }
       ]
     }

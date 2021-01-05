@@ -15,16 +15,11 @@ Page({
   onShow(e) {
    
   },
-  onLoad(op) {
+  onLoad() {
     wx.hideShareMenu();
     userInfo = localStorage.get().userInfo
     let detail = localStorage.get().currentDetail
     this.setData({ detail, userInfo})
-
-    // EventBus.on('getDetail',detail=>{
-    //   console.log(111122,detail);
-    // })
-   
   },
   choose(e){
     let item = e.currentTarget.dataset.item
@@ -34,6 +29,7 @@ Page({
     this.setData({star:e.detail.index+1})
   },
   submit() {
+    console.log(11111,this.applyImages);
     let data = {
       customerId:this.data.userInfo.customerId,
       serverOrderId:this.data.detail.serverOrderId,
