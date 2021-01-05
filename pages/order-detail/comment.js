@@ -40,7 +40,6 @@ Page({
     }
     if(!data.serverRating)return wx.$showToast('给个评分吧')
     console.log(1112,data);
-    
     API.serverEval(data).then(res=>{
       wx.showToast({ title: '评价成功' });
       setTimeout(() => {
@@ -57,15 +56,20 @@ Page({
   applyImages:[],
   filesChange(e){
     let dataset = e.currentTarget.dataset
-    let img = e.detail.files[0]
-    if(img.src.size>5242880){
-      return wx.$showToast('上传图片过大，换张图片试试');
-    }
-    this.uploadImgFile(img.src.path).then(res=>{
-       if(dataset.name==='comment'){
-        this.applyImages.push({photoType:'05',photoPath: res,id:util.randomString(16)})
+    console.log(11233,e.detail.files);
+    
+    let imgs = e.detail.files
+    imgs.map(img=>{
+      if(img.src.size>5242880){
+        return wx.$showToast('上传图片过大，换张图片试试');
       }
+      this.uploadImgFile(img.src.path).then(res=>{
+         if(dataset.name==='comment'){
+          this.applyImages.push({photoType:'05',photoPath: res,id:util.randomString(16)})
+        }
+      })
     })
+  
    
   },
 
