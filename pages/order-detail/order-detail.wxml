@@ -66,11 +66,15 @@
       <view class="order-detail app-flex app-flex-between app-flex-center">
         <view class="order-info app-flex app-flex-column">
           <view class="app-flex app-flex-between">
-           <view class="order-time">
-              <text style="color:#A3A19D;margin-right:20rpx;"> 服务价格 </text>
+           <view class="order-time"> <text style="color:#A3A19D;margin-right:20rpx;"> 服务时长 </text>
             {{detail.serverHours}}小时 
            </view>
-            <view> {{detail.serverPrice/100}}元 </view>
+           
+          </view>
+          <view class="app-flex app-flex-between">
+           <view class="order-time"> <text style="color:#A3A19D;margin-right:20rpx;"> 服务单价 </text>
+            {{detail.serverPrice/100}}元
+           </view>
           </view>
           <view class="app-flex app-flex-between">
            <view class="order-time">

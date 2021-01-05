@@ -39,6 +39,8 @@ Page({
       applyImages:this.applyImages||[],
     }
     if(!data.serverRating)return wx.$showToast('给个评分吧')
+    console.log(1112,data);
+    
     API.serverEval(data).then(res=>{
       wx.showToast({ title: '评价成功' });
       setTimeout(() => {
