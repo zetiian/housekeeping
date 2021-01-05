@@ -60,7 +60,13 @@ Page({
       timeLength = 4;
       wx.$showToast("最长4小时");
     }
-    this.setData({ timeLength });
+    let serverPrice
+    if(timeLength>=2){
+       serverPrice = 45
+    }else{
+      serverPrice = 50
+    }
+    this.setData({ timeLength,'detail.serverPrice':serverPrice });
   },
   getRightAppointTime(data) {
     API.appointTimeInfo({
@@ -171,28 +177,26 @@ Page({
           return wx.$showToast("请选择服务地址");
         }
         if (!_this.selectTimeObj.time) {
-          return wx.$showToast("请选择时间");
+          return wx.$showToast("请选择开始时间");
         }
-        console.log(321);
         let rId = "idf74cRdLtWEYsNLrnri42YwqIXndk5gE-sPYdd_VEM";
+        let rId1 = "F0_JOqU8xvtcNu49UxqTMeYQBn_L_R1rw1Qi5IDo4ac";
+        wx.showToast({
+          title: "为获取更好的通知服务,请选择同意~",
+          icon: "none",
+        });
         wx.requestSubscribeMessage({
-          tmplIds: [rId],
+          tmplIds: [rId,rId1],
           success: (rep) => {
-            if (rep[rId] === "accept") {
-              this.appoint(data).then((id) => {
-                wx.$showToast("预约成功，待系统派单后即可支付");
-                setTimeout(() => {
-                  wx.navigateTo({
-                    url: `/pages/order-detail/order-detail?id=${id}`,
-                  });
-                }, 1000);
-              });
-            } else if (rep[rId] === "reject") {
-              wx.showToast({
-                title: "为获取更好的通知服务,请选则同意~",
-                icon: "none",
-              });
-            }
+            console.log(11111,rep);
+            this.appoint(data).then((id) => {
+              wx.$showToast("预约成功，待系统派单后即可支付");
+              setTimeout(() => {
+                wx.navigateTo({
+                  url: `/pages/order-detail/order-detail?id=${id}`,
+                });
+              }, 1000);
+            });
           },
         });
       },_=> {
