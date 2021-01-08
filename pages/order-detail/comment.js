@@ -8,7 +8,6 @@ Page({
   data: {
     isIPX: app.globalData.isIPX,
     detail: {},
-    applyImages: [],
     number: 1,
     star: 0,
     remark: "",
@@ -34,11 +33,19 @@ Page({
       serverNo: this.data.detail.serverNo,
       serverRating: this.data.star,
       evalContent: this.data.remark,
-      applyImages: this.data.applyImages || [],
+      applyImages:  [],
     };
     if (!data.serverRating) return wx.$showToast("给个评分吧");
     console.log(1112, data);
-    API.serverEval(data)
+   let arr = []
+   this.toUpLoad.map((img)=>{
+    arr.push(this.uploadImgFile(img.src.path))
+   })
+
+    Promise.all(arr).then(result=>{
+      console.log(1112233,result);
+      result.map(src=>{ data.applyImages.push({ photoType: "05", photoPath: src, id: util.randomString(16) }) })
+      API.serverEval(data)
       .then((res) => {
         wx.showToast({ title: "评价成功" });
         setTimeout(() => {
@@ -51,31 +58,14 @@ Page({
         console.log(2222, err);
         wx.$showToast(err);
       });
+    })
+  
   },
-  time: 0,
+  toUpLoad:[],
   filesChange(e) {
-    let dataset = e.currentTarget.dataset;
-    this.setData({ number: 1 });
-
-    console.log(11233, e.detail.files, this.time);
-
-    let img = e.detail.files[this.time];
-    if (img.src.size > 5242880) {
-      return wx.$showToast("上传图片过大，换张图片试试");
-    }
-    this.uploadImgFile(img.src.path).then((res) => {
-      if (dataset.name === "comment") {
-        this.time++;
-        let applyImages = this.data.applyImages;
-        applyImages.push({
-          photoType: "05",
-          photoPath: res,
-          id: util.randomString(16),
-        });
-        this.setData({ number: 3, applyImages });
-      }
-    });
+    this.toUpLoad = e.detail.files
   },
+
 
   uploadImgFile(src) {
     return new Promise((res, rej) => {
