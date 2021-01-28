@@ -63,7 +63,8 @@ App({
       'iPhone X',// xs、xs max 系列
       'iPhone XR',
       'iPhone 11',// 11 系列
-      'unknown<iPhone13',// 12系列
+      'iPhone 12',// 12 系列
+      '<iPhone13',// 12 系列
     ]
     this.globalData.isIPX = iPhoneXModelList.some(ip=> mobile.indexOf(ip)===0)
 
